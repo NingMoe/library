@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/book_detail_padding_top">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include layout="@layout/activity_book_detail_part"></include>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/book_detail_btn_top">
+                <Button
+                    android:id="@+id/zan"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="点赞（71）"/>
+                <Button
+                    android:id="@+id/begin_read"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/begin_read"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/book_detail_content_margintop"
+                android:background="@color/dividerColor"></View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/book_detail_introduce_bottom"
+                android:text="@string/introduce"/>
+            <TextView
+                android:id="@+id/introduce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="8"
+                android:ellipsize="end"
+                android:text="《三重门》是韩寒的第一部出版作品，也是他创作生涯的始点。
+　　《三重门》的主人公林雨翔自幼天资聪颖，加上其父的影响，从小就被誉为神童。然而这个极具才气的少年却在初中严重偏科，也因此遇上了影响他一生的老师马德保，还有占据他整个情感生活的女同学Susan。青春年少的他们，与所有同龄人一样有着情窦初开的情怀。有意无意的接触间，爱情的萌芽逐渐开花……在这个恋爱的季节里，充满幻想的男孩女孩能否找到那把钥匙，去打开人生的门、心灵的门、爱情的门……本书通过少年林雨翔的视角，向读者揭示了真实的高中生的生活，把亲子关系、师生关系、同学关系的种种矛盾和问题展现开来，体现了学生式的思考、困惑和梦想。韩寒以自己的方式思考着、愤怒着、抗争着、改变着，透过那些犀利、尖锐甚至是刻薄的语言，读者感受到的是一个天才少年的灵光闪现。
+　　本书最早的版本出版于2000年，一经问世就引起广泛争议。一方面对于天才少年作家韩寒的实力赞叹不已，另一方面对于中国教育的现状提出颇多质疑。作品本身的优秀程度自不用提，一个十七岁的少年能写出这样的作品确实是中国文坛的一个奇迹，但更多的是激荡至今作品背后所隐含的深意。
+　　十四年过去了，重读《三重门》一定会有新的感受。新版《三重门》经全新修订，精美装帧，附赠特别订制的三重门主题原木铅笔，值得珍藏。"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/line_height"
+                android:layout_marginTop="@dimen/book_detail_comment_top"
+                android:background="@color/dividerColor"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="@string/comments" />
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/want_commemt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/want_comment"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/have_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_comment"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

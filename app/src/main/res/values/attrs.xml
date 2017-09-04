@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyRatioLinearLaout">
+        <attr name="ratio_width_to_height" format="float"></attr>
+    </declare-styleable>
+</resources>

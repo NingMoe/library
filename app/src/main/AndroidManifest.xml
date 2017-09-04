@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.wangjinchao_pc.library">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:name=".application.MyApplication"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.AdActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.FindPasswdActivity"></activity>
+        <activity android:name=".activity.SetPasswdActivity"></activity>
+        <activity android:name=".activity.HomePageRankActivity"></activity>
+        <activity android:name=".activity.LeaveWorkActivity"></activity>
+        <activity android:name=".activity.InformationManageActivity"></activity>
+        <activity android:name=".activity.InformationModifyActivity"></activity>
+        <activity android:name=".activity.BindCollegeActivity"></activity>
+        <activity android:name=".activity.ModifyPasswdActivity"></activity>
+        <activity android:name=".activity.BookSearchResultActivity"></activity>
+        <activity android:name=".activity.BookDetailActivity"></activity>
+        <activity android:name=".activity.CommentActivity"></activity>
+        <activity android:name=".activity.DebtDetailActivity"></activity>
+        <activity android:name=".activity.RecommendActivity"></activity>
+        <activity android:name=".activity.CropActivity"
+            android:theme="@style/AppTheme.Base"></activity>
+        <activity android:name=".activity.ShowPhotoActivity"></activity>
+        <activity android:name=".activity.MipcaActivityCapture"></activity>
+        <activity android:name=".activity.NoticeActivity"></activity>
+        <activity android:name=".activity.NoticeInfoActivity"></activity>
+        <activity android:name=".activity.BindPerfectActivity"></activity>
+        <activity android:name=".activity.BindSuccessActivity"></activity>
+        <activity android:name=".activity.CollegeInfoActivity"></activity>
+        <activity android:name=".activity.SetInformationActivity"></activity>
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 网络状态权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+</manifest>

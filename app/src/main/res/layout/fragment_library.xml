@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:background="@color/grey1"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="@dimen/desktop_img_size"
+            android:layout_height="@dimen/desktop_img_size"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_desktop_mac_black_88dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/library_margin"
+            android:layout_gravity="center"
+            style="@style/library_text"
+            android:text="@string/library_search"/>
+        
+        <com.example.wangjinchao_pc.library.View.AutoSearchClearEditText
+            android:id="@+id/searchView"
+            style="@style/StyleEditText"
+            android:cursorVisible="true"
+            android:textCursorDrawable="@null"
+            />
+
+        <!--<include layout="@layout/fragment_search"></include>-->
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="background">#F2F2F2</color>
+
+    <color name="banner_title_background">#555CB85C</color>
+
+    <color name="photo_round">#757575</color>
+    <color name="pressed_bg">#ffcccccc</color>
+    <color name="text_background">#ffffff</color>
+    <color name="order_style_background">#E4E4E4</color>
+    <color name="dividerColor">#BDBDBD</color>
+    <color name="colorHint">#999999</color>
+    <color name="alarmRed">#FF3300</color>
+    <color name="alarm">#FF6666</color>
+
+    <color name="more">#336699</color>
+
+    <color name="library_text">#666666</color>
+
+    <color name="order1_img">#66CCFF</color>
+    <color name="order2_img">#3366CC</color>
+    <color name="order3_img">#9966CC</color>
+
+    <color name="find1_img">#FF3300</color>
+    <color name="find2_img">#FFCCCC</color>
+    <color name="find3_img">#999999</color>
+
+    <color name="mine_bind_img">#999999</color>
+    <color name="mine_order_img">#3366CC</color>
+    <color name="mine_score_img">#9966CC</color>
+    <color name="mine_modify_img">#9966CC</color>
+
+    <color name="rank_img_background">#3399FF</color>
+    <color name="light">#666666</color>
+    <color name="collect">#FF3300</color>
+    <color name="search_content">#666666</color>
+    <color name="search_price">#666666</color>
+
+
+
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#00BCD4</color>
+    <color name="textIcon">#FFFFFF</color>
+    <color name="pressColor">#1c7ac7</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="textPrimary">#212121</color>
+    <color name="selected">#339966</color>
+
+    <color name="secondaryText">#757575</color>
+
+    <color name="register_border">#0066CC</color>
+
+    <color name="price">#FF6600</color>
+    <color name="style">#3366CC</color>
+    <color name="book_detail_author">#666666</color>
+    <color name="book_comment_number">#999999</color>
+    <color name="comment_name">#999999</color>
+    <color name="comment_content">#666666</color>
+
+    <color name="debt_search">#FF3300</color>
+    <color name="debt_book_search">#FF9900</color>
+    <color name="debt_background">#FF3300</color>
+    <color name="debt_price_uint">#FFFF00</color>
+
+    <!--color-->
+    <color name="green">#009933</color>
+    <color name="green2">#009900</color>
+    <color name="green3">#339933</color>
+    <color name="green4">#339966</color>
+    <color name="red">#FF3300</color>
+    <color name="red2">#FFCCCC</color>
+    <color name="red1">#FF3333</color>
+    <color name="blue">#2196f3</color>
+    <color name="blue1">#3399FF</color>
+    <color name="blue2">#339966</color>
+    <color name="blue3">#66CCFF</color>
+    <color name="blue4">#3366CC</color>
+    <color name="purple">#9966CC</color>
+    <color name="grey">#F2F2F2</color>
+    <color name="grey1">#999999</color>
+    <color name="grey2">#E4E4E4</color>
+    <color name="grey3">#CCCCCC</color>
+    <color name="ic_grey">#666666</color>
+    <color name="yellow">#ff9800</color>
+    <color name="yellow1">#FF9900</color>
+    <color name="yellow2">#FFFF00</color>
+    <color name="toolbar_primary">#2196F3</color>
+    <color name="gray_white">#ffcccccc</color>
+    <!--zxing-->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+
+    <color name="myred">#eb4f38</color>
+    <color name="darkgray">#cccc</color>
+    <color name="color_white">#ffffff</color>
+    <color name="btn_press_color">#5677fc</color>
+    <color name="btn_pressed_color">#3ca0ec</color>
+
+</resources>
