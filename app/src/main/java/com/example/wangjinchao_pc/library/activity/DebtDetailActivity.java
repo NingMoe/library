@@ -74,9 +74,10 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debt_detail);
         ButterKnife.bind(this);
-        httpManager=new HttpManager(this,this);
         type=getIntent().getIntExtra(TYPE,TYPE_BOOK);
+
         initActionBar();
+        init();
 
         //设置加载项
         setLoadView(frameLayout);
@@ -97,7 +98,7 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
         });
 
         //————————————————————
-        init_Data();
+        //init_Data();
 
         adapter=new RecyclerViewAdapterWrapper(new DebtDetailAdapter(this,datas,type));
         debt_container.setAdapter(adapter);
@@ -122,6 +123,20 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
         else if(type==TYPE_BOOK)
             setTitle("未还书籍");
         setDisplayHomeAsUpEnabled(true);
+    }
+    /**
+     * 初始化---请求以及初始数据获取
+     */
+    private void init(){
+        httpManager=new HttpManager(this,this);
+        if(type==TYPE_PRICE){
+            inqueryDuePriceApi=new InqueryDuePriceApi();
+            httpManager.doHttpDeal(inqueryDuePriceApi);
+        }
+        else if(type==TYPE_BOOK){
+            inqueryDueBookApi=new InqueryDueBookApi();
+            httpManager.doHttpDeal(inqueryDueBookApi);
+        }
     }
 
     //测试————————————————————————

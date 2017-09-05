@@ -26,6 +26,7 @@ import com.example.wangjinchao_pc.library.base.BaseActivity;
 import com.example.wangjinchao_pc.library.enity.api.AdvertisementApi;
 import com.example.wangjinchao_pc.library.enity.result.Advertisement;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
@@ -131,7 +132,7 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
             flag=false;
         else
             return;
-        Log.d("AdActivity:","到下一个界面");
+        Logger.d(this.getClass(),"到下一个界面");
         Intent intent = null;
         String token=MyApplication.getToken();     //?????
         if (TextUtils.isEmpty(token)) {
@@ -188,21 +189,22 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
     @Override
     public void onNext(String result, String method) {
 
-        Log.d("onNext", result);
-
-        BaseResultEntity<String> advertisement = JSONObject.parseObject(result, new
-                TypeReference<BaseResultEntity<String>>() {
-                });
-
+        Logger.d(this.getClass(), "onNext"+result);
+        BaseResultEntity<String> advertisement=null;
+        try{
+            advertisement = JSONObject.parseObject(result, new
+                    TypeReference<BaseResultEntity<String>>() {
+                    });
+        }catch (Exception e){
+            Logger.d(this.getClass(),"解析json错误："+result);
+            begin_flag =AD_CANCEL;
+            return;
+        }
         if(advertisement==null||advertisement.getStatus()== Constant.ERROR){
             begin_flag =AD_CANCEL;
             return;
         }
 
-        Log.d("===ejc===",advertisement.getStatus()+advertisement.getMessage()+advertisement.getData());
-        //解析错误，是什么情况_________________________
-
-/*        https://b-ssl.duitang.com/uploads/item/201404/28/20140428171324_5v5fL.jpeg*/
         //加载图片
         Glide.with(this.getApplicationContext())
                 .load(Uri.parse(advertisement.getData().toString()))
