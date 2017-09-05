@@ -15,7 +15,7 @@ public abstract class BaseApi {
     /*是否需要缓存处理*/
     private boolean cache = false;
     /*基础url*/
-    private String baseUrl = "https://www.izaodao.com/Api/";
+    private String baseUrl = "http://119.23.43.228:8080/SmartLibrary/";
     /*方法-如果需要缓存必须设置这个参数；不需要不用設置*/
     private String method = "";
     /*超时时间-默认6秒*/

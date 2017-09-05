@@ -13,8 +13,8 @@ import rx.Observable;
 public interface HttpService {
 
     //获取广告
-    @GET("advertisement")
-    Observable<String>getAdvertisement();
+    @GET("school/getAd_url")
+    Observable<String>getAdvertisement(@Query("school_id") int school_id);
     //登录
     @GET("login/{name},{password}")
     Observable<String>login(@Query("name")String name,@Query("password")String password);

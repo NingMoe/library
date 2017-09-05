@@ -15,4 +15,7 @@ public class Constant {
     public static final int STYLE_INTEREST=2;
     public static final int STYLE_ACADEMY=3;
     public static final int STYLE_PROFESSION=4;
+
+    public static final int SUCCESS=1;
+    public static final int ERROR=0;
 }

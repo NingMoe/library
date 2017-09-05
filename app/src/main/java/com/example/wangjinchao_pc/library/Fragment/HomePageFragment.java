@@ -266,7 +266,7 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
     }
 
     @Override
-    public void onNext(String resulte, String method) {
+    public void onNext(String result, String method) {
         //商榷
         if(swipeRefreshLayout.isRefreshing()){
             swipeRefreshLayout.setRefreshing(false);

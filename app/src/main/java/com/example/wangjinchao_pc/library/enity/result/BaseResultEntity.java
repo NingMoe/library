@@ -6,27 +6,26 @@ package com.example.wangjinchao_pc.library.enity.result;
  */
 public class BaseResultEntity<T>{
     //  判断标示
-    private int ret;
+    private int status;
     //    提示信息
-    private String msg;
+    private String message;
     //显示数据（用户需要关心的数据）
     private T data;
 
-    public String getMsg() {
-        return msg;
+    public int getStatus() {
+        return status;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-
-    public int getRet() {
-        return ret;
+    public String getMessage() {
+        return message;
     }
 
-    public void setRet(int ret) {
-        this.ret = ret;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {

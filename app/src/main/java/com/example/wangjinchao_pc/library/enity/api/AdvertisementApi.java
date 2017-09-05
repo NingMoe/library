@@ -25,6 +25,6 @@ public class AdvertisementApi extends BaseApi {
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.getAdvertisement();
+        return httpService.getAdvertisement(2);
     }
 }

@@ -19,20 +19,18 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.BaseActivity;
 import com.example.wangjinchao_pc.library.enity.api.AdvertisementApi;
-import com.example.wangjinchao_pc.library.enity.result.AdInfo;
 import com.example.wangjinchao_pc.library.enity.result.Advertisement;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
-import com.example.wangjinchao_pc.library.enity.result.SubjectResulte;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
 import com.retrofit_rx.listener.HttpOnNextListener;
 
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,9 +85,8 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
 
         handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
 
-        //网络请求
-        //httpManager.doHttpDeal(advertisementApi);
-        test();
+        httpManager.doHttpDeal(advertisementApi);
+        /*test();*/
     }
     /**
      * 初始化
@@ -189,20 +186,26 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
 
 
     @Override
-    public void onNext(String resulte, String method) {
+    public void onNext(String result, String method) {
 
-        Log.d("onNext",resulte);
+        Log.d("onNext", result);
 
-        BaseResultEntity<Advertisement> advertisement = JSONObject.parseObject(resulte, new
-                TypeReference<BaseResultEntity<Advertisement>>() {
+        BaseResultEntity<String> advertisement = JSONObject.parseObject(result, new
+                TypeReference<BaseResultEntity<String>>() {
                 });
 
+        if(advertisement==null||advertisement.getStatus()== Constant.ERROR){
+            begin_flag =AD_CANCEL;
+            return;
+        }
+
+        Log.d("===ejc===",advertisement.getStatus()+advertisement.getMessage()+advertisement.getData());
         //解析错误，是什么情况_________________________
 
 /*        https://b-ssl.duitang.com/uploads/item/201404/28/20140428171324_5v5fL.jpeg*/
         //加载图片
         Glide.with(this.getApplicationContext())
-                .load(Uri.parse(advertisement.getData().getImg_path()))
+                .load(Uri.parse(advertisement.getData().toString()))
                 .crossFade(300)
                 .placeholder(R.drawable.background)
                 .listener(new RequestListener<Uri, GlideDrawable>() {

@@ -67,9 +67,9 @@ public class TestActivity extends RxAppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void onNext(String resulte, String method) {
+    public void onNext(String result, String method) {
         if (method.equals(postEntity.getMethod())) {
-            BaseResultEntity<ArrayList<SubjectResulte>> subjectResulte = JSONObject.parseObject(resulte, new
+            BaseResultEntity<ArrayList<SubjectResulte>> subjectResulte = JSONObject.parseObject(result, new
                     TypeReference<BaseResultEntity<ArrayList<SubjectResulte>>>() {
                     });
             textView.setText("post返回：\n" + subjectResulte.getData().toString());
