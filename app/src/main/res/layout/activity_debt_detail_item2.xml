@@ -30,32 +30,36 @@
             android:text="知乎周刊·编程小白学 Python"
             android:maxLines="2"
             android:ellipsize="end"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="@dimen/debt_details_padding">
+
             <TextView
                 android:id="@+id/already"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                android:text="@string/already_debt"
                 android:textColor="@color/red1"
-                android:text="@string/already_debt"/>
+                android:textSize="@dimen/normal_text" />
+
             <TextView
                 android:id="@+id/debt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                android:text="6.02"
                 android:textColor="@color/red1"
-                android:text="6.02"/>
+                android:textSize="@dimen/normal_text" />
+
             <TextView
                 android:id="@+id/unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                android:text="@string/price_uint"
                 android:textColor="@color/red1"
-                android:text="@string/price_uint"/>
+                android:textSize="@dimen/normal_text" />
 
         </LinearLayout>
 

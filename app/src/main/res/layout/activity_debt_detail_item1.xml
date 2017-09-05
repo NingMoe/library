@@ -40,12 +40,12 @@
                     android:text="@string/price_uint"/>
             </LinearLayout>
         </LinearLayout>
-        <TextView
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/normal_text"
             android:background="@color/grey2"
             android:padding="@dimen/debt_details_padding"
-            android:text="@string/details"/>
+            android:text="@string/details"/>-->
     </LinearLayout>
 </RelativeLayout>

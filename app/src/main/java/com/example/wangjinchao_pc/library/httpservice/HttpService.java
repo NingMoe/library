@@ -16,13 +16,13 @@ public interface HttpService {
     @GET("school/getAd_url")
     Observable<String>getAdvertisement(@Query("school_id") int school_id);
     //登录
-    @GET("login/{name},{password}")
+    @GET("login")
     Observable<String>login(@Query("name")String name,@Query("password")String password);
     //获取验证码
-    @GET("getCode/{number}")
+    @GET("getCode")
     Observable<String>getCode(@Query("number") String number);
     //设置新密码
-    @GET("resetPassword/{number},{code},{password}")
+    @GET("resetPassword")
     Observable<String>resetPassword(@Query("number") String number,@Query("code") String code,@Query("password") String password);
     //注册账号
     @GET("register/{number},{password},{nickname},{code}")
@@ -70,10 +70,10 @@ public interface HttpService {
     @GET("comment/{token},{content}")
     Observable<String>commend(@Query("token")String token,@Query("content")String content);
     //欠款查询
-    @GET("inqueryDuePrice/{token}")
+    @GET("arrears/getArrearsList")
     Observable<String>inqueryDuePrice(@Query("token")String token);
     //未还书籍查询
-    @GET("inqueryDueBook/{token}")
+    @GET("arrears/getArrearsList")
     Observable<String>inqueryDueBook(@Query("token")String token);
     //获取通知
     @GET("getNotice/{token}")
