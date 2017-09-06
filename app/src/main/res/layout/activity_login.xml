@@ -52,11 +52,10 @@
                         style="@style/normal_text" />
                     <EditText
                         android:id="@+id/account"
-                        android:background="@null"
                         android:layout_marginLeft="@dimen/login_margin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/normal_text"
+                        style="@style/normal_hint_text"
                         android:hint="@string/please_account"/>
 
                 </LinearLayout>
@@ -76,12 +75,11 @@
                         style="@style/normal_text"/>
                     <EditText
                         android:id="@+id/password"
-                        android:background="@null"
                         android:layout_marginLeft="@dimen/login_margin"
                         android:inputType="textPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/normal_text"
+                        style="@style/normal_hint_text"
                         android:hint="@string/please_passwd"/>
                 </LinearLayout>
 

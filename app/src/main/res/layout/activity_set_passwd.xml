@@ -29,7 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:background="@null"
             android:padding="@dimen/content_padding" />
     </LinearLayout>
 
@@ -57,7 +56,6 @@
             style="@style/normal_hint_text"
             android:inputType="textPassword"
             android:layout_height="wrap_content"
-            android:background="@null"
             android:padding="@dimen/content_padding" />
     </LinearLayout>
 
@@ -68,7 +66,7 @@
 
     <Button
         android:id="@+id/ok"
-        style="@style/long_button_style.register_grey"
+        style="@style/normal_button_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/btn_top"

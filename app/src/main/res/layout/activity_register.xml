@@ -32,7 +32,6 @@
                 style="@style/normal_hint_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
                 android:padding="@dimen/content_padding" />
         </LinearLayout>
 
@@ -59,7 +58,6 @@
                 style="@style/normal_hint_text"
                 android:inputType="textPassword"
                 android:layout_height="wrap_content"
-                android:background="@null"
                 android:padding="@dimen/content_padding" />
         </LinearLayout>
 
@@ -85,7 +83,6 @@
                 style="@style/normal_hint_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
                 android:padding="@dimen/content_padding"/>
         </LinearLayout>
 
@@ -115,7 +112,7 @@
                 android:layout_gravity="center">
                 <Button
                     android:id="@+id/get_code"
-                    style="@style/long_button_style.white_blue"
+                    style="@style/get_code_button_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/btn_size"
@@ -130,8 +127,7 @@
                     style="@style/normal_hint_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/content_padding"
-                    android:background="@null"/>
+                    android:padding="@dimen/content_padding" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -140,18 +136,18 @@
             android:layout_height="@dimen/view_divide"
             android:background="@color/dividerColor"/>
 
-        <RadioButton
+        <!--<RadioButton
             android:id="@+id/is_agree"
             android:text="@string/agree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/btn_top"
             android:layout_gravity="center"
-            android:textColor="@color/colorHint"/>
+            android:textColor="@color/colorHint"/>-->
 
         <Button
             android:id="@+id/register"
-            style="@style/long_button_style.white_blue"
+            style="@style/normal_button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/btn_top"

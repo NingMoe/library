@@ -49,8 +49,6 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
     EditText certify;
     @BindView(R.id.get_code)
     Button get_code;
-    @BindView(R.id.is_agree)
-    RadioButton is_agree;
     @BindView(R.id.register)
     Button register;
 
