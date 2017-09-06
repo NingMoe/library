@@ -86,7 +86,7 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
 
         handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
 
-        httpManager.doHttpDeal(advertisementApi);
+       /* httpManager.doHttpDeal(advertisementApi);*/
         /*test();*/
     }
     /**
@@ -167,7 +167,7 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
         Glide.with(this.getApplicationContext())
                 .load(Uri.parse("https://b-ssl.duitang.com/uploads/item/201404/28/20140428171324_5v5fL.jpeg"))
                 .crossFade(300)
-                .placeholder(R.drawable.background)
+                .placeholder(R.drawable.background5)
                 .listener(new RequestListener<Uri, GlideDrawable>() {
                     @Override
                     public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -209,7 +209,7 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
         Glide.with(this.getApplicationContext())
                 .load(Uri.parse(advertisement.getData().toString()))
                 .crossFade(300)
-                .placeholder(R.drawable.background)
+                .placeholder(R.drawable.background5)
                 .listener(new RequestListener<Uri, GlideDrawable>() {
                     @Override
                     public boolean onException(Exception e, Uri model, Target<GlideDrawable> target, boolean isFirstResource) {

@@ -17,7 +17,7 @@
             android:layout_height="96dp"
             android:scaleType="fitXY"
             android:layout_gravity="center"
-            fresco:placeholderImage="@mipmap/headphoto"
+            fresco:placeholderImage="@drawable/login_headphoto"
             fresco:roundAsCircle="true"
             fresco:roundingBorderWidth="@dimen/photo_round"
             fresco:roundingBorderColor="@color/photo_round"
@@ -98,7 +98,7 @@
 
                 <Button
                     android:id="@+id/login"
-                    style="@style/long_button_style.green"
+                    style="@style/normal_button_another_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin"
@@ -108,13 +108,12 @@
 
                 <Button
                     android:id="@+id/register"
-                    style="@style/long_button_style.white_green"
+                    style="@style/normal_button_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/btn_top"
                     android:layout_marginLeft="@dimen/btn_left"
                     android:layout_marginRight="@dimen/btn_right"
-                    android:layout_marginBottom="@dimen/btn_bottom"
                     android:text="@string/register"/>
             </LinearLayout>
         </ScrollView>

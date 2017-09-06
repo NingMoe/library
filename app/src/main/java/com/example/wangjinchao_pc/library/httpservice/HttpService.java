@@ -17,16 +17,19 @@ public interface HttpService {
     Observable<String>getAdvertisement(@Query("school_id") int school_id);
     //登录
     @GET("login")
-    Observable<String>login(@Query("name")String name,@Query("password")String password);
-    //获取验证码
-    @GET("getCode")
-    Observable<String>getCode(@Query("number") String number);
+    Observable<String>login(@Query("account")String account,@Query("password")String password);
     //设置新密码
-    @GET("resetPassword")
-    Observable<String>resetPassword(@Query("number") String number,@Query("code") String code,@Query("password") String password);
+    @GET("password/editpassword")
+    Observable<String>resetPassword(@Query("account") String account,@Query("code") String code,@Query("password") String newPassword,@Query("oldpassword")String nowPassword);
+    //获取验证码—找回密码
+    @GET("password/sendmsg")
+    Observable<String>getPasswordCode(@Query("phone") String number);
     //注册账号
-    @GET("register/{number},{password},{nickname},{code}")
+    @GET("register/registuser")
     Observable<String>register(@Query("number")String number,@Query("password")String password,@Query("nickname")String nickname,@Query("code")String code);
+    //获取验证码—注册
+    @GET("register/sendmsg")
+    Observable<String>getRegisterCode(@Query("phone") String number);
     //获取banner信息
     @GET("getBanner")
     Observable<String>getBanner();

@@ -41,19 +41,24 @@
 
 
 
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#333333</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#00BCD4</color>
     <color name="textIcon">#FFFFFF</color>
     <color name="pressColor">#1c7ac7</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
+    <color name="normal_text">#333333</color>
+    <color name="normal_another_text">#FFFFFF</color>
+    <color name="normal_border">#cccccc</color>
+    <color name="selectPassword_color">#333366</color>
+    <color name="login_green">#00cc66</color>
     <color name="textPrimary">#212121</color>
     <color name="selected">#339966</color>
 
     <color name="secondaryText">#757575</color>
 
-    <color name="register_border">#0066CC</color>
+    <color name="register_border">#cccccc</color>
 
     <color name="price">#FF6600</color>
     <color name="style">#3366CC</color>
@@ -68,7 +73,7 @@
     <color name="debt_price_uint">#FFFF00</color>
 
     <!--color-->
-    <color name="green">#009933</color>
+    <color name="green">#00cc66</color>
     <color name="green2">#009900</color>
     <color name="green3">#339933</color>
     <color name="green4">#339966</color>

@@ -47,6 +47,21 @@
         <item name="android:clickable">true</item>
     </style>
 
+    //普通按钮
+    <style name="normal_button_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/normal_btn_background</item>
+        <item name="android:textColor">@color/normal_btn_text</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    //蓝色按钮
+    <style name="normal_button_another_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/normal_btn_another_background</item>
+        <item name="android:textColor">@color/normal_btn_another_text</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 
     <style name="long_button_style.green">
         <item name="android:background">@drawable/btn_bg_green</item>
@@ -78,6 +93,13 @@
 
     <style name="long_button_style.white_green">
         <item name="android:background">@drawable/btn_bg_white_green</item>
+        <item name="android:textColor">@color/backarrow_color_selector3</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="long_button_style.white_black">
+        <item name="android:background">@drawable/btn_bg_white_black</item>
         <item name="android:textColor">@color/backarrow_color_selector3</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -127,7 +149,7 @@
 
     <style name="normal_text">
         <item name="android:textSize">@dimen/normal_text</item>
-        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColor">@color/normal_text</item>
     </style>
 
     <style name="normal_small_text">
@@ -226,8 +248,8 @@
     </style>
 
     <style name="select_password">
-        <item name="android:textSize">@dimen/normal_text</item>
-        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/normal_small_text</item>
+        <item name="android:textColor">@color/selectPassword_color</item>
     </style>
 
     <style name="small_button_style.primary">

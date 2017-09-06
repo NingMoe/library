@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal"
         android:scaleType="fitXY"
         android:visibility="visible"
-        android:src="@drawable/background"/>
+        android:src="@drawable/background5"/>
 
     <LinearLayout
         android:id="@+id/layout_skip"

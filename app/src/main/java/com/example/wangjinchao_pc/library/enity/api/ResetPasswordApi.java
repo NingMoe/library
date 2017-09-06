@@ -14,17 +14,19 @@ public class ResetPasswordApi extends BaseApi {
 
     String number;
     String code;
-    String password;
+    String newPassword;
+    String nowPassword;
 
     public ResetPasswordApi() {
         init();
     }
 
-    public ResetPasswordApi(String number, String code, String password) {
+    public ResetPasswordApi(String number, String code, String newPassword, String nowPassword) {
         init();
         this.number = number;
         this.code = code;
-        this.password = password;
+        this.newPassword = newPassword;
+        this.nowPassword=nowPassword;
     }
 
     void init(){
@@ -39,6 +41,13 @@ public class ResetPasswordApi extends BaseApi {
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.resetPassword(number,code,password);
+        return httpService.resetPassword(number,code,newPassword,nowPassword);
+    }
+
+    public void setAllParam(String number, String code, String newPassword, String nowPassword) {
+        this.number = number;
+        this.code = code;
+        this.newPassword = newPassword;
+        this.nowPassword=nowPassword;
     }
 }

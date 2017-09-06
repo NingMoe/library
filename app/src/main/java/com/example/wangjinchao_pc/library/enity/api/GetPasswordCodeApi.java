@@ -10,15 +10,15 @@ import rx.Observable;
  * Created by wangjinchao-PC on 2017/7/30.
  */
 
-public class GetCodeApi extends BaseApi {
+public class GetPasswordCodeApi extends BaseApi {
 
     String number;
 
-    public GetCodeApi() {
+    public GetPasswordCodeApi() {
         init();
     }
 
-    public GetCodeApi(String number) {
+    public GetPasswordCodeApi(String number) {
         init();
         this.number = number;
     }
@@ -29,12 +29,20 @@ public class GetCodeApi extends BaseApi {
         //取消加载框
         setShowProgress(false);
 
-        setMethod("getCode");
+        setMethod("getPasswordCode");
     }
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.getCode(number);
+        return httpService.getPasswordCode(number);
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

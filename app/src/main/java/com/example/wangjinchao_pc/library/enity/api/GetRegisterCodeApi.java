@@ -7,21 +7,19 @@ import retrofit2.Retrofit;
 import rx.Observable;
 
 /**
- * Created by wangjinchao-PC on 2017/7/30.
+ * Created by wangjinchao-PC on 2017/9/6.
  */
 
-public class LoginApi extends BaseApi {
-    String account;
-    String password;
+public class GetRegisterCodeApi extends BaseApi {
+    String number;
 
-    public LoginApi() {
+    public GetRegisterCodeApi() {
         init();
     }
 
-    public LoginApi(String account, String password) {
+    public GetRegisterCodeApi(String number) {
         init();
-        this.account = account;
-        this.password = password;
+        this.number = number;
     }
 
     void init(){
@@ -30,17 +28,20 @@ public class LoginApi extends BaseApi {
         //取消加载框
         setShowProgress(false);
 
-        setMethod("login");
+        setMethod("getRegisterCode");
     }
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.login(account,password);
+        return httpService.getRegisterCode(number);
     }
 
-    public void setAllParam(String account, String password) {
-        this.account = account;
-        this.password = password;
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }
