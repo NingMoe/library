@@ -6,6 +6,7 @@ import android.content.Context;
 import com.example.wangjinchao_pc.library.BuildConfig;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.BaseActivity;
+import com.example.wangjinchao_pc.library.enity.Token;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.retrofit_rx.RxRetrofitApp;
 
@@ -26,7 +27,7 @@ public class MyApplication extends Application {
     private static Context context;
 
     //维持登陆状态
-    private static String token;
+    private static Token token;
 
     private Stack<BaseActivity> activityStack;
 
@@ -49,11 +50,13 @@ public class MyApplication extends Application {
         titles= new ArrayList(list1);
     }
 
-    public static String getToken() {
+    public static Token getToken() {
+        if(token==null)
+            token=new Token("","");
         return token;
     }
 
-    public static void setToken(String token) {
+    public static void setToken(Token token) {
         MyApplication.token = token;
     }
 

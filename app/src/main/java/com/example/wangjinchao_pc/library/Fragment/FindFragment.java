@@ -4,18 +4,17 @@ import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.activity.LeaveWorkActivity;
-import com.example.wangjinchao_pc.library.activity.MipcaActivityCapture;
+import com.example.wangjinchao_pc.library.activity.ScanActivity;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.BaseFragment;
 
@@ -69,7 +68,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener{
             case R.id.scan:
                 if( ContextCompat.checkSelfPermission(this.getContext(), CAMERA) == PERMISSION_GRANTED){
                     Intent intent = new Intent();
-                    intent.setClass(MyApplication.getContext(), MipcaActivityCapture.class);
+                    intent.setClass(MyApplication.getContext(), ScanActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
                 }
@@ -110,4 +109,5 @@ public class FindFragment extends BaseFragment implements View.OnClickListener{
         }
         return canUse;
     }
+
 }

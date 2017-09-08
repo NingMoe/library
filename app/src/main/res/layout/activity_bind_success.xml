@@ -47,11 +47,10 @@
             </LinearLayout>
             <EditText
                 android:id="@+id/college"
-                android:background="@null"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                style="@style/normal_hint_text"
                 android:enabled="false"
                 android:hint="浙江工业大学"/>
 
@@ -88,11 +87,10 @@
             </LinearLayout>
             <EditText
                 android:id="@+id/number"
-                android:background="@null"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                style="@style/normal_hint_text"
                 android:hint="212033324223"/>
 
         </LinearLayout>
@@ -128,11 +126,10 @@
             </LinearLayout>
             <EditText
                 android:id="@+id/name"
-                android:background="@null"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                style="@style/normal_hint_text"
                 android:hint="王小毛"/>
 
         </LinearLayout>
@@ -168,11 +165,10 @@
             </LinearLayout>
             <EditText
                 android:id="@+id/academy"
-                android:background="@null"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                style="@style/normal_hint_text"
                 android:textColorHint="@color/red1"
                 android:hint="请填写学院"/>
 
@@ -209,11 +205,10 @@
             </LinearLayout>
             <EditText
                 android:id="@+id/profession"
-                android:background="@null"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                style="@style/normal_hint_text"
                 android:textColorHint="@color/red1"
                 android:hint="请填写专业"/>
 
@@ -250,11 +245,10 @@
             </LinearLayout>
             <EditText
                 android:id="@+id/sex"
-                android:background="@null"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                style="@style/normal_hint_text"
                 android:hint="男"/>
 
         </LinearLayout>
@@ -290,11 +284,10 @@
             </LinearLayout>
             <EditText
                 android:id="@+id/identify"
-                android:background="@null"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                style="@style/normal_hint_text"
                 android:hint="本科生"/>
 
         </LinearLayout>
@@ -331,11 +324,10 @@
             </LinearLayout>
             <EditText
                 android:id="@+id/time"
-                android:background="@null"
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/normal_text"
+                style="@style/normal_hint_text"
                 android:textColorHint="@color/red1"
                 android:hint="请填写入学年份"/>
         </LinearLayout>
@@ -346,7 +338,7 @@
 
         <Button
             android:id="@+id/next"
-            style="@style/long_button_style.white_blue"
+            style="@style/normal_button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/btn_top"

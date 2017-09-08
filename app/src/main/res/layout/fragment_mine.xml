@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:scrollbars="none">
+    android:scrollbars="none"
+    android:background="@color/background">
     <LinearLayout
         android:orientation="vertical"
         android:background="@color/background"
@@ -30,39 +31,53 @@
                 android:background="@mipmap/headphoto"
                 android:scaleType="fitXY"
                 />
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="@dimen/title"
-                android:textColor="@color/colorBlack"
-                android:text="呆毛Lily"
-                android:layout_marginLeft="@dimen/activity_main_margin"
-                />
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:layout_width="@dimen/mine_img_size"
-                    android:layout_height="@dimen/mine_img_size"
-                    android:layout_alignParentRight="true"
-                    app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+                <!--android:textSize="@dimen/title"
+                android:textColor="@color/colorBlack"-->
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/normal_text"
+                    android:text="呆毛Lily"
+                    android:layout_marginLeft="@dimen/activity_main_margin"
                     />
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/motto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/normal_hint_text"
+                    android:text="福祸相依啊啊啊啊"
+                    android:layout_marginTop="@dimen/motto_top"
+                    android:layout_marginLeft="@dimen/activity_main_margin"
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="@dimen/mine_img_size"
+                android:layout_height="@dimen/mine_img_size"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
+
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_divide"
             android:background="@color/dividerColor"/>
 
-        <View
+        <!--<View
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_divide"
             android:layout_marginTop="@dimen/divide_top"
-            android:background="@color/dividerColor"/>
+            android:background="@color/dividerColor"/>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,8 +86,7 @@
             >
             <LinearLayout
                 android:id="@+id/bind_container"
-                style="@style/mine_linearlayout"
-                >
+                style="@style/mine_linearlayout">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -102,11 +116,11 @@
                 android:layout_height="@dimen/view_divide"
                 android:background="@color/dividerColor"/>
 
-            <View
+            <!--<View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/view_divide"
                 android:layout_marginTop="@dimen/divide_top"
-                android:background="@color/dividerColor"/>
+                android:background="@color/dividerColor"/>-->
             <LinearLayout
                 android:id="@+id/order_container"
                 style="@style/mine_linearlayout"
@@ -169,11 +183,11 @@
                 android:layout_height="@dimen/view_divide"
                 android:background="@color/dividerColor"/>
 
-            <View
+            <!--<View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/view_divide"
                 android:layout_marginTop="@dimen/divide_top"
-                android:background="@color/dividerColor"/>
+                android:background="@color/dividerColor"/>-->
 
             <LinearLayout
                 android:id="@+id/password_reset_container"
@@ -210,7 +224,7 @@
 
         <Button
             android:id="@+id/logout"
-            style="@style/long_button_style.primary"
+            style="@style/logout_button_style"
             android:layout_margin="@dimen/mine_btn_top"
             android:text="@string/logout"/>
 

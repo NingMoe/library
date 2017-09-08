@@ -45,4 +45,8 @@ public class GetPasswordCodeApi extends BaseApi {
     public void setNumber(String number) {
         this.number = number;
     }
+
+    public void setAllParam(String number) {
+        this.number = number;
+    }
 }

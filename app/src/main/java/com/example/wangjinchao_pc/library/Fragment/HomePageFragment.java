@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wangjinchao_pc.library.Loader.GlideImageLoader;
+import com.example.wangjinchao_pc.library.View.MyRatioLinearLayout;
 import com.example.wangjinchao_pc.library.activity.HomePageRankActivity;
 import com.example.wangjinchao_pc.library.activity.MainActivity;
 import com.example.wangjinchao_pc.library.adapter.MyViewPageAdapter;
@@ -23,7 +24,6 @@ import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.BaseFragment;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.util.Utils;
-import com.mining.app.zxing.view.MyRatioLinearLaout;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.listener.HttpOnNextListener;
 import com.youth.banner.Banner;
@@ -49,7 +49,7 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
     @BindView(R.id.scrollView)
     ScrollView scrollView;
     @BindView(R.id.myRatio)
-    MyRatioLinearLaout myRatioLinearLaout;
+    MyRatioLinearLayout myRatioLinearLayout;
 
     @BindView(R.id.banner)
     Banner banner;

@@ -25,6 +25,7 @@ public class ToolbarCropActivity extends BaseActivity{
     private View contentView;
     private LinearLayout containerView;
     private Button ok_btn;
+    private TextView title;
 
     View.OnClickListener listener;
 
@@ -49,6 +50,7 @@ public class ToolbarCropActivity extends BaseActivity{
         containerView = (LinearLayout)view.findViewById(R.id.container);
         toolbar = (Toolbar)view.findViewById(R.id.toolbar);
         ok_btn = (Button) view.findViewById(R.id.ok);
+        title=(TextView)view.findViewById(R.id.title);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -93,5 +95,12 @@ public class ToolbarCropActivity extends BaseActivity{
     public void setBtnText(String content){
         if(content!=null&&content!="")
             ok_btn.setText(content);
+    }
+
+    public void setTitle(String title){
+        if(title!=null&&!title.isEmpty()){
+            this.title.setText(title);
+            this.title.setVisibility(View.VISIBLE);
+        }
     }
 }

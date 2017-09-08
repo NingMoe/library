@@ -2,6 +2,7 @@ package com.example.wangjinchao_pc.library.activity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -23,15 +25,21 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
+import com.example.wangjinchao_pc.library.enity.picker.Category;
 import com.example.wangjinchao_pc.library.util.FileHelper;
+import com.example.wangjinchao_pc.library.util.ResourceUtils;
+import com.example.wangjinchao_pc.library.util.Utils;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.kevin.crop.UCrop;
+import com.qqtheme.framework.picker.SinglePicker;
 
 import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -118,6 +126,7 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
 
     @OnClick({R.id.headset_container, R.id.headPhoto,R.id.nickname_container,R.id.sex_container,R.id.interest_container,R.id.academy_container,R.id.profession_container})
     public void onClick(View view) {
+        List<Category> data=null;
         switch(view.getId()){
             case R.id.headset_container:
                 //选择图片作为头像
@@ -131,16 +140,74 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                 toSetInformation(0,nickname.getText().toString(),GET_CONTENT_NICKNAME);
                 break;
             case R.id.sex_container:
-                toSetInformation(1,sex.getText().toString(),GET_CONTENT_SEX);
+                new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"男", "女"}, -1,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if(i==0)
+                                    sex.setText("男");
+                                else
+                                    sex.setText("女");
+                                dialogInterface.dismiss();
+                            }
+                        }).show();
                 break;
             case R.id.interest_container:
                 toSetInformation(2,interest.getText().toString(),GET_CONTENT_INTEREST);
                 break;
             case R.id.academy_container:
-                toSetInformation(3,academy.getText().toString(),GET_CONTENT_ACADEMY);
+                data = new ArrayList<>();
+                data.add(new Category(1, "计算机学院"));
+                data.add(new Category(2, "法学院"));
+                data.add(new Category(3, "医学院"));
+                data.add(new Category(4, "建筑学院"));
+                data.add(new Category(5, "外语学院"));
+                data.add(new Category(6, "电子信息学院"));
+                onSinglePicker(data, new SinglePicker.OnItemPickListener<Category>() {
+                    @Override
+                    public void onItemPicked(int index, Category item) {
+                        academy.setText(item.getName());
+                    }
+                });
+                /*new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"计算机学院", "法学院","医学院"}, -1,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if(i==0)
+                                    academy.setText("计算机学院");
+                                else if(i==1)
+                                    academy.setText("法学院");
+                                else
+                                    academy.setText("医学院");
+                                dialogInterface.dismiss();
+                            }
+                        }).show();*/
                 break;
             case R.id.profession_container:
-                toSetInformation(4,profession.getText().toString(),GET_CONTENT_PROFESSION);
+                data = new ArrayList<>();
+                data.add(new Category(1, "数媒专业"));
+                data.add(new Category(2, "计算机自动化专业"));
+                data.add(new Category(3, "软件专业"));
+                onSinglePicker(data, new SinglePicker.OnItemPickListener<Category>() {
+                    @Override
+                    public void onItemPicked(int index, Category item) {
+                        academy.setText(item.getName());
+                    }
+                });
+                /*new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"数媒专业", "计算机自动化专业","软件专业"}, -1,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                if(i==0)
+                                    profession.setText("数媒专业");
+                                else if(i==1)
+                                    profession.setText("计算机自动化专业");
+                                else
+                                    profession.setText("软件专业");
+
+                                dialogInterface.dismiss();
+                            }
+                        }).show();*/
                 break;
         }
 
@@ -317,5 +384,27 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
         if (tempFile.exists() && tempFile.isFile()) {
             tempFile.delete();
         }
+    }
+    /**
+     *选择框显示
+     */
+    public void onSinglePicker(List<Category> data,SinglePicker.OnItemPickListener<Category> listener) {
+        SinglePicker<Category> picker = new SinglePicker<>(this, data);
+        picker.setCanceledOnTouchOutside(true);
+        picker.setSelectedIndex(1);
+        picker.setCycleDisable(true);
+        //设置大小
+        picker.setTextSize(ResourceUtils.getXmlDef(this, R.dimen.picker_content_size));
+        picker.setCancelTextSize(ResourceUtils.getXmlDef(this, R.dimen.picker_cancel_size));
+        picker.setSubmitTextSize(ResourceUtils.getXmlDef(this, R.dimen.picker_submit_size));
+        picker.setOnItemPickListener(listener);
+
+                /*new SinglePicker.OnItemPickListener<Category>() {
+            @Override
+            public void onItemPicked(int index, Category item) {
+                Utils.showToast("index=" + index + ", id=" + item.getId() + ", name=" + item.getName());
+            }
+        });*/
+        picker.show();
     }
 }

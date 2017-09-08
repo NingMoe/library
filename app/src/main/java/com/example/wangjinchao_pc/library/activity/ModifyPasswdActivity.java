@@ -71,7 +71,7 @@ public class ModifyPasswdActivity extends ToolbarActivity implements View.OnClic
         switch(view.getId()){
             case R.id.ok:
                 if(true){
-                    setPasswordApi=new SetPasswordApi(MyApplication.getToken(),now_password.getText().toString(),new_password.getText().toString());
+                    setPasswordApi=new SetPasswordApi(MyApplication.getToken().getAccount(),now_password.getText().toString(),new_password.getText().toString());
                     httpManager.doHttpDeal(setPasswordApi);
                 }
                 break;

@@ -3,12 +3,10 @@ package com.example.wangjinchao_pc.library.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -16,7 +14,6 @@ import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
 import com.example.wangjinchao_pc.library.enity.api.BindCollegeApi;
-import com.example.wangjinchao_pc.library.enity.api.GetCollegeApi;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
@@ -58,7 +55,7 @@ public class BindCollegeActivity extends ToolbarActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_colloge_bind);
+        setContentView(R.layout.activity_bind_college);
         ButterKnife.bind(this);
         initActionBar();
         httpManager=new HttpManager(this,this);
@@ -83,7 +80,7 @@ public class BindCollegeActivity extends ToolbarActivity implements View.OnClick
                 startActivityForResult(intent, GET_CONTENT);
                 break;
             case R.id.bind:
-                bindCollegeApi=new BindCollegeApi(MyApplication.getToken(),college.getText().toString(),
+                bindCollegeApi=new BindCollegeApi(MyApplication.getToken().getAccount(),college.getText().toString(),
                         account.getText().toString(),password.getText().toString());
                 httpManager.doHttpDeal(bindCollegeApi);
                 break;

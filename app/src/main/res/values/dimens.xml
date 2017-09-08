@@ -122,9 +122,13 @@
     <dimen name="homepage_part1_viewpager_height">69dp</dimen>
     <dimen name="homepage_viewpager_height">99dp</dimen>
 
+    <dimen name="motto_top">8dp</dimen>
+    <dimen name="setInformation_paddind">8dp</dimen>
+
 
      <!--字体-->
     <dimen name="skip_size">16sp</dimen>
+    <dimen name="toolbar_menu_text">16sp</dimen>
     <dimen name="normal_text">16sp</dimen>
     <dimen name="normal_small_text">14sp</dimen>
     <dimen name="normal_big_text">16sp</dimen>
@@ -149,6 +153,10 @@
     <dimen name="debt_price_size">60sp</dimen>
     <dimen name="debt_price_uint">18sp</dimen>
 
+    <dimen name="picker_cancel_size">16sp</dimen>
+    <dimen name="picker_submit_size">16sp</dimen>
+    <dimen name="picker_content_size">16sp</dimen>
+
 
 
 
@@ -161,6 +169,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_main_margin">16dp</dimen>
+    <dimen name="activity_main_height">48dp</dimen>
     <dimen name="margin">8dp</dimen>
     <dimen name="btn">28dp</dimen>
     <dimen name="half_margin">4dp</dimen>
@@ -191,5 +200,9 @@
 
     <dimen name="btn_height">40dp</dimen>
     <dimen name="btn_width">50dp</dimen>
+    <dimen name="flash_btn_height">64dp</dimen>
+    <dimen name="flash_btn_width">64dp</dimen>
+    <dimen name="flash_btn_bottom">64dp</dimen>
+    <dimen name="shao_bottom">64dp</dimen>
 
 </resources>

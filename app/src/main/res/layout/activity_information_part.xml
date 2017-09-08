@@ -4,10 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <View
+    <!--<View
         android:layout_width="match_parent"
         android:layout_height="@dimen/view_divide"
-        android:background="@color/dividerColor"/>
+        android:background="@color/dividerColor"
+        android:layout_marginTop="@dimen/mine_info_margintop"/>-->
+
     <LinearLayout
         android:id="@+id/nickname_container"
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
+            style="@style/normal_text"
             android:foregroundGravity="center"
             android:text="@string/nickname"/>
 
@@ -35,12 +37,13 @@
                 android:id="@+id/nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorHint"
+                style="@style/normal_hint_text"
                 android:layout_toLeftOf="@id/nickname_arrow"
                 android:text="王小毛"/>
         </RelativeLayout>
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
@@ -56,7 +59,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
+            style="@style/normal_text"
             android:foregroundGravity="center"
             android:text="@string/sex"/>
 
@@ -73,7 +76,7 @@
                 android:id="@+id/sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorHint"
+                style="@style/normal_hint_text"
                 android:layout_toLeftOf="@id/sex_arrow"
                 android:text="男"/>
         </RelativeLayout>
@@ -94,7 +97,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
+            style="@style/normal_text"
             android:foregroundGravity="center"
             android:text="@string/interest"/>
 
@@ -111,7 +114,7 @@
                 android:id="@+id/interest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorHint"
+                style="@style/normal_hint_text"
                 android:layout_toLeftOf="@id/interest_arrow"
                 android:text="编程语言"/>
         </RelativeLayout>
@@ -132,7 +135,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
+            style="@style/normal_text"
             android:foregroundGravity="center"
             android:text="@string/academy"/>
 
@@ -149,7 +152,7 @@
                 android:id="@+id/academy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorHint"
+                style="@style/normal_hint_text"
                 android:layout_toLeftOf="@id/academy_arrow"
                 android:text="计算机" />
         </RelativeLayout>
@@ -170,7 +173,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorBlack"
+            style="@style/normal_text"
             android:foregroundGravity="center"
             android:text="@string/profession"/>
 
@@ -188,7 +191,7 @@
                 android:id="@+id/profession"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorHint"
+                style="@style/normal_hint_text"
                 android:layout_toLeftOf="@id/profession_arrow"
                 android:text="软件工程"/>
         </RelativeLayout>

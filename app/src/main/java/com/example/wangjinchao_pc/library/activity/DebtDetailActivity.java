@@ -194,10 +194,10 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
      */
     void loadData(){
         if(type==TYPE_PRICE){
-            inqueryDuePriceApi=new InqueryDuePriceApi(MyApplication.getToken());
+            inqueryDuePriceApi=new InqueryDuePriceApi(MyApplication.getToken().getAccount());
             httpManager.doHttpDeal(inqueryDuePriceApi);
         }else if(type==TYPE_BOOK){
-            inqueryDueBookApi=new InqueryDueBookApi(MyApplication.getToken());
+            inqueryDueBookApi=new InqueryDueBookApi(MyApplication.getToken().getAccount());
             httpManager.doHttpDeal(inqueryDueBookApi);
         }
     }

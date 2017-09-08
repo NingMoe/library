@@ -23,6 +23,7 @@ import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.BaseActivity;
+import com.example.wangjinchao_pc.library.enity.Token;
 import com.example.wangjinchao_pc.library.enity.api.AdvertisementApi;
 import com.example.wangjinchao_pc.library.enity.result.Advertisement;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
@@ -92,13 +93,19 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
     /**
      * 初始化
      */
-    void init(){
+    private void init(){
         timeCount=0;
         initTimeCount=3;
         continueCount=true;
         begin_flag =AD_UNLOAD;
-        advertisementApi=new AdvertisementApi();
+        initHttp();
+    }
+    /**
+     * 初始化网络相关对象
+     */
+    private void initHttp(){
         httpManager=new HttpManager(this,this);
+        advertisementApi=new AdvertisementApi();
     }
 
     /**
@@ -134,15 +141,15 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
             return;
         Logger.d(this.getClass(),"到下一个界面");
         Intent intent = null;
-        String token=MyApplication.getToken();     //?????
-        if (TextUtils.isEmpty(token)) {
+        Token token=MyApplication.getToken();     //?????
+        if (token.isEmpty()) {
             intent = new Intent(AdActivity.this, LoginActivity.class);
         } else {
             intent = new Intent(AdActivity.this, MainActivity.class);
             MyApplication.setToken(token);
         }
         startActivity(intent);
-        finish();
+        this.finish();
     }
 
     @OnClick({R.id.background, R.id.layout_skip})

@@ -14,8 +14,8 @@
     <string name="please_passwd">请输入密码</string>
     <string name="select_passwd">找回密码</string>
     <string name="login">登录</string>
-    <string name="password_space">"&#160;"密"&#160;""&#160;"码"&#160;"</string>
-    <string name="nickname_space">"&#160;"昵"&#160;""&#160;"称"&#160;"</string>
+    <string name="password_space">&#8201;密&#160;&#160;码&#8201;</string>
+    <string name="nickname_space">&#8201;昵&#160;&#160;称&#8201;</string>
     <string name="register">注册账号</string>
     <string name="register_success">注册成功</string>
     <string name="register_failure">注册失败</string>
@@ -53,6 +53,8 @@
 
     <string name="debt1">未还</string>
     <string name="debt2">本</string>
+    <string name="debt3">欠款</string>
+    <string name="debt4">元</string>
 
     <string name="more">更多</string>
 

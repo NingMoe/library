@@ -6,8 +6,8 @@
     >
     <ImageView
         android:id="@+id/badge_img"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_centerInParent="true"
         android:src="@drawable/zxing_badge_selector"/>
 </RelativeLayout>

@@ -67,11 +67,12 @@ public class FindPasswdActivity extends ToolbarActivity implements View.OnClickL
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             count--;
-            get_code.setText("获取验证码"+count);
+            get_code.setText("验证码 "+count);
             if(count>0&&!getCodeEnable)
                 handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
             else{
                 getCodeEnable=true;
+                get_code.setClickable(true);
                 get_code.setText("获取验证码");
             }
         }
@@ -105,28 +106,28 @@ public class FindPasswdActivity extends ToolbarActivity implements View.OnClickL
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.get_code:
-                numberOfPhone=mobile_number.getText().toString();
-                if(numberOfPhone=="")
-                    Utils.showToast("手机号不能为空");
-                else if(Regix.isMobile(numberOfPhone)&& getCodeEnable ==true){
+                numberOfPhone=mobile_number.getText().toString().trim();
+                if(Regix.isMobile(numberOfPhone,true)&& getCodeEnable){
                     getCodeEnable =false;
+                    get_code.setClickable(false);
                     count=Configure.Code_Time;
-                    getPasswordCodeApi=new GetPasswordCodeApi(numberOfPhone);
+                    getPasswordCodeApi.setAllParam(numberOfPhone);
                     httpManager.doHttpDeal(getPasswordCodeApi);
                 }else
                     Utils.showToast("手机号错误");
                 break;
             case R.id.next:
-                numberOfPhone=mobile_number.getText().toString();
-                code=get_code.getText().toString();
-                if(numberOfPhone=="")
+                numberOfPhone=mobile_number.getText().toString().trim();
+                code=get_code.getText().toString().trim();
+                if(numberOfPhone.equals(""))
                     Utils.showToast("手机号不能为空");
-                else if(code=="")
+                else if(code.equals(""))
                     Utils.showToast("验证码不能为空");
                 //正则表达式?????????????????????????????
-                if(Regix.isMobile(numberOfPhone)&&true){
+                if(Regix.isMobile(numberOfPhone,true)&&true){
                     SetPasswdActivity.start(this,numberOfPhone,code);
-                }
+                }else
+                    Utils.showToast("验证码错误");
                 break;
         }
     }

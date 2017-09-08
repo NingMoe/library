@@ -93,4 +93,12 @@
     <item>好的昵称能让人产生好感</item>
     <item>好的昵称能让人产生好感</item>
   </array>
+
+  <array name="information_modify_title">
+    <item>修改昵称</item>
+    <item>修改性别</item>
+    <item>修改兴趣</item>
+    <item>修改学院</item>
+    <item>血钙专业</item>
+  </array>
 </resources>

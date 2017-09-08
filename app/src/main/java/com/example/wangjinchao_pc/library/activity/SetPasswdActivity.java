@@ -90,8 +90,8 @@ public class SetPasswdActivity extends ToolbarActivity implements View.OnClickLi
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.ok:
-                nowPassword=passwd.getText().toString();
-                newPassword=passwd2.getText().toString();
+                nowPassword=passwd.getText().toString().trim();
+                newPassword=passwd2.getText().toString().trim();
                 if(nowPassword.equals(newPassword)){
                     resetPasswordApi.setAllParam(number,code,newPassword,nowPassword);
                     httpManager.doHttpDeal(resetPasswordApi);

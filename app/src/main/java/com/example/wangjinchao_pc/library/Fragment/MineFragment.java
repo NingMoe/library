@@ -1,7 +1,5 @@
 package com.example.wangjinchao_pc.library.Fragment;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -9,23 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.activity.BindCollegeActivity;
 import com.example.wangjinchao_pc.library.activity.InformationManageActivity;
-import com.example.wangjinchao_pc.library.activity.MipcaActivityCapture;
-import com.example.wangjinchao_pc.library.activity.RecommendActivity;
 import com.example.wangjinchao_pc.library.activity.ModifyPasswdActivity;
-import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by wangjinchao-PC on 2017/7/6.

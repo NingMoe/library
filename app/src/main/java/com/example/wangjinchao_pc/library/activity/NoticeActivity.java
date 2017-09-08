@@ -92,7 +92,7 @@ public class NoticeActivity  extends ToolbarActivity implements HttpOnNextListen
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getNoticeApi=new GetNoticeApi(MyApplication.getToken());
+                getNoticeApi=new GetNoticeApi(MyApplication.getToken().getAccount());
                 httpManager.doHttpDeal(getNoticeApi);
             }
         });
@@ -121,7 +121,7 @@ public class NoticeActivity  extends ToolbarActivity implements HttpOnNextListen
     }
 
     void loadData(){
-        getNoticeApi=new GetNoticeApi(MyApplication.getToken());
+        getNoticeApi=new GetNoticeApi(MyApplication.getToken().getAccount());
         httpManager.doHttpDeal(getNoticeApi);
     }
 

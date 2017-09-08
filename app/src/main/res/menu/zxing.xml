@@ -25,4 +25,5 @@
         app:actionLayout="@layout/zxing_badge"
         app:showAsAction="always"
         ></item>
+
 </menu>

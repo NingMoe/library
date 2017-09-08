@@ -1,8 +1,6 @@
 package com.example.wangjinchao_pc.library.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +9,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.wangjinchao_pc.library.R;
-import com.example.wangjinchao_pc.library.activity.MainActivity;
-import com.example.wangjinchao_pc.library.activity.MipcaActivityCapture;
 
 import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by wangjinchao-PC on 2017/7/13.

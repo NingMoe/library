@@ -15,12 +15,14 @@ import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
+import com.example.wangjinchao_pc.library.enity.Token;
 import com.example.wangjinchao_pc.library.enity.api.AdvertisementApi;
 import com.example.wangjinchao_pc.library.enity.api.LoginApi;
 import com.example.wangjinchao_pc.library.enity.domain.Arrears;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
 import com.example.wangjinchao_pc.library.enity.result.SubjectResulte;
 import com.example.wangjinchao_pc.library.util.Logger;
+import com.example.wangjinchao_pc.library.util.Regix;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.retrofit_rx.exception.ApiException;
@@ -96,15 +98,14 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
                 FindPasswdActivity.start(this);
                 break;
             case R.id.login:
-                contentOfAccount=account.getText().toString();
-                contentOfPassword=passwd.getText().toString();
+                contentOfAccount=account.getText().toString().trim();
+                contentOfPassword=passwd.getText().toString().trim();
                 //判定
-                if(contentOfAccount!=null&&contentOfPassword!=null){
+                if(Regix.isAccount(contentOfAccount,true)&&Regix.isPassword(contentOfPassword,true)){
                     loginApi.setAllParam(contentOfAccount,contentOfPassword);
                     httpManager.doHttpDeal(loginApi);
                 }else
-                    Utils.showToast("账号或密码为空");
-
+                    Utils.showToast("账号或密码格式错误");
                 break;
             case R.id.register:
 
@@ -118,7 +119,6 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
 
     @Override
     public void onNext(String resulte, String method) {
-        boolean flag=true;
         if (method.equals(loginApi.getMethod())) {
             BaseResultEntity<String> result=null;
             try{
@@ -127,26 +127,28 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
                         });
             }catch (Exception e){
                 e.printStackTrace();
-                flag=false;
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                //测试——————————————————————————————————————————————————————
+                MyApplication.setToken(new Token("17816877003","12345"));
+                MainActivity.start(this);
                 return;
             }
-            //添加数据
+
             if(result!=null) {
-                if(result.getStatus()== Constant.SUCCESS)
-                        flag=true;
+                if(result.getStatus()== Constant.SUCCESS){
+                    //???token是返回的东西
+                    MyApplication.setToken(new Token("17816877003","12345"));
+                    Utils.showToast("成功");
+                    MainActivity.start(this);
+                }
                 else {
-                    flag=false;
+                    Utils.showToast(result.getMessage().trim().isEmpty()?"失败":result.getMessage().trim());
                 }
             }
-            if(flag)
-                Utils.showToast("成功");
-            else
-                Utils.showToast("失败");
 
-            MyApplication.setToken(result.getData());
-
+            //测试——————————————————————————————————————————————————————
+            MyApplication.setToken(new Token("17816877003","12345"));
             MainActivity.start(this);
         }
     }
@@ -154,8 +156,8 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
     @Override
     public void onError(ApiException e, String method) {
         Utils.showToast(e.getDisplayMessage());
-
-        //测试————————————————————————————
+        //测试————————————————————————————————————————————————————————
+        MyApplication.setToken(new Token("17816877003","12345"));
         MainActivity.start(this);
     }
 }
