@@ -8,13 +8,25 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/identify_info"
-            android:background="@color/grey2"
-            android:padding="@dimen/body_desktop"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/information_success">
+            <ImageView
+                android:layout_width="@dimen/info_success_img_height"
+                android:layout_height="@dimen/info_success_img_width"
+                android:src="@drawable/info_success"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/information_success"
+                style="@style/normal_big_text"
+                android:padding="@dimen/body_desktop"/>
+
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/line_height"
@@ -338,7 +350,7 @@
 
         <Button
             android:id="@+id/next"
-            style="@style/normal_button_style"
+            style="@style/success_button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/btn_top"

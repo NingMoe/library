@@ -38,6 +38,9 @@
     <color name="search_content">#666666</color>
     <color name="search_price">#666666</color>
 
+    <color name="information_perfect">#3093ff</color>
+    <color name="information_success">#33cc33</color>
+
 
 
 

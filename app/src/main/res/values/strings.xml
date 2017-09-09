@@ -125,6 +125,8 @@
     <string name="bind">绑定</string>
 
     <string name="identify_info">身份信息</string>
+    <string name="information_success">绑定成功</string>
+    <string name="information_perfect">完善信息</string>
     <string name="colleges">学校</string>
     <string name="number_ids">学号</string>
     <string name="names">姓名</string>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.activity.LeaveWorkActivity;
+import com.example.wangjinchao_pc.library.activity.MainActivity;
 import com.example.wangjinchao_pc.library.activity.ScanActivity;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.BaseFragment;
@@ -68,7 +70,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener{
             case R.id.scan:
                 if( ContextCompat.checkSelfPermission(this.getContext(), CAMERA) == PERMISSION_GRANTED){
                     Intent intent = new Intent();
-                    intent.setClass(MyApplication.getContext(), ScanActivity.class);
+                    intent.setClass(this.getContext(), ScanActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, SCANNIN_GREQUEST_CODE);
                 }
@@ -80,6 +82,7 @@ public class FindFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        /*Log.d("++++wjc+++in Find",data.getExtras().getString("result"));*/
         switch (requestCode) {
             case SCANNIN_GREQUEST_CODE:
                 if(resultCode == RESULT_OK){

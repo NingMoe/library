@@ -60,7 +60,7 @@ public class BindSuccessActivity extends ToolbarActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bind_perfect);
+        setContentView(R.layout.activity_bind_success);
         ButterKnife.bind(this);
         initActionBar();
         httpManager=new HttpManager(this,this);

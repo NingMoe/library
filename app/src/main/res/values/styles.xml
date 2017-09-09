@@ -90,6 +90,20 @@
         <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
+    //完善按钮
+    <style name="perfect_button_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/perfect_btn_background</item>
+        <item name="android:textColor">@color/normal_btn_text</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+    </style>
+
+    //成功按钮
+    <style name="success_button_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/success_btn_background</item>
+        <item name="android:textColor">@color/normal_btn_text</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+    </style>
+
     <style name="long_button_style.green">
         <item name="android:background">@drawable/btn_bg_green</item>
         <item name="android:textColor">@color/backarrow_color_selector</item>
@@ -189,6 +203,11 @@
         <item name="android:textColor">@color/normal_light_text</item>
     </style>
 
+    <style name="normal_big_text">
+        <item name="android:textSize">@dimen/normal_big_text</item>
+        <item name="android:textColor">@color/normal_text</item>
+    </style>
+
     <style name="normal_hint_text">
         <item name="android:textSize">@dimen/normal_text</item>
         <item name="android:textColorHint">@color/colorHint</item>
@@ -200,10 +219,10 @@
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 
-    <style name="normal_big_text">
+    <!--<style name="normal_big_text">
         <item name="android:textSize">@dimen/normal_big_text</item>
         <item name="android:textColor">@color/colorBlack</item>
-    </style>
+    </style>-->
 
     <style name="collect_text">
         <item name="android:textSize">@dimen/normal_text</item>

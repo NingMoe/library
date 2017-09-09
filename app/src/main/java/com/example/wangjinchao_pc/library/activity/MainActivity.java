@@ -230,7 +230,7 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        super.onActivityResult(requestCode,resultCode,data);
 //        if(requestCode == CaptureActivity.ZXING_REQUEST_CODE && resultCode == RESULT_OK && data!=null){
 //            String capture_data = data.getStringExtra(CaptureActivity.EXTRA_DATA);
 //        }

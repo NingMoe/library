@@ -192,6 +192,12 @@
     <dimen name="menu_desktop">13sp</dimen>
     <dimen name="button">16sp</dimen>
 
+    <dimen name="info_success_img_height">64dp</dimen>
+    <dimen name="info_success_img_width">64dp</dimen>
+
+    <dimen name="info_perfect_img_height">64dp</dimen>
+    <dimen name="info_perfect_img_width">64dp</dimen>
+
     <dimen name="line_height">0.5dp</dimen>
 
     <!--////////////  zxing  //////////////////-->

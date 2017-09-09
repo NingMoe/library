@@ -78,7 +78,6 @@ public class DecodeHandler extends Handler {
 	 */
 	private void decode(byte[] data, int width, int height) {
 		Size size = activity.getCameraManager().getPreviewSize();
-
 		// 这里需要将获取的data翻转一下，因为相机默认拿的的横屏的数据
 		byte[] rotatedData = new byte[data.length];
 		for (int y = 0; y < size.height; y++) {

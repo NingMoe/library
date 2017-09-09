@@ -9,12 +9,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/information_perfect">
+            <ImageView
+                android:layout_width="@dimen/info_perfect_img_height"
+                android:layout_height="@dimen/info_perfect_img_width"
+                android:src="@drawable/info_perfect"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/information_perfect"
+                style="@style/normal_big_text"
+                android:padding="@dimen/body_desktop"/>
+
+        </LinearLayout>
+
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/identify_info"
             android:background="@color/grey2"
-            android:padding="@dimen/body_desktop"/>
+            android:padding="@dimen/body_desktop"/>-->
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/line_height"
@@ -339,7 +359,7 @@
 
         <Button
             android:id="@+id/next"
-            style="@style/normal_button_style"
+            style="@style/perfect_button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/btn_top"
