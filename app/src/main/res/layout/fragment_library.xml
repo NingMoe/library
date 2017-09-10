@@ -16,7 +16,7 @@
             android:layout_height="@dimen/desktop_img_size"
             android:scaleType="fitXY"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_desktop_mac_black_88dp"/>
+            app:srcCompat="@drawable/library_main"/>
     </LinearLayout>
 
     <LinearLayout

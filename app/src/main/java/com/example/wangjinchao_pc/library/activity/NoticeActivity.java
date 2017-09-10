@@ -103,18 +103,18 @@ public class NoticeActivity  extends ToolbarActivity implements HttpOnNextListen
      */
     private void initActionBar(){
         setTitle("通知信息");
-        setDisplayHomeAsUpEnabled(false);
+        setDisplayHomeAsUpEnabled(true);
     }
 
     //_————————————————
     void init_Data(){
         startLoading();
-
+        String[] temp=getResources().getStringArray(R.array.notice_init_test);
         HashMap<String, Object> map = null;
         for(int i=0;i<10;i++){
             map=new HashMap<String, Object>();
-            map.put(NoticeAdapter.TIME," 2013.09.0"+i);
-            map.put(NoticeAdapter.CONTENT,"图书馆将从2017年8月24日下午2:30开始,正式为广大师生读者办理借还手续。请需要借还图书和查询资料的师生,带上本人的借书证。");
+            map.put(NoticeAdapter.TIME,"2013.09.0"+i);
+            map.put(NoticeAdapter.CONTENT,temp[i]);
             datas.add(map);
         }
         stopLoading();
@@ -147,7 +147,7 @@ public class NoticeActivity  extends ToolbarActivity implements HttpOnNextListen
         HashMap<String, Object> map = null;
         for(int i=0;i<10;i++){
             map=new HashMap<String, Object>();
-            map.put(NoticeAdapter.TIME," 2017.09.0"+i);
+            map.put(NoticeAdapter.TIME,"2017.09.0"+i);
             map.put(NoticeAdapter.CONTENT,"图书馆将从2015年8月24日下午2:30开始,正式为广大师生读者办理借还手续。请需要借还图书和查询资料的师生,带上本人的借书证。");
             datas.add(map);
         }

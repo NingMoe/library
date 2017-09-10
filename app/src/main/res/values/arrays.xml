@@ -87,9 +87,9 @@
   </array>
 
   <array name="information_modify_tip">
+    <item>好的昵称可以让你的朋友更容易记住你</item>
     <item>好的昵称能让人产生好感</item>
-    <item>好的昵称能让人产生好感</item>
-    <item>好的昵称能让人产生好感</item>
+    <item>找寻与你兴趣相同的朋友吧</item>
     <item>好的昵称能让人产生好感</item>
     <item>好的昵称能让人产生好感</item>
   </array>
@@ -99,6 +99,19 @@
     <item>修改性别</item>
     <item>修改兴趣</item>
     <item>修改学院</item>
-    <item>血钙专业</item>
+    <item>修改专业</item>
+  </array>
+
+  <array name="notice_init_test">
+    <item>欠费通知</item>
+    <item>图书馆暑假开放通知</item>
+    <item>图书馆闭馆通知</item>
+    <item>祝你生日快乐</item>
+    <item>你推荐的书籍已经购买</item>
+    <item>欠费通知</item>
+    <item>图书馆暑假开放通知</item>
+    <item>图书馆闭馆通知</item>
+    <item>祝你生日快乐</item>
+    <item>你推荐的书籍已经购买</item>
   </array>
 </resources>

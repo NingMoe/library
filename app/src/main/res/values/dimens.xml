@@ -2,6 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
 
     <!--my-->
+    <dimen name="order_top_margin">32dp</dimen>
     <dimen name="ad_skip_margin_right">8dp</dimen>
     <dimen name="ad_skip_margin_top">20dp</dimen>
     <dimen name="ad_text_padding_left">5dp</dimen>
@@ -30,7 +31,7 @@
 
     <dimen name="tablayout_divide">0.5dp</dimen>
 
-    <dimen name="homepage_margin_lr">4dp</dimen>
+    <dimen name="homepage_margin_lr">16dp</dimen>
     <dimen name="homepage_margin_top">16dp</dimen>
     <dimen name="homepage_debt_margin_top">8dp</dimen>
     <dimen name="homepage_img_margin">4dp</dimen>
@@ -39,7 +40,7 @@
     <dimen name="homepage_rank_margin_right">8dp</dimen>
     <dimen name="dot_margin_bottom">30dp</dimen>
 
-    <dimen name="homepage_alarm_img_size">69dp</dimen>
+    <dimen name="homepage_img_size">48dp</dimen>
 
     <dimen name="desktop_img_size">99dp</dimen>
     <dimen name="library_margin">16dp</dimen>
@@ -61,7 +62,7 @@
 
     <dimen name="mine_btn_top">16dp</dimen>
 
-    <dimen name="rank_margin">16dp</dimen>
+    <dimen name="rank_margin">8dp</dimen>
     <dimen name="rank_padding_left">4dp</dimen>
 
     <dimen name="recycle_padding">0dp</dimen>
@@ -96,7 +97,8 @@
 
     <dimen name="comment_padding_top">8dp</dimen>
 
-    <dimen name="warning_imt_size">88dp</dimen>
+    <dimen name="warning_imt_size">64dp</dimen>
+    <dimen name="warning_img_margin">12dp</dimen>
 
     <dimen name="debt_details_padding">8dp</dimen>
     <dimen name="debt_details_content_padding">16dp</dimen>
@@ -126,12 +128,30 @@
     <dimen name="setInformation_paddind">8dp</dimen>
 
 
+    <dimen name="normal_icon_size">24dp</dimen>
+    <dimen name="notice_margin">12dp</dimen>
+
+    <dimen name="order_badge_size">20dp</dimen>
+    <dimen name="order_badge_radius">10dp</dimen>
+    <dimen name="order_badge_margin">2dp</dimen>
+
+    <dimen name="rank_item_paddind">8dp</dimen>
+    <dimen name="order_item_padding">4dp</dimen>
+
+    <dimen name="banner_title_height">30dp</dimen>
+
+    <dimen name="homepage_order_item_margin">8dp</dimen>
+
+
      <!--字体-->
     <dimen name="skip_size">16sp</dimen>
     <dimen name="toolbar_menu_text">16sp</dimen>
+
+    <dimen name="order_badge_text_size">12sp</dimen>
+
     <dimen name="normal_text">16sp</dimen>
     <dimen name="normal_small_text">14sp</dimen>
-    <dimen name="normal_big_text">16sp</dimen>
+    <dimen name="normal_big_text">20sp</dimen>
     <dimen name="order_normal_text">16sp</dimen>
     <dimen name="library_text">18dp</dimen>
     <dimen name="alarm_text">18sp</dimen>
@@ -139,6 +159,7 @@
     <dimen name="order_style_size">18sp</dimen>
     <dimen name="rank_size">14sp</dimen>
     <dimen name="rank_tablayout_size">14sp</dimen>
+    <dimen name="tab_rank_text">16sp</dimen>
     <dimen name="rank_big_size">32sp</dimen>
     <dimen name="rank_small_size">20sp</dimen>
     <dimen name="search_book_content_size">10sp</dimen>
@@ -171,6 +192,9 @@
     <dimen name="activity_main_margin">16dp</dimen>
     <dimen name="activity_main_height">48dp</dimen>
     <dimen name="margin">8dp</dimen>
+    <dimen name="notice_padding">8dp</dimen>
+    <dimen name="notice_dot_size">12dp</dimen>
+    <dimen name="notice_dot_margin">4dp</dimen>
     <dimen name="btn">28dp</dimen>
     <dimen name="half_margin">4dp</dimen>
     <dimen name="height">6dp</dimen>
@@ -197,7 +221,8 @@
 
     <dimen name="info_perfect_img_height">64dp</dimen>
     <dimen name="info_perfect_img_width">64dp</dimen>
-
+    <dimen name="info_img_margin">8dp</dimen>
+    <dimen name="info_status_padding">8dp</dimen>
     <dimen name="line_height">0.5dp</dimen>
 
     <!--////////////  zxing  //////////////////-->
@@ -210,5 +235,7 @@
     <dimen name="flash_btn_width">64dp</dimen>
     <dimen name="flash_btn_bottom">64dp</dimen>
     <dimen name="shao_bottom">64dp</dimen>
+
+    <dimen name="scan_photo_size">32dp</dimen>
 
 </resources>

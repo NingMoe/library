@@ -8,13 +8,20 @@
     android:orientation="horizontal"
     android:id="@+id/container"
     style="@style/item">
-
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="@dimen/notice_dot_size"
+        android:layout_height="@dimen/notice_dot_size"
+        android:layout_marginLeft="@dimen/notice_dot_margin"
+        android:layout_marginRight="@dimen/notice_dot_margin"
+        app:srcCompat="@drawable/ic_fiber_manual_record_black_24dp"
+        />
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin"
-        android:textColor="@color/colorBlack"
+        android:paddingRight="@dimen/notice_padding"
+        style="@style/normal_light_text"
         android:text="2014.06.10"/>
 
     <TextView
@@ -23,18 +30,12 @@
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:padding="@dimen/margin"
-        android:textColor="@color/ic_grey"
         android:layout_gravity="center"
         android:gravity="center_vertical"
-        android:lines="4"
-        android:maxLines="4"
+        android:lines="2"
+        android:maxLines="2"
         android:ellipsize="end"
+        style="@style/normal_text"
         android:text="各位读者：为暑假开学后实现“图书全开架借阅，读者无障碍进馆” 服务管理模式，需对旧书进行技术改造。因此，图书馆决定自2014年6月20日至2014年9月1日停止外借图书，读者手中所借图书务必在7月12日前归还图书馆。这一工作进行给读者造成的暂时不便敬请读者谅解。谢谢您的配合与支持！"/>
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/activity_main_margin"
-        app:srcCompat="@drawable/ic_playlist_add_check_black_24dp"
-        />
+
 </LinearLayout>

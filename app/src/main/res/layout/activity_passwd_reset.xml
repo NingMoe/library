@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-        <!--<View
+        <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_divide"
             android:background="@color/dividerColor"
-            android:layout_marginTop="@dimen/mine_layout_top"/>-->
+            android:layout_marginTop="@dimen/mine_layout_top"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

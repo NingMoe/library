@@ -27,7 +27,7 @@ public abstract class DefaultQRScanActivity extends BaseQRScanActivity{
 
     @Override
     protected int getTitleCustomLayout() {
-        return R.layout.base_qrscan_title;
+        return R.layout.activity_base_scan_title;
     }
 
     @Override
@@ -84,7 +84,7 @@ public abstract class DefaultQRScanActivity extends BaseQRScanActivity{
 
     @Override
     protected int getContainerLayout() {
-        return R.layout.base_qrscan_container;
+        return R.layout.activity_base_scan_container;
     }
 
     @Override
@@ -96,9 +96,11 @@ public abstract class DefaultQRScanActivity extends BaseQRScanActivity{
                 if (isFlashlightOpen) {
                     cameraManager.setTorch(false); // 关闭闪光灯
                     isFlashlightOpen = false;
+                    flashlight.setImageDrawable(getResources().getDrawable(R.drawable.flj));
                 } else {
                     cameraManager.setTorch(true); // 打开闪光灯
                     isFlashlightOpen = true;
+                    flashlight.setImageDrawable(getResources().getDrawable(R.drawable.flk));
                 }
             }
         });
@@ -106,7 +108,7 @@ public abstract class DefaultQRScanActivity extends BaseQRScanActivity{
 
     @Override
     protected int getScanLayoutId() {
-        return R.layout.base_qrscan_scanview;
+        return R.layout.activity_base_scan_scanview;
     }
 
     @Override

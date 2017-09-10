@@ -20,10 +20,9 @@
             style="@style/find_linearlayout"
             >
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_content_paste_black_24dp"
-                android:backgroundTint="@color/find1_img"
+                android:layout_width="@dimen/normal_icon_size"
+                android:layout_height="@dimen/normal_icon_size"
+                app:srcCompat="@drawable/find_leave"
                 />
             <TextView
                 style="@style/find_text"
@@ -50,10 +49,9 @@
             style="@style/find_linearlayout"
             >
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_smartphone_black_24dp"
-                android:backgroundTint="@color/find2_img"
+                android:layout_width="@dimen/normal_icon_size"
+                android:layout_height="@dimen/normal_icon_size"
+                app:srcCompat="@drawable/find_scan"
                 />
             <TextView
                 style="@style/order_text"
@@ -80,10 +78,9 @@
             style="@style/find_linearlayout"
             >
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_local_printshop_black_24dp"
-                android:backgroundTint="@color/find3_img"
+                android:layout_width="@dimen/normal_icon_size"
+                android:layout_height="@dimen/normal_icon_size"
+                app:srcCompat="@drawable/find_printer"
                 />
             <TextView
                 style="@style/order_text"

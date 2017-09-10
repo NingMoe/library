@@ -119,7 +119,7 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
             }
         });
 
-        initData();
+        init_Data();
     }
 
     /**
@@ -154,9 +154,9 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
         }
     }
 
-/*    //测试————————————————————————
+    //测试————————————————————————
     void init_Data(){
-        inqueryDuePriceApi=new InqueryDuePriceApi(MyApplication.getToken());
+        inqueryDuePriceApi=new InqueryDuePriceApi(MyApplication.getToken().getAccount());
         httpManager.doHttpDeal(inqueryDuePriceApi);
 
         startLoading();
@@ -187,7 +187,7 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
             }
         }
         stopLoading();
-    }*/
+    }
 
     /**
      * 加载数据

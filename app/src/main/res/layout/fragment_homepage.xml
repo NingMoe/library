@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,7 @@
         android:scrollbars="none"
         android:id="@+id/scrollView"
         >
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -20,6 +22,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_margin="@dimen/margin">
 
                 <!--图片切换布局-->
@@ -35,9 +39,9 @@
                         android:layout_height="match_parent"
                         app:image_scale_type="fit_xy"
                         app:title_background="@color/banner_title_background"
-                        app:title_textsize="10sp"
-                        app:title_textcolor="@android:color/white"
-                        app:title_height="30dp">
+                        app:title_textsize="@dimen/normal_small_text"
+                        app:title_textcolor="@color/colorWhite"
+                        app:title_height="@dimen/banner_title_height">
                     </com.youth.banner.Banner>
                 </com.example.wangjinchao_pc.library.View.MyRatioLinearLayout>
 
@@ -80,21 +84,21 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/homepage_debt_margin_left"
-                            style="@style/alarm_text"
+                            style="@style/normal_white_text"
                             android:text="@string/debt3"/>
                         <TextView
                             android:id="@+id/alarm_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            style="@style/alarm_text"
+                            style="@style/normal_white_text"
                             android:text="10.00"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginRight="@dimen/homepage_debt_margin_right"
-                            style="@style/alarm_text"
+                            style="@style/normal_white_text"
                             android:text="@string/debt4"/>
 
                         <TextView
@@ -102,14 +106,14 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/homepage_debt_margin_left"
-                            style="@style/alarm_text"
+                            style="@style/normal_white_text"
                             android:text="@string/debt1"/>
                         <TextView
                             android:id="@+id/alarm_book"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            style="@style/alarm_text"
+                            style="@style/normal_white_text"
                             android:text="10"/>
                         <!--<LinearLayout
                             android:layout_width="0dp"
@@ -128,7 +132,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginRight="@dimen/homepage_debt_margin_right"
-                            style="@style/alarm_text"
+                            style="@style/normal_white_text"
                             android:text="@string/debt2"/>
                         <LinearLayout
                             android:layout_width="0dp"
@@ -158,10 +162,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@color/text_background"
+                    android:background="@color/colorWhite"
                     android:layout_marginTop="@dimen/homepage_rank_margin_right">
-                    <LinearLayout
+                    <include layout="@layout/fragment_homepage_part2">
+
+                    </include>
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -170,8 +176,11 @@
                             android:layout_width="0dp"
                             android:layout_weight="3"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/normal_text"
+                            app:tabTextAppearance="@style/CustomTabLayoutTextAppearance"
                             android:layout_alignParentBottom="true"
+                            app:tabSelectedTextColor="@color/tab_select_text"
+                            app:tabTextColor="@color/tab_unselect_tex"
+                            app:tabIndicatorColor="@color/tab_indicator_color"
                             app:tabMaxWidth="0dp"
                             app:tabGravity="fill"
                             app:tabMode="fixed">
@@ -187,15 +196,27 @@
                             android:text="@string/more"/>
 
                     </LinearLayout>
-
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/rank_viewPager"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/homepage_viewpager_height">
-                    </android.support.v4.view.ViewPager>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/rank_viewPager"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        </android.support.v4.view.ViewPager>
+                        <include layout="@layout/fragment_homepage_rank_item_small"
+                            android:visibility="invisible"></include>
+                    </RelativeLayout>
+                </LinearLayout>-->
                 </LinearLayout>
-            </LinearLayout>
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"></LinearLayout>
         </LinearLayout>
+
+
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>

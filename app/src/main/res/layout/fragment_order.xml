@@ -8,8 +8,9 @@
     <!--预约情况-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/order_top_margin"
+        android:layout_marginTop="@dimen/order_top_margin"
         android:layout_gravity="center"
         android:gravity="center">
         <ScrollView
@@ -56,11 +57,26 @@
                     <TextView
                         style="@style/order_text"
                         android:text="@string/order_text1"/>
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/activity_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/order_badge_margin"
+                            android:gravity="center"
+                            android:text="0"
+                            style="@style/order_badge_style" />
 
                         <ImageView
                             android:id="@+id/activity_item"
@@ -70,20 +86,7 @@
                             app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
                             />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@id/activity_item"
-                            android:background="@color/colorWhite">
-                            <ImageView
-                                android:id="@+id/activity_number"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_filter_1_black_24dp"
-                                android:backgroundTint="@color/blue1"/>
-                        </LinearLayout>
-
-                    </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
@@ -102,11 +105,27 @@
                     <TextView
                         style="@style/order_text"
                         android:text="@string/order_text2"/>
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/class_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/order_badge_margin"
+                            android:gravity="center"
+                            android:text="0"
+                            style="@style/order_badge_style" />
 
                         <ImageView
                             android:id="@+id/class_item"
@@ -116,7 +135,7 @@
                             app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
                             />
 
-                        <LinearLayout
+                        <!--<LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@id/class_item"
@@ -127,8 +146,9 @@
                                 android:layout_height="wrap_content"
                                 app:srcCompat="@drawable/ic_filter_1_black_24dp"
                                 android:backgroundTint="@color/blue1"/>
-                        </LinearLayout>
-                    </RelativeLayout>
+                        </LinearLayout>-->
+
+                    </LinearLayout>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
@@ -147,11 +167,27 @@
                     <TextView
                         style="@style/order_text"
                         android:text="@string/order_text3"/>
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/place_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/order_badge_margin"
+                            android:gravity="center"
+                            android:text="0"
+                            style="@style/order_badge_style" />
 
                         <ImageView
                             android:id="@+id/place_item"
@@ -161,7 +197,7 @@
                             app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
                             />
 
-                        <LinearLayout
+                        <!--<LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@id/place_item"
@@ -172,9 +208,9 @@
                                 android:layout_height="wrap_content"
                                 app:srcCompat="@drawable/ic_filter_1_black_24dp"
                                 android:backgroundTint="@color/blue1"/>
-                        </LinearLayout>
+                        </LinearLayout>-->
 
-                    </RelativeLayout>
+                    </LinearLayout>
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"

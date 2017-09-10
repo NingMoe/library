@@ -6,40 +6,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@color/debt_background">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/debt_background">
 
-            <ImageView
-                android:layout_width="@dimen/warning_imt_size"
-                android:layout_height="@dimen/warning_imt_size"
-                app:srcCompat="@drawable/ic_warning_black_24dp"
-                android:backgroundTint="@color/colorWhite"/>
-            <LinearLayout
+        <ImageView
+            android:layout_width="@dimen/warning_imt_size"
+            android:layout_height="@dimen/warning_imt_size"
+            app:srcCompat="@drawable/ic_warning_black_24dp"
+            android:backgroundTint="@color/colorWhite"
+            android:layout_margin="@dimen/warning_img_margin"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/debt_sum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/debt_sum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/debt_price_size"
-                    android:text="10.02"/>
-                <TextView
-                    android:id="@+id/unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/debt_price_text_uint"
-                    android:text="@string/price_uint"/>
-            </LinearLayout>
+                style="@style/normal_white_big_text"
+                android:text="10.02"/>
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/normal_white_big_text"
+                android:text="@string/price_uint"/>
         </LinearLayout>
+    </LinearLayout>
         <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,5 +41,4 @@
             android:background="@color/grey2"
             android:padding="@dimen/debt_details_padding"
             android:text="@string/details"/>-->
-    </LinearLayout>
 </RelativeLayout>

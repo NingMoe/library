@@ -44,7 +44,7 @@ public class HomePageRankActivity extends ToolbarActivity {
      * 初始化导航栏
      */
     private void initActionBar(){
-        setTitle("排名");
+        setTitle("我的排名");
         setDisplayHomeAsUpEnabled(true);
     }
     /**

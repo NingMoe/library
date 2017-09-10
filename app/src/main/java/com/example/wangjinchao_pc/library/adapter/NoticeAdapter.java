@@ -52,7 +52,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.time.setText((String)mDatas.get(position).get(TIME));
         holder.content.setText((String)mDatas.get(position).get(CONTENT));
         //设置img
@@ -60,7 +60,8 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NoticeInfoActivity.start(context,mDatas.get(position));
+                holder.img.setVisibility(View.INVISIBLE);
+                /*NoticeInfoActivity.start(context,mDatas.get(position));*/
             }
         });
     }

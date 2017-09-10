@@ -127,15 +127,15 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
         });
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setText(R.string.home_page).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.ic_home_black_24dp),
+        tabLayout.getTabAt(0).setText(R.string.home_page).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.home),
                 getResources().getColorStateList(R.color.main_tab_color_selector)));
-        tabLayout.getTabAt(1).setText(R.string.library).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.ic_personal_video_black_24dp),
+        tabLayout.getTabAt(1).setText(R.string.library).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.library),
                 getResources().getColorStateList(R.color.main_tab_color_selector)));
-        tabLayout.getTabAt(2).setText(R.string.order).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.ic_event_black_24dp),
+        tabLayout.getTabAt(2).setText(R.string.order).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.order),
                 getResources().getColorStateList(R.color.main_tab_color_selector)));
-        tabLayout.getTabAt(3).setText(R.string.find).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.ic_public_black_24dp),
+        tabLayout.getTabAt(3).setText(R.string.find).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.find),
                 getResources().getColorStateList(R.color.main_tab_color_selector)));
-        tabLayout.getTabAt(4).setText(R.string.mine).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.ic_person_black_24dp),
+        tabLayout.getTabAt(4).setText(R.string.mine).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.mine),
                 getResources().getColorStateList(R.color.main_tab_color_selector)));
     }
     /**

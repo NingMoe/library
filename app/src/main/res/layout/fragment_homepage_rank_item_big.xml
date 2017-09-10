@@ -9,14 +9,17 @@
     <!--全校-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingTop="@dimen/rank_item_paddind"
+        android:paddingBottom="@dimen/rank_item_paddind">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_big_size"
+            style="@style/normal_text"
             android:text="@string/rank_item1"/>
         <TextView
             android:id="@+id/campus_rank"
@@ -25,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_big_size"
+            style="@style/normal_text"
             android:text="146" />
         <LinearLayout
             android:layout_width="0dp"
@@ -34,22 +37,21 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_height="wrap_content">
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_big_size"/>
+                android:textSize="@dimen/rank_big_size"/>-->
             <ImageView
                 android:id="@+id/campus_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_arrow_upward_black_24dp"
-                android:backgroundTint="@color/red1"/>
+                app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
             <TextView
                 android:id="@+id/campus_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_size"
-                android:textColor="@color/red1"
+                android:textSize="@dimen/normal_text"
+                android:textColor="@color/rank_up"
                 android:paddingLeft="@dimen/rank_padding_left"
                 android:text="1"/>
         </LinearLayout>
@@ -58,14 +60,17 @@
     <!--全院-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingTop="@dimen/rank_item_paddind"
+        android:paddingBottom="@dimen/rank_item_paddind">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_big_size"
+            style="@style/normal_text"
             android:text="@string/rank_item2"/>
         <TextView
             android:id="@+id/academy_rank"
@@ -74,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_big_size"
+            style="@style/normal_text"
             android:text="23" />
         <LinearLayout
             android:layout_width="0dp"
@@ -83,22 +88,21 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_height="wrap_content">
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_big_size"/>
+                android:textSize="@dimen/rank_big_size"/>-->
             <ImageView
                 android:id="@+id/academy_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_arrow_downward_black_24dp"
-                android:backgroundTint="@color/green3"/>
+                app:srcCompat="@drawable/ic_arrow_downward_black_24dp" />
             <TextView
                 android:id="@+id/academy_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_size"
-                android:textColor="@color/green3"
+                android:textSize="@dimen/normal_text"
+                android:textColor="@color/rank_down"
                 android:paddingLeft="@dimen/rank_padding_left"
                 android:text="1"/>
         </LinearLayout>
@@ -107,14 +111,17 @@
     <!--专业-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:paddingTop="@dimen/rank_item_paddind"
+        android:paddingBottom="@dimen/rank_item_paddind">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_big_size"
+            style="@style/normal_text"
             android:text="@string/rank_item3"/>
         <TextView
             android:id="@+id/profession_rank"
@@ -123,7 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_big_size"
+            style="@style/normal_text"
             android:text="000" />
         <LinearLayout
             android:layout_width="0dp"
@@ -132,25 +139,30 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_height="wrap_content">
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_big_size"/>
+                android:textSize="@dimen/rank_big_size"/>-->
             <ImageView
                 android:id="@+id/profession_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_arrow_upward_black_24dp"
-                android:backgroundTint="@color/red1"/>
+                app:srcCompat="@drawable/ic_arrow_upward_black_24dp"/>
             <TextView
                 android:id="@+id/profession_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_size"
-                android:textColor="@color/red1"
+                android:textSize="@dimen/normal_text"
+                android:textColor="@color/rank_up"
                 android:paddingLeft="@dimen/rank_padding_left"
                 android:text="1"/>
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/background"></LinearLayout>
 
 </LinearLayout>

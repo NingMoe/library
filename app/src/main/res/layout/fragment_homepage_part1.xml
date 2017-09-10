@@ -8,20 +8,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <ImageView
-            android:layout_width="@dimen/homepage_alarm_img_size"
-            android:layout_height="@dimen/homepage_alarm_img_size"
-            app:srcCompat="@drawable/ic_access_alarm_black_24dp"
+        <LinearLayout
+            android:id="@+id/order_more"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_gravity="center"
-            />
+            style="@style/item">
+            <ImageView
+                android:layout_width="@dimen/homepage_img_size"
+                android:layout_height="@dimen/homepage_img_size"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
+                app:srcCompat="@drawable/alarm"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/normal_small_text"
+                android:textColor="@color/order_more_text"
+                android:text="@string/more"
+                android:gravity="center"
+                android:layout_gravity="center"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/text_background"
-            android:layout_marginTop="@dimen/homepage_rank_margin_right">
+            android:background="@color/text_background">
 
             <!--需要改的————————————————————————-->
             <LinearLayout
@@ -33,11 +52,14 @@
                     android:id="@+id/order_tabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/normal_text"
                     android:layout_alignParentBottom="true"
+                    app:tabTextAppearance="@style/CustomTabLayoutTextAppearance"
+                    app:tabSelectedTextColor="@color/tab_select_text"
+                    app:tabTextColor="@color/tab_unselect_tex"
+                    app:tabIndicatorColor="@color/tab_indicator_color"
+                    app:tabMode="fixed"
                     app:tabMaxWidth="0dp"
-                    app:tabGravity="fill"
-                    app:tabMode="fixed">
+                    app:tabGravity="fill">
                 </android.support.design.widget.TabLayout>
 <!--                <TextView
                     android:id="@+id/order_more"
@@ -50,12 +72,19 @@
                     android:text="@string/more"/>-->
 
             </LinearLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/order_viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </android.support.v4.view.ViewPager>
+                <include layout="@layout/fragment_homepage_order_item"
+                    android:visibility="invisible">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/order_viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/homepage_part1_viewpager_height">
-            </android.support.v4.view.ViewPager>
+                </include>
+            </RelativeLayout>
 
         </LinearLayout>
     </LinearLayout>

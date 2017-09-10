@@ -140,7 +140,16 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                 toSetInformation(0,nickname.getText().toString(),GET_CONTENT_NICKNAME);
                 break;
             case R.id.sex_container:
-                new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"男", "女"}, -1,
+                data = new ArrayList<>();
+                data.add(new Category(1, "男"));
+                data.add(new Category(2, "女"));
+                onSinglePicker(data, new SinglePicker.OnItemPickListener<Category>() {
+                    @Override
+                    public void onItemPicked(int index, Category item) {
+                        sex.setText(item.getName());
+                    }
+                });
+                /*new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"男", "女"}, -1,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -150,7 +159,7 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                                     sex.setText("女");
                                 dialogInterface.dismiss();
                             }
-                        }).show();
+                        }).show();*/
                 break;
             case R.id.interest_container:
                 toSetInformation(2,interest.getText().toString(),GET_CONTENT_INTEREST);

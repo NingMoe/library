@@ -8,7 +8,7 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        style="@style/normal_small_text"
+        style="@style/normal_light_text"
         android:text="2016.06.26"
         android:layout_gravity="center"
         android:gravity="center"
@@ -26,7 +26,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@dimen/normal_big_text"
+            style="@style/normal_text"
             android:text="知乎周刊·编程小白学 Python"
             android:maxLines="2"
             android:ellipsize="end"/>
@@ -42,24 +42,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/already_debt"
-                android:textColor="@color/red1"
-                android:textSize="@dimen/normal_text" />
+                style="@style/normal_red_text"
+                android:textColor="@color/red1" />
 
             <TextView
                 android:id="@+id/debt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6.02"
-                android:textColor="@color/red1"
-                android:textSize="@dimen/normal_text" />
+                style="@style/normal_red_text"/>
 
             <TextView
                 android:id="@+id/unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/price_uint"
-                android:textColor="@color/red1"
-                android:textSize="@dimen/normal_text" />
+                style="@style/normal_red_text"/>
 
         </LinearLayout>
 

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,11 +51,8 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
     ScrollView scrollView;
     @BindView(R.id.myRatio)
     MyRatioLinearLayout myRatioLinearLayout;
-
     @BindView(R.id.banner)
     Banner banner;
-
-    //对于排名显示的控制
     @BindView(R.id.rank_viewPager)
     ViewPager rank_viewPager;
     @BindView(R.id.rank_tabLayout)
@@ -63,7 +61,7 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
     private Fragment rank_item1,rank_item2,rank_item3;
     //更多
     @BindView(R.id.rank_more)
-    TextView rank_more;
+    LinearLayout rank_more;
 
     //对于排名显示的控制
     @BindView(R.id.order_viewPager)

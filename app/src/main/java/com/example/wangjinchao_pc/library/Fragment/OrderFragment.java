@@ -2,15 +2,19 @@ package com.example.wangjinchao_pc.library.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.BaseFragment;
 import com.example.wangjinchao_pc.library.util.Utils;
+import com.jauker.widget.BadgeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,11 +27,11 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
     View view;
 
     @BindView(R.id.activity_order)
-    ImageView activity_order;
+    TextView activity_order;
     @BindView(R.id.class_order)
-    ImageView class_order;
+    TextView class_order;
     @BindView(R.id.place_order)
-    ImageView place_order;
+    TextView place_order;
     @BindView(R.id.activity_order_container)
     LinearLayout activity_order_container;
     @BindView(R.id.class_order_container)
@@ -36,7 +40,7 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
     LinearLayout place_order_container;
 
     @BindView(R.id.activity_number)
-    ImageView activity_number;
+    TextView activity_number;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +53,7 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
         class_order_container.setOnClickListener(this);
         place_order_container.setOnClickListener(this);
 
-        activity_number.setImageDrawable(Utils.setDrawableTint(activity_number.getDrawable(), getResources().getColor(R.color.blue1)));
+        activity_number.setText("3");
     }
     @Nullable
     @Override
@@ -77,5 +81,17 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
 
                 break;
         }
+    }
+
+    public void setViewNumber(View v,int number){
+        if(v==null){
+            Log.d("setNoticeNumber","(View)notice==null");
+            return;
+        }
+        BadgeView badgeView = new BadgeView(this.getActivity().getApplicationContext());
+        badgeView.setTargetView(v);
+        badgeView.setBadgeGravity(Gravity.CENTER);
+        badgeView.setText(""+number);
+        badgeView.setTextSize(10);
     }
 }

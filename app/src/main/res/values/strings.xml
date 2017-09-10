@@ -48,7 +48,7 @@
     <string name="order32">次座位预约，"&#160;""&#160;""&#160;"仍可预约</string>
 
     <string name="order1_item">次活动预约</string>
-    <string name="order2_item">次研修室预约</string>
+    <string name="order2_item">次研修预约</string>
     <string name="order3_item">次座位预约</string>
 
     <string name="debt1">未还</string>
@@ -64,7 +64,7 @@
     <string name="order_style">预约种类</string>
 
     <string name="order_text1">活动预约</string>
-    <string name="order_text2">研修室预约</string>
+    <string name="order_text2">研修预约</string>
     <string name="order_text3">座位预约</string>
 
     <string name="find_text1">离馆业务</string>

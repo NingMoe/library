@@ -48,9 +48,11 @@ public class Utils {
         Toast.makeText(MyApplication.getContext(), resId, Toast.LENGTH_SHORT).show();
     }
 
+    //图片着色
     public static Drawable setDrawableTint(Drawable drawable, ColorStateList colorStateList){
-        DrawableCompat.setTintList(drawable, colorStateList);
-        return drawable;
+        Drawable wrappedDrawable = DrawableCompat.wrap(drawable);   //针对不是vector图片而加
+        DrawableCompat.setTintList(wrappedDrawable, colorStateList);
+        return wrappedDrawable;
     }
 
     public static Drawable setDrawableTint(Drawable drawable, int drawid){

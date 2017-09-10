@@ -80,7 +80,7 @@
         <item name="android:textColor">@color/logout_btn_text</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/normal_small_text</item>
+        <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
     //保存按钮
@@ -102,6 +102,20 @@
         <item name="android:background">@drawable/success_btn_background</item>
         <item name="android:textColor">@color/normal_btn_text</item>
         <item name="android:textSize">@dimen/normal_text</item>
+    </style>
+
+    <style name="CustomTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">@dimen/tab_rank_text</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="order_badge_style">
+        <item name="android:background">@drawable/circle</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/order_badge_text_size</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="long_button_style.green">
@@ -208,16 +222,36 @@
         <item name="android:textColor">@color/normal_text</item>
     </style>
 
+    <style name="normal_small_text">
+        <item name="android:textSize">@dimen/normal_small_text</item>
+        <item name="android:textColor">@color/normal_text</item>
+    </style>
+
+    <style name="normal_white_big_text">
+        <item name="android:textSize">@dimen/normal_big_text</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="normal_white_text">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="normal_red_text">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColor">@color/debt_background</item>
+    </style>
+
     <style name="normal_hint_text">
         <item name="android:textSize">@dimen/normal_text</item>
         <item name="android:textColorHint">@color/colorHint</item>
         <item name="android:background">@null</item>
     </style>
 
-    <style name="normal_small_text">
+    <!--<style name="normal_small_text">
         <item name="android:textSize">@dimen/normal_small_text</item>
         <item name="android:textColor">@color/colorBlack</item>
-    </style>
+    </style>-->
 
     <!--<style name="normal_big_text">
         <item name="android:textSize">@dimen/normal_big_text</item>

@@ -101,7 +101,7 @@ public abstract class BaseQRScanActivity extends BaseActivity implements Surface
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        setContentView(R.layout.activity_base_qrscan);
+        setContentView(R.layout.activity_base_scan);
 
         titleRelativLayout = (RelativeLayout) findViewById(R.id.capture_title_rl);
         scanPreview = (SurfaceView) findViewById(R.id.capture_preview);

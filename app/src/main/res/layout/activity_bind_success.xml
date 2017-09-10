@@ -17,14 +17,15 @@
             <ImageView
                 android:layout_width="@dimen/info_success_img_height"
                 android:layout_height="@dimen/info_success_img_width"
+                android:layout_margin="@dimen/info_img_margin"
                 android:src="@drawable/info_success"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/information_success"
-                style="@style/normal_big_text"
-                android:padding="@dimen/body_desktop"/>
+                style="@style/normal_white_big_text"
+                android:padding="@dimen/info_status_padding"/>
 
         </LinearLayout>
         <View

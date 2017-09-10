@@ -3,20 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center">
 
     <!--全校-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/order_item_padding">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_small_size"
+            style="@style/normal_small_text"
             android:text="@string/rank_item1"/>
         <TextView
             android:id="@+id/campus_rank"
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_small_size"
+            style="@style/normal_small_text"
             android:text="146" />
         <LinearLayout
             android:layout_width="0dp"
@@ -42,14 +43,13 @@
                 android:id="@+id/campus_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_arrow_upward_black_24dp"
-                android:backgroundTint="@color/red1"/>
+                app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
             <TextView
                 android:id="@+id/campus_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_size"
-                android:textColor="@color/red1"
+                android:textSize="@dimen/normal_small_text"
+                android:textColor="@color/rank_up"
                 android:paddingLeft="@dimen/rank_padding_left"
                 android:text="1"/>
         </LinearLayout>
@@ -58,14 +58,16 @@
     <!--全院-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/order_item_padding"
+        android:paddingBottom="@dimen/order_item_padding">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_small_size"
+            style="@style/normal_small_text"
             android:text="全院"/>
         <TextView
             android:id="@+id/academy_rank"
@@ -74,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_small_size"
+            style="@style/normal_small_text"
             android:text="23" />
         <LinearLayout
             android:layout_width="0dp"
@@ -97,8 +99,8 @@
                 android:id="@+id/academy_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_size"
-                android:textColor="@color/green3"
+                android:textSize="@dimen/normal_small_text"
+                android:textColor="@color/rank_down"
                 android:paddingLeft="@dimen/rank_padding_left"
                 android:text="1"/>
         </LinearLayout>
@@ -107,14 +109,15 @@
     <!--专业-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/order_item_padding">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_small_size"
+            style="@style/normal_small_text"
             android:text="专业"/>
         <TextView
             android:id="@+id/profession_rank"
@@ -123,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="@dimen/rank_small_size"
+            style="@style/normal_small_text"
             android:text="000" />
         <LinearLayout
             android:layout_width="0dp"
@@ -140,14 +143,13 @@
                 android:id="@+id/profession_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_arrow_upward_black_24dp"
-                android:backgroundTint="@color/red1"/>
+                app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
             <TextView
                 android:id="@+id/profession_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/rank_size"
-                android:textColor="@color/red1"
+                android:textSize="@dimen/normal_small_text"
+                android:textColor="@color/rank_up"
                 android:paddingLeft="@dimen/rank_padding_left"
                 android:text="1"/>
         </LinearLayout>

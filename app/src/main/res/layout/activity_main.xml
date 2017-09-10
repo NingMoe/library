@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorHeight="0dp"
+        app:tabSelectedTextColor="@color/tab_select_text"
+        app:tabTextColor="@color/tab_unselect_tex"
         app:tabMaxWidth="0dp"
         app:tabGravity="fill"
         app:tabMode="fixed"

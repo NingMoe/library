@@ -20,10 +20,9 @@
             >
             //===============================
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_phone_black_24dp"
-                android:backgroundTint="@color/debt_search"
+                android:layout_width="@dimen/normal_icon_size"
+                android:layout_height="@dimen/normal_icon_size"
+                app:srcCompat="@drawable/find_leave_debt_price"
                 />
             <TextView
                 style="@style/find_text"
@@ -50,10 +49,9 @@
             style="@style/find_linearlayout"
             >
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_map_black_24dp"
-                android:backgroundTint="@color/debt_book_search"
+                android:layout_width="@dimen/normal_icon_size"
+                android:layout_height="@dimen/normal_icon_size"
+                app:srcCompat="@drawable/find_leave_debt_book"
                 />
             <TextView
                 style="@style/find_text"

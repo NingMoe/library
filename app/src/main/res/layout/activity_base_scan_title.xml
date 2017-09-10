@@ -78,11 +78,11 @@
 
         <ImageView
             android:id="@+id/capture_scan_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/scan_photo_size"
+            android:layout_height="@dimen/scan_photo_size"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/back_margin_left"
-            app:srcCompat="@drawable/ic_crop_original_black_24dp"/>
+            app:srcCompat="@drawable/scan_photo"/>
     </RelativeLayout>
 </LinearLayout>
