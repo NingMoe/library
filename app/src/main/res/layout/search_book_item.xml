@@ -16,17 +16,17 @@
         android:id="@+id/number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/normal_text"
+        style="@style/search_title_text"
         android:text="1."/>
     <ImageView
         android:id="@+id/book_photo"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="@dimen/book_photo_width"
+        android:layout_height="@dimen/book_photo_height"
         android:layout_marginLeft="@dimen/search_book_item_margin"
         android:layout_marginRight="@dimen/search_book_item_margin"
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@drawable/ic_wallpaper_black_24dp"
+        app:srcCompat="@drawable/book_default"
         />
 
     <LinearLayout
@@ -40,7 +40,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/normal_text"
+                style="@style/search_title_text"
                 android:text="夏目友人帐"/>
 
             <LinearLayout
@@ -51,13 +51,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/normal_light_text"
+                    style="@style/search_author_light_text"
                     android:text="@string/author"/>
                 <TextView
                     android:id="@+id/author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/normal_light_text"
+                    style="@style/search_author_light_text"
                     android:text="（日）村井贞之"/>
             </LinearLayout>
 
@@ -70,8 +70,8 @@
                 android:layout_alignParentEnd="true">
                 <ImageView
                     android:id="@+id/is_collect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/normal_icon_size"
+                    android:layout_height="@dimen/normal_icon_size"
                     app:srcCompat="@drawable/ic_favorite_black_24dp"
                     />
                 <TextView
@@ -81,7 +81,7 @@
                     android:paddingLeft="@dimen/search_book_item_paddingleft"
                     android:gravity="center"
                     android:layout_gravity="center"
-                    style="@style/collect_text"
+                    style="@style/search_zan_text"
                     android:text="123"/>
             </LinearLayout>
 
@@ -96,7 +96,7 @@
                 android:layout_height="match_parent"
                 android:paddingTop="@dimen/search_book_item_paddingtop"
                 android:paddingBottom="@dimen/search_book_item_paddingbottom"
-                style="@style/search_book_content_text"
+                style="@style/search_content_text"
                 android:maxLines="3"
                 android:ellipsize="end"
                 android:lines="3"
@@ -109,13 +109,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/search_book_price_text"
+                style="@style/search_price_text"
                 android:text="¥"/>
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/search_book_price_text"
+                style="@style/search_price_text"
                 android:text="17.10"/>
             <LinearLayout
                 android:layout_width="0dp"
@@ -126,7 +126,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="@dimen/search_book_item_paddingright"
-                style="@style/search_book_style_text"
+                style="@style/search_style_text"
                 android:text="电子书"/>
         </LinearLayout>
 

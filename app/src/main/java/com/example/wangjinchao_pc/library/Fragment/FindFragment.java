@@ -16,9 +16,12 @@ import android.widget.Toast;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.activity.LeaveWorkActivity;
 import com.example.wangjinchao_pc.library.activity.MainActivity;
+import com.example.wangjinchao_pc.library.activity.PrinterActivity;
 import com.example.wangjinchao_pc.library.activity.ScanActivity;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.BaseFragment;
+
+import java.net.URL;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,6 +79,8 @@ public class FindFragment extends BaseFragment implements View.OnClickListener{
                 }
                 break;
             case R.id.print:
+                String url="http://cprint.unifound.net/client/help.html";
+                PrinterActivity.start(view.getContext(),url,"");
                 break;
         }
     }

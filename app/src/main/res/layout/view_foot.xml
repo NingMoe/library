@@ -7,7 +7,7 @@
     <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:textSize="@dimen/subhead_device"
+    android:textSize="@dimen/normal_text"
     android:layout_centerHorizontal="true"
     android:text="正在加载……"/>
 

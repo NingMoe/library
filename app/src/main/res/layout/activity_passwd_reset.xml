@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/height"
+            android:padding="@dimen/passwd_reset_padding"
             android:background="@color/colorWhite">
             <TextView
                 android:text="@string/confirm_password"

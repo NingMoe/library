@@ -41,8 +41,8 @@
                 android:textSize="@dimen/rank_small_size"/>
             <ImageView
                 android:id="@+id/campus_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/normal_icon_size"
+                android:layout_height="@dimen/normal_icon_size"
                 app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
             <TextView
                 android:id="@+id/campus_state"
@@ -91,8 +91,8 @@
                 android:textSize="@dimen/rank_small_size"/>
             <ImageView
                 android:id="@+id/academy_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/normal_icon_size"
+                android:layout_height="@dimen/normal_icon_size"
                 app:srcCompat="@drawable/ic_arrow_downward_black_24dp"
                 android:backgroundTint="@color/green3"/>
             <TextView
@@ -141,8 +141,8 @@
                 android:textSize="@dimen/rank_small_size"/>
             <ImageView
                 android:id="@+id/profession_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/normal_icon_size"
+                android:layout_height="@dimen/normal_icon_size"
                 app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
             <TextView
                 android:id="@+id/profession_state"

@@ -56,6 +56,13 @@
         <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
+    //普通按钮
+    <style name="normal_small_button_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/normal_btn_background</item>
+        <item name="android:textColor">@color/normal_btn_text</item>
+        <item name="android:textSize">@dimen/normal_small_text</item>
+    </style>
+
     //蓝色按钮
     <style name="normal_button_another_style" parent="@style/Widget.AppCompat.Button.Borderless">
         <item name="android:background">@drawable/normal_btn_another_background</item>
@@ -104,12 +111,40 @@
         <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
+    //点赞按钮
+    <style name="zan_button_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/zan_btn_background</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+    </style>
+
+    //阅读按钮
+    <style name="read_button_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/read_btn_background</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+    </style>
+
+    //提交按钮
+    <style name="commit_button_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/read_btn_background</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+    </style>
+
+    <style name="comment_button_style" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/commit_btn_background</item>
+        <item name="android:textColor">@color/normal_text</item>
+        <item name="android:textSize">@dimen/normal_small_text</item>
+    </style>
+
+    <!--tablayout自定义样式-->
     <style name="CustomTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">@dimen/tab_rank_text</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
-
     </style>
+
 
     <style name="order_badge_style">
         <item name="android:background">@drawable/circle</item>
@@ -227,6 +262,91 @@
         <item name="android:textColor">@color/normal_text</item>
     </style>
 
+    <style name="comment_score_text">
+        <item name="android:textSize">@dimen/normal_small_text</item>
+        <item name="android:textColor">@color/read_btn_color</item>
+    </style>
+
+    <!--搜索-->
+    <style name="search_title_text">
+        <item name="android:textSize">@dimen/normal_small_text</item>
+        <item name="android:textColor">@color/normal_text</item>
+    </style>
+
+    <style name="search_title_light_text">
+        <item name="android:textSize">@dimen/normal_small_text</item>
+        <item name="android:textColor">@color/normal_light_text</item>
+    </style>
+
+    <style name="search_author_light_text">
+        <item name="android:textSize">@dimen/normal_small_small_text</item>
+        <item name="android:textColor">@color/normal_light_text</item>
+    </style>
+
+    <style name="search_content_text">
+        <item name="android:textSize">@dimen/normal_small_small_small_text</item>
+        <item name="android:textColor">@color/normal_light_text</item>
+    </style>
+
+    <style name="search_price_text">
+        <item name="android:textSize">@dimen/normal_small_small_text</item>
+        <item name="android:textColor">@color/search_book_price</item>
+    </style>
+
+    <style name="search_style_text">
+        <item name="android:textSize">@dimen/normal_small_small_text</item>
+        <item name="android:textColor">@color/search_book_style</item>
+    </style>
+
+    <style name="search_zan_text">
+        <item name="android:textSize">@dimen/normal_small_small_text</item>
+        <item name="android:textColor">@color/search_book_zan</item>
+    </style>
+
+    <!--书籍详情-->
+    <style name="book_detail_score">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColor">@color/book_score_text</item>
+    </style>
+
+    <style name="book_detail_title_text">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColor">@color/normal_text</item>
+    </style>
+
+    <style name="book_detail_author_text">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColor">@color/normal_light_text</item>
+    </style>
+
+    <style name="book_detail_text">
+        <item name="android:textSize">@dimen/book_detail_comment_number_size</item>
+        <item name="android:textColor">@color/book_comment_number</item>
+    </style>
+
+    <style name="comment_name_text">
+        <item name="android:textSize">@dimen/comment_name_size</item>
+        <item name="android:textColor">@color/comment_name</item>
+    </style>
+
+    <style name="order_normal_text">
+        <item name="android:textSize">@dimen/order_normal_text</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="comment_text">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColor">@color/green4</item>
+    </style>
+
+    <style name="comment_content_text">
+        <item name="android:textSize">@dimen/comment_content_size</item>
+        <item name="android:textColor">@color/comment_content</item>
+    </style>
+
+
+
+
     <style name="normal_white_big_text">
         <item name="android:textSize">@dimen/normal_big_text</item>
         <item name="android:textColor">@color/colorWhite</item>
@@ -246,6 +366,7 @@
         <item name="android:textSize">@dimen/normal_text</item>
         <item name="android:textColorHint">@color/colorHint</item>
         <item name="android:background">@null</item>
+        <item name="android:textColor">@color/normal_text</item>
     </style>
 
     <!--<style name="normal_small_text">
@@ -278,40 +399,6 @@
         <item name="android:textColor">@color/style</item>
     </style>
 
-    <style name="book_detail_title_text">
-        <item name="android:textSize">@dimen/book_detail_title_size</item>
-        <item name="android:textColor">@color/colorBlack</item>
-    </style>
-
-    <style name="book_detail_author_text">
-        <item name="android:textSize">@dimen/book_detail_author_size</item>
-        <item name="android:textColor">@color/book_detail_author</item>
-    </style>
-
-    <style name="book_detail_text">
-        <item name="android:textSize">@dimen/book_detail_comment_number_size</item>
-        <item name="android:textColor">@color/book_comment_number</item>
-    </style>
-
-    <style name="comment_name_text">
-        <item name="android:textSize">@dimen/comment_name_size</item>
-        <item name="android:textColor">@color/comment_name</item>
-    </style>
-
-    <style name="order_normal_text">
-        <item name="android:textSize">@dimen/order_normal_text</item>
-        <item name="android:textColor">@color/colorBlack</item>
-    </style>
-
-    <style name="comment_text">
-        <item name="android:textSize">@dimen/normal_text</item>
-        <item name="android:textColor">@color/green4</item>
-    </style>
-
-    <style name="comment_content_text">
-        <item name="android:textSize">@dimen/comment_content_size</item>
-        <item name="android:textColor">@color/comment_content</item>
-    </style>
 
     <style name="alarm_text">
         <item name="android:textSize">@dimen/normal_text</item>
@@ -439,17 +526,17 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/bg_search_bar</item>
-        <item name="android:drawablePadding">5dp</item>
+        <item name="android:drawablePadding">@dimen/search_padding</item>
         <item name="android:drawableLeft">@drawable/auto_search_left_img</item>
         <item name="android:drawableRight">@drawable/auto_search_right_img</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:imeOptions">actionSearch</item>
-        <item name="android:padding">5dp</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:padding">@dimen/search_padding</item>
+        <item name="android:layout_margin">@dimen/search_padding</item>
         <item name="android:singleLine">true</item>
         <item name="android:textColorHint">@color/gray_white</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:hint">搜索</item>
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:hint">@string/library_search_hint</item>
     </style>
 
 

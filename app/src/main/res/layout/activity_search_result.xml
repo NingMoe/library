@@ -11,6 +11,13 @@
         android:layout_height="wrap_content"
         app:tabIndicatorHeight="0dp"
         android:layout_alignParentTop="true"
+        app:tabTextAppearance="@style/CustomTabLayoutTextAppearance"
+        app:tabSelectedTextColor="@color/tab_select_text"
+        app:tabTextColor="@color/tab_unselect_tex"
+        app:tabIndicatorColor="@color/tab_indicator_color"
+        app:tabMode="fixed"
+        app:tabMaxWidth="0dp"
+        app:tabGravity="fill"
         >
     </android.support.design.widget.TabLayout>
     <View

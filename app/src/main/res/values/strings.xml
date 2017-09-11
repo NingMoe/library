@@ -102,7 +102,8 @@
     <string name="no_comment">暂无评论</string>
     <string name="scores">评分</string>
     <string name="recommends">力荐</string>
-    <string name="comment_hint">发表评论，需要多于5个字哦~</string>
+    <string name="comment_hint">请输入您的评论内容(100字以内)</string>
+    <string name="commit">提交</string>
 
     <string name="debt_search">欠款查询</string>
     <string name="book_debt_search">未还书籍查询</string>

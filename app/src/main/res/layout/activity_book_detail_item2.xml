@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,7 +11,7 @@
         android:layout_marginLeft="@dimen/book_detail_comment_marginleft"
         android:layout_marginRight="@dimen/book_detail_comment_marginRight"
         android:scaleType="fitXY"
-        fresco:placeholderImage="@mipmap/headphoto"
+        fresco:placeholderImage="@drawable/comment_photo"
         />
 
     <LinearLayout
@@ -25,15 +24,15 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/comment_name_text"
+            style="@style/normal_small_text"
             android:text="大狗"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/color_white">
-            <ImageView
+            android:orientation="horizontal">
+            <include layout="@layout/comment_star"></include>
+            <!--<ImageView
                 android:id="@+id/star_11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,19 +56,18 @@
                 android:id="@+id/star_55"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_star_black_16dp" />
+                app:srcCompat="@drawable/ic_star_black_16dp" />-->
             <TextView
                 android:id="@+id/score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:textColor="@color/green4"
-                android:textSize="14sp"
+                android:paddingLeft="@dimen/book_detail_comment_marginleft"
+                style="@style/comment_score_text"
                 android:text="10"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/comment_text"
+                style="@style/comment_score_text"
                 android:text="@string/score"/>
         </LinearLayout>
         <TextView
@@ -80,7 +78,7 @@
             android:lines="4"
             android:maxLines="4"
             android:ellipsize="end"
-            style="@style/comment_content_text"
+            style="@style/normal_small_light_text"
             android:text="看书，需要有选择性、时间性。虽说饶雪漫的疼痛、安妮宝贝的细腻、郭敬明的华美都很动人，《沙漏》的扣人心弦，《泡沫之夏》的感人肺腑都令人神往，可毕竟，这些也都只是课外读物，应该是在学习之余阅读的，不能因此而耽误学习、荒废学业。"
             />
 
@@ -92,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                style="@style/comment_content_text"
+                style="@style/normal_small_light_text"
                 android:text="2017.06.04"/>
         </RelativeLayout>
 

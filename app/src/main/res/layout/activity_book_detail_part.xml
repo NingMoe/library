@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,11 +9,12 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/book_img"
-        android:layout_width="@dimen/book_img_size"
-        android:layout_height="@dimen/book_img_size"
-        android:layout_marginLeft="10dp"
+        android:layout_width="@dimen/book_img_width"
+        android:layout_height="@dimen/book_img_height"
+        android:layout_marginLeft="@dimen/book_img_margin"
         android:scaleType="fitXY"
-        fresco:placeholderImage="@drawable/android"
+        fresco:placeholderImage="@drawable/book_default"
+        fresco:placeholderImageScaleType="fitXY"
         />
 
     <LinearLayout
@@ -26,33 +26,37 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/book_detail_title_text"
+            style="@style/normal_text"
             android:text="夏目友人帐"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/book_detail_title_margintop"
+            android:layout_marginTop="@dimen/book_detail_read_margintop"
             android:orientation="horizontal"
             android:layout_below="@id/title">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/book_detail_author_text"
+                style="@style/normal_light_text"
                 android:text="作者: "/>
             <TextView
                 android:id="@+id/author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/book_detail_author_text"
+                style="@style/normal_light_text"
                 android:text="（日）村井贞之"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/book_detail_star_margintop"
+            android:layout_marginTop="@dimen/book_detail_read_margintop"
             android:orientation="horizontal">
-            <LinearLayout
+
+            <include layout="@layout/star"></include>
+
+            <!--<LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -82,35 +86,50 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_star_black_20dp"/>
+            </LinearLayout>-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/comment_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/book_detail_score_marginleft"
+                    style="@style/normal_light_text"
+                    android:text="47"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    style="@style/normal_light_text"
+                    android:text="@string/comment"/>
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/book_detail_read_margintop">
             <TextView
                 android:id="@+id/score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/book_detail_score_marginleft"
-                style="@style/normal_text"
+                style="@style/book_detail_score"
                 android:text="7.5"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                style="@style/normal_text"
+                style="@style/book_detail_score"
                 android:text="@string/score"/>
-            <TextView
-                android:id="@+id/comment_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/book_detail_score_marginleft"
-                style="@style/book_detail_text"
-                android:text="47"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                style="@style/book_detail_text"
-                android:text="@string/comment"/>
         </LinearLayout>
 
         <LinearLayout
@@ -123,13 +142,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                style="@style/book_detail_text"
+                style="@style/normal_light_text"
                 android:text="4.1万"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                style="@style/book_detail_text"
+                style="@style/normal_light_text"
                 android:text="@string/read"/>
             <TextView
                 android:id="@+id/size"
@@ -137,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/book_detail_size_marginleft"
                 android:layout_gravity="center"
-                style="@style/book_detail_text"
+                style="@style/normal_light_text"
                 android:text="731.34K"/>
         </LinearLayout>
     </LinearLayout>

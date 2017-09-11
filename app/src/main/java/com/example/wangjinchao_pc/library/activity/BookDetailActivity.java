@@ -12,6 +12,7 @@ import com.example.wangjinchao_pc.library.Constant.Value;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.adapter.BookAdapter;
 import com.example.wangjinchao_pc.library.adapter.BookDetailAdapter;
+import com.example.wangjinchao_pc.library.adapter.BookDetailDividerItemDecoration;
 import com.example.wangjinchao_pc.library.adapter.DividerItemDecoration;
 import com.example.wangjinchao_pc.library.adapter.RecyclerViewAdapterWrapper;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
@@ -60,11 +61,12 @@ public class BookDetailActivity extends ToolbarActivity implements View.OnClickL
         style=getIntent().getIntExtra(BookAdapter.STYLE,BookAdapter.PAPER);
         which=getIntent().getIntExtra(BookAdapter.WHICH,BookAdapter.COMMON);
 
+        initActionBar();
         //设置加载项
         setLoadView(frameLayout);
 
         comment_container.setLayoutManager(new LinearLayoutManager(this));
-        comment_container.addItemDecoration(new DividerItemDecoration(this));
+        comment_container.addItemDecoration(new BookDetailDividerItemDecoration(this));
 
         comment_container.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -82,6 +84,18 @@ public class BookDetailActivity extends ToolbarActivity implements View.OnClickL
         adapter=new RecyclerViewAdapterWrapper(new BookDetailAdapter(this,datas,style,which));
         comment_container.setAdapter(adapter);
 
+    }
+
+    /**
+     * 初始化导航栏
+     */
+    private void initActionBar(){
+        if(style==BookAdapter.PAPER)
+            setTitle("夏目友人帐"+"(纸质书)");
+        else{
+            setTitle("夏目友人帐"+"(电子书)");
+        }
+        setDisplayHomeAsUpEnabled(true);
     }
 
     //测试

@@ -36,8 +36,7 @@
             android:layout_width="match_parent"
             android:background="@color/color_white"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/body_desktop"
-            android:paddingBottom="@dimen/body_desktop"
+            android:padding="@dimen/bind_padding"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -64,6 +63,8 @@
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
                 style="@style/normal_hint_text"
+                android:paddingTop="@dimen/bind_padding2"
+                android:paddingBottom="@dimen/bind_padding2"
                 android:enabled="false"
                 android:hint="浙江工业大学"/>
 
@@ -76,8 +77,7 @@
             android:layout_width="match_parent"
             android:background="@color/color_white"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/body_desktop"
-            android:paddingBottom="@dimen/body_desktop"
+            android:padding="@dimen/bind_padding"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -104,6 +104,8 @@
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
                 style="@style/normal_hint_text"
+                android:paddingTop="@dimen/bind_padding2"
+                android:paddingBottom="@dimen/bind_padding2"
                 android:hint="212033324223"/>
 
         </LinearLayout>
@@ -115,8 +117,7 @@
             android:layout_width="match_parent"
             android:background="@color/color_white"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/body_desktop"
-            android:paddingBottom="@dimen/body_desktop"
+            android:padding="@dimen/bind_padding"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -143,6 +144,8 @@
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
                 style="@style/normal_hint_text"
+                android:paddingTop="@dimen/bind_padding2"
+                android:paddingBottom="@dimen/bind_padding2"
                 android:hint="王小毛"/>
 
         </LinearLayout>
@@ -154,8 +157,7 @@
             android:layout_width="match_parent"
             android:background="@color/color_white"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/body_desktop"
-            android:paddingBottom="@dimen/body_desktop"
+            android:padding="@dimen/bind_padding"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -182,6 +184,8 @@
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
                 style="@style/normal_hint_text"
+                android:paddingTop="@dimen/bind_padding2"
+                android:paddingBottom="@dimen/bind_padding2"
                 android:textColorHint="@color/red1"
                 android:hint="请填写学院"/>
 
@@ -194,8 +198,7 @@
             android:layout_width="match_parent"
             android:background="@color/color_white"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/body_desktop"
-            android:paddingBottom="@dimen/body_desktop"
+            android:padding="@dimen/bind_padding"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -222,6 +225,8 @@
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
                 style="@style/normal_hint_text"
+                android:paddingTop="@dimen/bind_padding2"
+                android:paddingBottom="@dimen/bind_padding2"
                 android:textColorHint="@color/red1"
                 android:hint="请填写专业"/>
 
@@ -234,8 +239,7 @@
             android:layout_width="match_parent"
             android:background="@color/color_white"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/body_desktop"
-            android:paddingBottom="@dimen/body_desktop"
+            android:padding="@dimen/bind_padding"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -262,6 +266,8 @@
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
                 style="@style/normal_hint_text"
+                android:paddingTop="@dimen/bind_padding2"
+                android:paddingBottom="@dimen/bind_padding2"
                 android:hint="男"/>
 
         </LinearLayout>
@@ -273,8 +279,7 @@
             android:layout_width="match_parent"
             android:background="@color/color_white"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/body_desktop"
-            android:paddingBottom="@dimen/body_desktop"
+            android:padding="@dimen/bind_padding"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -301,6 +306,8 @@
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
                 style="@style/normal_hint_text"
+                android:paddingTop="@dimen/bind_padding2"
+                android:paddingBottom="@dimen/bind_padding2"
                 android:hint="本科生"/>
 
         </LinearLayout>
@@ -312,8 +319,7 @@
             android:layout_width="match_parent"
             android:background="@color/color_white"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/body_desktop"
-            android:paddingBottom="@dimen/body_desktop"
+            android:padding="@dimen/bind_padding"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="0dp"
@@ -341,6 +347,8 @@
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
                 style="@style/normal_hint_text"
+                android:paddingTop="@dimen/bind_padding2"
+                android:paddingBottom="@dimen/bind_padding2"
                 android:textColorHint="@color/red1"
                 android:hint="请填写入学年份"/>
         </LinearLayout>
@@ -357,7 +365,6 @@
             android:layout_marginTop="@dimen/btn_top"
             android:layout_marginLeft="@dimen/btn_left"
             android:layout_marginRight="@dimen/btn_right"
-            android:layout_marginBottom="@dimen/btn_top"
             android:text="@string/confirm"/>
 
     </LinearLayout>

@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/capture_title_rl"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="?attr/actionBarSize">
     </RelativeLayout>
 
     <RelativeLayout
@@ -21,8 +21,8 @@
         android:layout_height="match_parent">
         <RelativeLayout
             android:id="@+id/capture_crop_view"
-            android:layout_width="240dp"
-            android:layout_height="240dp"
+            android:layout_width="@dimen/scan_size"
+            android:layout_height="@dimen/scan_size"
             android:layout_centerInParent="true"
             >
         </RelativeLayout>

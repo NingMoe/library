@@ -41,8 +41,8 @@
 
         <ImageView
             android:id="@+id/flashlight"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/scan_light"
+            android:layout_height="@dimen/scan_light"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:background="@drawable/flj" />
@@ -52,8 +52,8 @@
 
     <RelativeLayout
         android:id="@+id/capture_crop_position"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
+        android:layout_width="@dimen/scan_size"
+        android:layout_height="@dimen/scan_size"
         android:layout_centerInParent="true">
 
     </RelativeLayout>

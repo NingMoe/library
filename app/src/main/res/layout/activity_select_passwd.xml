@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/search_padding"
+        android:padding="@dimen/select_padding"
         android:background="@color/text_background">
         <TextView
             android:text="@string/phone_number"
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/search_padding"
+        android:padding="@dimen/select_padding"
         android:background="@color/text_background">
         <TextView
             android:text="@string/code"

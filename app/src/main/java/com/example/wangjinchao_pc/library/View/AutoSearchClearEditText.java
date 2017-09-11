@@ -16,10 +16,12 @@ import com.example.wangjinchao_pc.library.R;
  * Created by wangjinchao-PC on 2017/7/17.
  */
 
-public class AutoSearchClearEditText extends AppCompatEditText implements View.OnFocusChangeListener,View.OnKeyListener {
+public class AutoSearchClearEditText extends AppCompatEditText implements View.OnFocusChangeListener,View.OnKeyListener,View.OnClickListener {
 
     /** 清空图标 **/
     private Drawable mClearDrawable;
+
+    private Drawable mSearchDrawable;
 
     /** 是否获得焦点 **/
     private boolean hasFocus;
@@ -60,11 +62,17 @@ public class AutoSearchClearEditText extends AppCompatEditText implements View.O
     private void init() {
         // 获取EditText最右侧的删除图标
         mClearDrawable = this.getCompoundDrawables()[2];
+        mSearchDrawable=this.getCompoundDrawables()[1];
         if (mClearDrawable == null) {
             mClearDrawable = getResources().getDrawable(R.drawable.ic_cancel_black_24dp);
         }
+        if(mSearchDrawable==null){
+            mSearchDrawable=getResources().getDrawable(R.drawable.ic_search_black_24dp);
+        }
         mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(),
                 mClearDrawable.getIntrinsicHeight());
+        mSearchDrawable.setBounds(0, 0, mSearchDrawable.getIntrinsicWidth(),
+                mSearchDrawable.getIntrinsicHeight());
         // 默认右侧删除图标不可见
         setClearIconVisible(false);
 
@@ -139,5 +147,10 @@ public class AutoSearchClearEditText extends AppCompatEditText implements View.O
             }
         }
         return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

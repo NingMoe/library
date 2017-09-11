@@ -60,8 +60,8 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="@dimen/mine_img_size"
-                android:layout_height="@dimen/mine_img_size"
+                android:layout_width="@dimen/go_img_size"
+                android:layout_height="@dimen/go_img_size"
                 android:layout_alignParentRight="true"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp" />
@@ -103,8 +103,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical">
                     <ImageView
-                        android:layout_width="@dimen/mine_img_size"
-                        android:layout_height="@dimen/mine_img_size"
+                        android:layout_width="@dimen/go_img_size"
+                        android:layout_height="@dimen/go_img_size"
                         android:layout_alignParentRight="true"
                         app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
                         />
@@ -138,8 +138,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical">
                     <ImageView
-                        android:layout_width="@dimen/mine_img_size"
-                        android:layout_height="@dimen/mine_img_size"
+                        android:layout_width="@dimen/go_img_size"
+                        android:layout_height="@dimen/go_img_size"
                         android:layout_alignParentRight="true"
                         app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
                         />
@@ -168,8 +168,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical">
                     <ImageView
-                        android:layout_width="@dimen/mine_img_size"
-                        android:layout_height="@dimen/mine_img_size"
+                        android:layout_width="@dimen/go_img_size"
+                        android:layout_height="@dimen/go_img_size"
                         android:layout_alignParentRight="true"
                         app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
                         />
@@ -205,8 +205,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical">
                     <ImageView
-                        android:layout_width="@dimen/mine_img_size"
-                        android:layout_height="@dimen/mine_img_size"
+                        android:layout_width="@dimen/go_img_size"
+                        android:layout_height="@dimen/go_img_size"
                         android:layout_alignParentRight="true"
                         app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
                         />

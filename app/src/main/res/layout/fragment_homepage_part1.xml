@@ -19,9 +19,9 @@
             <ImageView
                 android:layout_width="@dimen/homepage_img_size"
                 android:layout_height="@dimen/homepage_img_size"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="@dimen/img_margin"
+                android:layout_marginRight="@dimen/img_margin"
+                android:layout_marginBottom="@dimen/img_margin_half"
                 app:srcCompat="@drawable/alarm"
                 android:layout_gravity="center"
                 />
@@ -45,7 +45,7 @@
             <!--需要改的————————————————————————-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/tab_height"
                 android:orientation="horizontal"
                 android:gravity="center">
                 <android.support.design.widget.TabLayout

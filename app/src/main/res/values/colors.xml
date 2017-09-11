@@ -45,6 +45,15 @@
     <color name="order_number_have">#FF3300</color>
     <color name="order_number_zero">#339966</color>
 
+    <color name="search_book_price">#ff6600</color>
+    <color name="search_book_style">#3366cc</color>
+    <color name="search_book_zan">#ff3300</color>
+
+    <color name="zan_btn_color">#ff9900</color>
+    <color name="zan_btn_color_pressed">#ff7700</color>
+    <color name="read_btn_color">#339966</color>
+    <color name="read_btn_color_pressed">#33cc99</color>
+
 
     <color name="colorPrimary">#333333</color>
     <color name="colorPrimaryDark">#303F9F</color>
@@ -55,6 +64,7 @@
     <color name="colorBlack">#000000</color>
     <color name="normal_text">#333333</color>
     <color name="normal_light_text">#999999</color>
+    <color name="book_score_text">#ff9900</color>
     <color name="tab_select_text">#3399ff</color>
     <color name="tab_unselect_tex">#999999</color>
     <color name="tab_indicator_color">#3399ff</color>
@@ -91,6 +101,12 @@
 
     <color name="rank_up">#ff3300</color>
     <color name="rank_down">#339966</color>
+
+    <color name="library_img_color">#999999</color>
+
+    <color name="commit_btn_color">#3399FF</color>
+    <color name="commit_btn_color_pressed">#33aaff</color>
+
 
     <!--color-->
     <color name="green">#00cc66</color>

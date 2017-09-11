@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:id="@+id/scan"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
+        android:layout_width="@dimen/scan_size"
+        android:layout_height="@dimen/scan_size"
         android:layout_centerHorizontal="true"
         android:background="@drawable/qr_code_bg" >
 
@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="@dimen/scan_margin"
+            android:layout_marginTop="@dimen/scan_margin"
             android:src="@drawable/scan_line" />
     </RelativeLayout>
 </LinearLayout>

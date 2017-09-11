@@ -40,7 +40,7 @@ public class CommentActivity extends ToolbarActivity {
      * 初始化导航栏
      */
     private void initActionBar(){
-        setTitle("评论");
+        setTitle("我要评论");
         setDisplayHomeAsUpEnabled(true);
     }
 }

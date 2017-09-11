@@ -2,84 +2,179 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
 
     <!--my-->
-    <dimen name="order_top_margin">32dp</dimen>
+
+    <!--广告-->
     <dimen name="ad_skip_margin_right">8dp</dimen>
     <dimen name="ad_skip_margin_top">20dp</dimen>
     <dimen name="ad_text_padding_left">5dp</dimen>
     <dimen name="ad_text_padding_right">5dp</dimen>
 
-    <dimen name="back_margin_left">16dp</dimen>
+    <!--扫描-->
+    <dimen name="scan_size">240dp</dimen>
+    <dimen name="scan_light">64dp</dimen>
+    <dimen name="scan_margin">8dp</dimen>
+    <dimen name="scan_photo_size">32dp</dimen>
 
+    <!--绑定学校-->
+    <dimen name="bind_padding">6dp</dimen>
+    <dimen name="bind_paddingleft">8dp</dimen>
+    <dimen name="bind_paddingright">8dp</dimen>
+    <dimen name="bind_padding2">8dp</dimen>
+    <dimen name="bind_img_size">32dp</dimen>
+
+    <!--完善信息-->
+    <dimen name="info_perfect_img_height">64dp</dimen>
+    <dimen name="info_perfect_img_width">64dp</dimen>
+    <dimen name="info_img_margin">8dp</dimen>
+    <dimen name="info_status_padding">8dp</dimen>
+
+
+    <!--欠款或欠书-->
+    <dimen name="warning_imt_size">64dp</dimen>
+    <dimen name="warning_img_margin">12dp</dimen>
+    <dimen name="debt_details_padding">8dp</dimen>
+    <dimen name="debt_details_content_padding">16dp</dimen>
+
+    <!--排名-->
+    <dimen name="rank_margin">8dp</dimen>
+    <dimen name="rank_padding_left">4dp</dimen>
+
+    <dimen name="mine_information_photo_size">46dp</dimen>
+    <dimen name="roundingBorderWidth">1dp</dimen>
+    <!--<dimen name="mine_info_margintop">14dp</dimen>-->
+
+    <!--散装-->
+    <dimen name="mine_layout_top">32dp</dimen>
+    <dimen name="find_layout_top">32dp</dimen>
+    <dimen name="layout_top_padding">32dp</dimen>
+
+    <!--馆藏-->
+    <dimen name="desktop_img_size">99dp</dimen>
+    <dimen name="library_margin">16dp</dimen>
+
+    <!--我的-->
+    <dimen name="mine_padding">16dp</dimen>
+    <dimen name="mine_img_size">32dp</dimen>
+    <dimen name="photo_size">88dp</dimen>
+    <dimen name="motto_top">8dp</dimen>
+
+    <!--预约-->
+    <dimen name="order_top_margin">32dp</dimen>
+    <dimen name="order_badge_size">20dp</dimen>
+    <dimen name="order_badge_radius">10dp</dimen>
+    <dimen name="order_badge_margin">2dp</dimen>
+
+    <!--加载-->
+    <dimen name="view_load_img_size">156dp</dimen>
+
+
+
+    <dimen name="margin">8dp</dimen>
+
+    <dimen name="find_img_size">32dp</dimen>
+
+
+    <dimen name="recycle_padding">0dp</dimen>
+
+    <dimen name="college_info_padding">16dp</dimen>
+
+    <dimen name="normal_icon_size">24dp</dimen>
+
+    <dimen name="activity_main_margin">16dp</dimen>
+
+    <dimen name="padding">8dp</dimen>
+
+
+    <dimen name="login_photo_size">96dp</dimen>
     <dimen name="photo_round">1dp</dimen>
+
+
+    <!--退出-->
+    <dimen name="back_margin_left">16dp</dimen>
+    <!--进入-->
+    <dimen name="go_img_size">32dp</dimen>
+
+    <!--下划线-->
+    <dimen name="view_divide">0.5dp</dimen>
+    <dimen name="line_height">0.5dp</dimen>
+    <dimen name="tablayout_divide">0.5dp</dimen>
+
+    <!--通知-->
+    <dimen name="notice_padding">8dp</dimen>
+    <dimen name="notice_dot_size">12dp</dimen>
+    <dimen name="notice_dot_margin">4dp</dimen>
+    <dimen name="notice_text_padding">8dp</dimen>
+
+    <dimen name="notice_margin">12dp</dimen>
+
+    <!--重置密码-->
+    <dimen name="passwd_reset_padding">6dp</dimen>
+    <dimen name="passwd_reset_content_padding">8dp</dimen>
+
+    <!--登陆-->
     <dimen name="login_margin">16dp</dimen>
     <dimen name="login_padding">16dp</dimen>
     <dimen name="divide">1dp</dimen>
     <dimen name="find_passwd_margin_top">16dp</dimen>
     <dimen name="find_passwd_margin_bottom">16dp</dimen>
     <dimen name="find_passwd_margin_right">16dp</dimen>
+
+    <!--注册-->
+    <dimen name="register_padding">6dp</dimen>
+    <dimen name="content_padding">8dp</dimen>
+
+    <!--搜索-->
+    <dimen name="select_padding">6dp</dimen>
+
+    <!--首页-->
+    <dimen name="homepage_order_item_margin">8dp</dimen>
+    <dimen name="homepage_img_size">48dp</dimen>
+    <dimen name="homepage_rank_margin_right">8dp</dimen>
+    <dimen name="order_number_margin">8dp</dimen>
+    <dimen name="alarm_img_size">100dp</dimen>
+    <dimen name="img_margin">16dp</dimen>
+    <dimen name="img_margin_half">8dp</dimen>
+
+    <dimen name="rank_item_paddind">8dp</dimen>
+    <dimen name="order_item_padding">4dp</dimen>
+
+    <dimen name="tab_height">30dp</dimen>
+
+    <!--设置信息-->
+    <dimen name="setInformation_paddind">8dp</dimen>
+
+    <!--按钮-->
     <dimen name="btn_top">28dp</dimen>
     <dimen name="btn_left">16dp</dimen>
     <dimen name="btn_right">16dp</dimen>
     <dimen name="btn_bottom">16dp</dimen>
-
-    <dimen name="layout_top_padding">32dp</dimen>
-    <dimen name="view_divide">0.5dp</dimen>
-    <dimen name="search_padding">6dp</dimen>
-    <dimen name="content_padding">8dp</dimen>
     <dimen name="btn_minHeight">28dp</dimen>
-    <dimen name="register_padding">6dp</dimen>
+    <dimen name="detail_btn_minHeight">40dp</dimen>
 
-    <dimen name="tablayout_divide">0.5dp</dimen>
+    <dimen name="btn_radius">100dp</dimen>
 
-    <dimen name="homepage_margin_lr">16dp</dimen>
-    <dimen name="homepage_margin_top">16dp</dimen>
-    <dimen name="homepage_debt_margin_top">8dp</dimen>
-    <dimen name="homepage_img_margin">4dp</dimen>
-    <dimen name="homepage_debt_margin_left">8dp</dimen>
-    <dimen name="homepage_debt_margin_right">8dp</dimen>
-    <dimen name="homepage_rank_margin_right">8dp</dimen>
-    <dimen name="dot_margin_bottom">30dp</dimen>
-
-    <dimen name="homepage_img_size">48dp</dimen>
-
-    <dimen name="desktop_img_size">99dp</dimen>
-    <dimen name="library_margin">16dp</dimen>
-
-    <dimen name="alarm_img_size">100dp</dimen>
-
-    <dimen name="padding">8dp</dimen>
-
-    <dimen name="order_number_margin">8dp</dimen>
-    <dimen name="order_img_size">32dp</dimen>
-
-    <dimen name="find_layout_top">32dp</dimen>
-    <dimen name="find_img_size">32dp</dimen>
-    <dimen name="mine_layout_top">32dp</dimen>
-    <dimen name="mine_padding">16dp</dimen>
-    <dimen name="mine_img_size">32dp</dimen>
-    <dimen name="photo_size">88dp</dimen>
-    <dimen name="divide_top">16dp</dimen>
-
-    <dimen name="mine_btn_top">16dp</dimen>
-
-    <dimen name="rank_margin">8dp</dimen>
-    <dimen name="rank_padding_left">4dp</dimen>
-
-    <dimen name="recycle_padding">0dp</dimen>
-    <dimen name="search_result_padding">8dp</dimen>
-
-    <dimen name="recycle_padding_left_right">16dp</dimen>
-
+    <!--搜索-->
     <dimen name="search_book_item_padding">8dp</dimen>
     <dimen name="search_book_item_margin">4dp</dimen>
     <dimen name="search_book_item_paddingleft">5dp</dimen>
     <dimen name="search_book_item_paddingtop">5dp</dimen>
     <dimen name="search_book_item_paddingbottom">5dp</dimen>
     <dimen name="search_book_item_paddingright">5dp</dimen>
+    <dimen name="recycle_padding_left_right">16dp</dimen>
+    <dimen name="book_photo_size">96dp</dimen>
+    <dimen name="book_photo_height">96dp</dimen>
+    <dimen name="book_photo_width">68dp</dimen>
 
+    <dimen name="search_padding">5dp</dimen>
+    <dimen name="search_result_padding">8dp</dimen>
+
+    <!--书籍详情-->
     <dimen name="book_detail_padding_top">8dp</dimen>
     <dimen name="book_img_size">96dp</dimen>
-    <dimen name="book_comment_headphoto_size">96dp</dimen>
+    <dimen name="book_img_height">135dp</dimen>
+    <dimen name="book_img_width">96dp</dimen>
+    <dimen name="book_img_margin">10dp</dimen>
+
     <dimen name="book_detail_padding_left">8dp</dimen>
     <dimen name="book_detail_title_margintop">5dp</dimen>
     <dimen name="book_detail_star_margintop">8dp</dimen>
@@ -91,56 +186,48 @@
     <dimen name="book_detail_introduce_bottom">8dp</dimen>
     <dimen name="book_detail_comment_top">8dp</dimen>
 
+    <dimen name="star_size">24dp</dimen>
+    <dimen name="star_small_size">16dp</dimen>
+
+    <dimen name="star_comment_star_size_two_half">60dp</dimen>
+    <dimen name="star_comment_star_padding">32dp</dimen>
+
+    <dimen name="book_detail_btn_margin">10dp</dimen>
+
+    //评论
+    <dimen name="comment_photo_size">96dp</dimen>
+    <dimen name="comment_photo_margin">10dp</dimen>
+    <dimen name="comment_bottom">5dp</dimen>
+    <dimen name="book_comment_headphoto_size">44dp</dimen>
+    <dimen name="comment_content_paddingtop">5dp</dimen>
+    <dimen name="comment_padding_top">8dp</dimen>
     <dimen name="book_detail_comment_marginleft">10dp</dimen>
     <dimen name="book_detail_comment_marginRight">5dp</dimen>
-    <dimen name="comment_content_paddingtop">5dp</dimen>
-
-    <dimen name="comment_padding_top">8dp</dimen>
-
-    <dimen name="warning_imt_size">64dp</dimen>
-    <dimen name="warning_img_margin">12dp</dimen>
-
-    <dimen name="debt_details_padding">8dp</dimen>
-    <dimen name="debt_details_content_padding">16dp</dimen>
-
-    <dimen name="mine_information_photo_size">46dp</dimen>
-    <dimen name="roundingBorderWidth">1dp</dimen>
-    <dimen name="mine_info_margintop">14dp</dimen>
-    <dimen name="bind_padding">6dp</dimen>
-    <dimen name="bind_paddingleft">8dp</dimen>
-    <dimen name="bind_paddingright">8dp</dimen>
-    <dimen name="bind_padding2">8dp</dimen>
-    <dimen name="bind_img_size">32dp</dimen>
-
-    <dimen name="college_info_padding">16dp</dimen>
-
-    <dimen name="passwd_reset_padding">6dp</dimen>
-
-    <dimen name="passwd_reset_content_padding">8dp</dimen>
 
 
-    <dimen name="view_load_img_size">156dp</dimen>
+
+
+    <dimen name="homepage_margin_lr">16dp</dimen>
+    <dimen name="homepage_margin_top">16dp</dimen>
+    <dimen name="homepage_debt_margin_top">8dp</dimen>
+    <dimen name="homepage_img_margin">4dp</dimen>
+    <dimen name="homepage_debt_margin_left">8dp</dimen>
+    <dimen name="homepage_debt_margin_right">8dp</dimen>
+    <dimen name="dot_margin_bottom">30dp</dimen>
+
+    <dimen name="order_img_size">32dp</dimen>
+
+    <dimen name="divide_top">16dp</dimen>
+
+    <dimen name="mine_btn_top">16dp</dimen>
 
     <dimen name="homepage_part1_viewpager_height">69dp</dimen>
     <dimen name="homepage_viewpager_height">99dp</dimen>
 
-    <dimen name="motto_top">8dp</dimen>
-    <dimen name="setInformation_paddind">8dp</dimen>
 
-
-    <dimen name="normal_icon_size">24dp</dimen>
-    <dimen name="notice_margin">12dp</dimen>
-
-    <dimen name="order_badge_size">20dp</dimen>
-    <dimen name="order_badge_radius">10dp</dimen>
-    <dimen name="order_badge_margin">2dp</dimen>
-
-    <dimen name="rank_item_paddind">8dp</dimen>
-    <dimen name="order_item_padding">4dp</dimen>
 
     <dimen name="banner_title_height">30dp</dimen>
 
-    <dimen name="homepage_order_item_margin">8dp</dimen>
 
 
      <!--字体-->
@@ -151,6 +238,8 @@
 
     <dimen name="normal_text">16sp</dimen>
     <dimen name="normal_small_text">14sp</dimen>
+    <dimen name="normal_small_small_text">12sp</dimen>
+    <dimen name="normal_small_small_small_text">10sp</dimen>
     <dimen name="normal_big_text">20sp</dimen>
     <dimen name="order_normal_text">16sp</dimen>
     <dimen name="library_text">18dp</dimen>
@@ -189,15 +278,9 @@
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="activity_main_margin">16dp</dimen>
     <dimen name="activity_main_height">48dp</dimen>
-    <dimen name="margin">8dp</dimen>
-    <dimen name="notice_padding">8dp</dimen>
-    <dimen name="notice_dot_size">12dp</dimen>
-    <dimen name="notice_dot_margin">4dp</dimen>
     <dimen name="btn">28dp</dimen>
     <dimen name="half_margin">4dp</dimen>
-    <dimen name="height">6dp</dimen>
 
     <dimen name="border_width">1dp</dimen>
 
@@ -219,11 +302,6 @@
     <dimen name="info_success_img_height">64dp</dimen>
     <dimen name="info_success_img_width">64dp</dimen>
 
-    <dimen name="info_perfect_img_height">64dp</dimen>
-    <dimen name="info_perfect_img_width">64dp</dimen>
-    <dimen name="info_img_margin">8dp</dimen>
-    <dimen name="info_status_padding">8dp</dimen>
-    <dimen name="line_height">0.5dp</dimen>
 
     <!--////////////  zxing  //////////////////-->
     <dimen name="standard_padding">8dip</dimen>
@@ -236,6 +314,5 @@
     <dimen name="flash_btn_bottom">64dp</dimen>
     <dimen name="shao_bottom">64dp</dimen>
 
-    <dimen name="scan_photo_size">32dp</dimen>
 
 </resources>

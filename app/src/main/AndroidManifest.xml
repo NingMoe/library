@@ -43,6 +43,7 @@
         <activity android:name=".activity.CollegeInfoActivity"></activity>
         <activity android:name=".activity.SetInformationActivity"></activity>
         <activity android:name=".activity.ScanActivity"></activity>
+        <activity android:name=".activity.PrinterActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>

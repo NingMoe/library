@@ -13,8 +13,8 @@
         android:gravity="center">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/headPhoto"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="@dimen/login_photo_size"
+            android:layout_height="@dimen/login_photo_size"
             android:scaleType="fitXY"
             android:layout_gravity="center"
             fresco:placeholderImage="@drawable/login_headphoto"
@@ -60,6 +60,8 @@
 
                 </LinearLayout>
 
+
+                //1dp放在这----注意-----??????????????????????????????
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

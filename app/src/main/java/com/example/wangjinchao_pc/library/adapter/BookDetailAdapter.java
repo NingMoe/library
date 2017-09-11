@@ -193,39 +193,31 @@ public class BookDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void set_star(BookDetailAdapter.CommentViewHolder holder, int code){
         switch(code){
             case 5:
-                holder.star_55.setImageDrawable(Utils.setDrawableTint(holder.star_55.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                /*holder.star_55.setImageDrawable(Utils.setDrawableTint(holder.star_55.getDrawable().mutate(),
+                        context.getResources().getColor(R.color.red)));*/
+                holder.star_55.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
             case 4:
-                holder.star_44.setImageDrawable(Utils.setDrawableTint(holder.star_44.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_44.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
             case 3:
-                holder.star_33.setImageDrawable(Utils.setDrawableTint(holder.star_33.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_33.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
             case 2:
-                holder.star_22.setImageDrawable(Utils.setDrawableTint(holder.star_22.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_22.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
             case 1:
-                holder.star_11.setImageDrawable(Utils.setDrawableTint(holder.star_11.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_11.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
                 break;
         }
 
         switch(code){
             case 0:
-                holder.star_11.setImageDrawable(Utils.setDrawableTint(holder.star_11.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_11.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
             case 1:
-                holder.star_22.setImageDrawable(Utils.setDrawableTint(holder.star_22.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_22.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
             case 2:
-                holder.star_33.setImageDrawable(Utils.setDrawableTint(holder.star_33.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_33.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
             case 3:
-                holder.star_44.setImageDrawable(Utils.setDrawableTint(holder.star_44.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_44.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
             case 4:
-                holder.star_55.setImageDrawable(Utils.setDrawableTint(holder.star_55.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_55.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
                 break;
         }
     }
@@ -233,39 +225,29 @@ public class BookDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void set_star(BookDetailAdapter.ViewHolder holder, int code){
         switch(code){
             case 5:
-                holder.star_5.setImageDrawable(Utils.setDrawableTint(holder.star_5.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_5.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
             case 4:
-                holder.star_4.setImageDrawable(Utils.setDrawableTint(holder.star_4.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_4.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
             case 3:
-                holder.star_3.setImageDrawable(Utils.setDrawableTint(holder.star_3.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_3.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
             case 2:
-                holder.star_2.setImageDrawable(Utils.setDrawableTint(holder.star_2.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_2.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
             case 1:
-                holder.star_1.setImageDrawable(Utils.setDrawableTint(holder.star_1.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.red)));
+                holder.star_1.setImageDrawable(context.getResources().getDrawable(R.drawable.star_ok));
                 break;
         }
 
         switch(code){
             case 0:
-                holder.star_1.setImageDrawable(Utils.setDrawableTint(holder.star_1.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_1.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
             case 1:
-                holder.star_2.setImageDrawable(Utils.setDrawableTint(holder.star_2.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_2.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
             case 2:
-                holder.star_3.setImageDrawable(Utils.setDrawableTint(holder.star_3.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_3.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
             case 3:
-                holder.star_4.setImageDrawable(Utils.setDrawableTint(holder.star_4.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_4.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
             case 4:
-                holder.star_5.setImageDrawable(Utils.setDrawableTint(holder.star_5.getDrawable().mutate(),
-                        context.getResources().getColor(R.color.grey3)));
+                holder.star_5.setImageDrawable(context.getResources().getDrawable(R.drawable.star_no));
                 break;
         }
     }

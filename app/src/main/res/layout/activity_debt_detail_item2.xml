@@ -42,8 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/already_debt"
-                style="@style/normal_red_text"
-                android:textColor="@color/red1" />
+                style="@style/normal_red_text" />
 
             <TextView
                 android:id="@+id/debt_price"
