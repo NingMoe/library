@@ -8,8 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -53,6 +57,8 @@ public class BookDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private int style;
     //是否为荐购
     private int which;
+
+    int maxDescripLine = 4;
 
 
     private Context context;
@@ -146,7 +152,7 @@ public class BookDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         holder.zan_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("BookDetailAdapter","点击zan");
+                Utils.showToast("点赞");
                 /*if(!(boolean)top_datas.get(IS_ZAN))
                     holder.zan_btn.setBackgroundTintList(ColorStateList.valueOf(R.coloric_grey));
                 else
@@ -157,6 +163,7 @@ public class BookDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         holder.read_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Utils.showToast("阅读");*/
 
             }
         });
@@ -166,6 +173,109 @@ public class BookDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 CommentActivity.start(context);
             }
         });
+
+        //初始化高度
+        holder.introduce.setHeight((int) (holder.introduce.getLineHeight() * maxDescripLine));
+
+        holder.introduce.setOnClickListener(new View.OnClickListener() {
+            boolean isExpand=false;
+            @Override
+            public void onClick(View view) {
+                isExpand = !isExpand;
+                holder.introduce.clearAnimation();
+                final int deltaValue;
+                final int startValue = holder.introduce.getHeight();
+                int durationMillis = 350;
+                if (isExpand) {
+                    deltaValue = holder.introduce.getLineHeight() * holder.introduce.getLineCount() - startValue;
+                    RotateAnimation animation = new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    animation.setDuration(durationMillis);
+                    animation.setFillAfter(true);
+                    holder.expand_view.startAnimation(animation);
+                } else {
+                    deltaValue = holder.introduce.getLineHeight() * maxDescripLine - startValue;
+                    RotateAnimation animation = new RotateAnimation(180, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    animation.setDuration(durationMillis);
+                    animation.setFillAfter(true);
+                    holder.expand_view.startAnimation(animation);
+                }
+                Animation animation = new Animation() {
+                    protected void applyTransformation(float interpolatedTime, Transformation t) {
+                        holder.introduce.setHeight((int) (startValue + deltaValue * interpolatedTime));
+                    }
+
+                };
+                animation.setDuration(durationMillis);
+                holder.introduce.startAnimation(animation);
+            }
+        });
+
+        holder.introduce_layout.setOnClickListener(new View.OnClickListener() {
+            boolean isExpand=false;
+            @Override
+            public void onClick(View view) {
+                isExpand = !isExpand;
+                holder.introduce.clearAnimation();
+                final int deltaValue;
+                final int startValue = holder.introduce.getHeight();
+                int durationMillis = 350;
+                if (isExpand) {
+                    deltaValue = holder.introduce.getLineHeight() * holder.introduce.getLineCount() - startValue;
+                    RotateAnimation animation = new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    animation.setDuration(durationMillis);
+                    animation.setFillAfter(true);
+                    holder.expand_view.startAnimation(animation);
+                } else {
+                    deltaValue = holder.introduce.getLineHeight() * maxDescripLine - startValue;
+                    RotateAnimation animation = new RotateAnimation(180, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    animation.setDuration(durationMillis);
+                    animation.setFillAfter(true);
+                    holder.expand_view.startAnimation(animation);
+                }
+                Animation animation = new Animation() {
+                    protected void applyTransformation(float interpolatedTime, Transformation t) {
+                        holder.introduce.setHeight((int) (startValue + deltaValue * interpolatedTime));
+                    }
+
+                };
+                animation.setDuration(durationMillis);
+                holder.introduce.startAnimation(animation);
+            }
+        });
+
+        holder.introduce.setOnClickListener(new View.OnClickListener() {
+            boolean isExpand=false;
+            @Override
+            public void onClick(View view) {
+                isExpand = !isExpand;
+                holder.introduce.clearAnimation();
+                final int deltaValue;
+                final int startValue = holder.introduce.getHeight();
+                int durationMillis = 350;
+                if (isExpand) {
+                    deltaValue = holder.introduce.getLineHeight() * holder.introduce.getLineCount() - startValue;
+                    RotateAnimation animation = new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    animation.setDuration(durationMillis);
+                    animation.setFillAfter(true);
+                    holder.expand_view.startAnimation(animation);
+                } else {
+                    deltaValue = holder.introduce.getLineHeight() * maxDescripLine - startValue;
+                    RotateAnimation animation = new RotateAnimation(180, 0, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                    animation.setDuration(durationMillis);
+                    animation.setFillAfter(true);
+                    holder.expand_view.startAnimation(animation);
+                }
+                Animation animation = new Animation() {
+                    protected void applyTransformation(float interpolatedTime, Transformation t) {
+                        holder.introduce.setHeight((int) (startValue + deltaValue * interpolatedTime));
+                    }
+
+                };
+                animation.setDuration(durationMillis);
+                holder.introduce.startAnimation(animation);
+            }
+        });
+
 
     }
 
@@ -286,6 +396,8 @@ public class BookDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         @BindView(R.id.size) TextView size;
         @BindView(R.id.zan) Button zan_btn;
         @BindView(R.id.begin_read) Button read_btn;
+        @BindView(R.id.introduce_layout) LinearLayout introduce_layout;
+        @BindView(R.id.expand_view) ImageView expand_view;
         @BindView(R.id.introduce) TextView introduce;
         @BindView(R.id.want_commemt) Button comment_btn;
         @BindView(R.id.have_comment) TextView have_comment;
