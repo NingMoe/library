@@ -28,7 +28,7 @@
                 android:id="@+id/headPhoto"
                 android:layout_width="@dimen/photo_size"
                 android:layout_height="@dimen/photo_size"
-                android:background="@mipmap/headphoto"
+                android:background="@drawable/default_photo"
                 android:scaleType="fitXY"
                 />
             <LinearLayout
@@ -148,9 +148,11 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/view_divide"
-                android:background="@color/dividerColor"/>
+                android:background="@color/dividerColor"
+                android:visibility="gone"/>
             <LinearLayout
                 android:id="@+id/score_container"
+                android:visibility="gone"
                 style="@style/mine_linearlayout"
                 >
                 <ImageView

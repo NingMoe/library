@@ -18,4 +18,8 @@ public class Constant {
 
     public static final int SUCCESS=1;
     public static final int ERROR=0;
+
+    public static final int REGIX_SUCCESS=1;
+    public static final int REGIX_EMPTY=0;
+    public static final int REGIX_ERROR=2;
 }

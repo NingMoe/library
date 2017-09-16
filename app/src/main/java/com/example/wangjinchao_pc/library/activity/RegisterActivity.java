@@ -8,7 +8,6 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -16,11 +15,11 @@ import com.example.wangjinchao_pc.library.Constant.Configure;
 import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.enity.api.GetPasswordCodeApi;
 import com.example.wangjinchao_pc.library.enity.api.GetRegisterCodeApi;
 import com.example.wangjinchao_pc.library.enity.api.RegisterApi;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
 import com.example.wangjinchao_pc.library.util.Logger;
+import com.example.wangjinchao_pc.library.util.Regix;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
@@ -57,6 +56,8 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
     //验证码时效
     private int count= Configure.Code_Time;
 
+    private String MyCode="";
+
     //网络请求接口
     private HttpManager httpManager;
     private GetRegisterCodeApi getCodeApi;
@@ -68,11 +69,12 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             count--;
-            get_code.setText("获取验证码"+count);
+            get_code.setText("验证码"+count);
             if(count>0&&!getCodeEnable)
                 handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
             else{
                 get_code.setText("获取验证码");
+                MyCode="";
                 getCodeEnable=true;
             }
         }
@@ -106,20 +108,36 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
 
     @OnClick({R.id.get_code,R.id.register})
     public void onClick(View view) {
+        String contentOfMoblie;
+        String contentOfPassword;
+        String contentOfCode;
+        String contentOfNickname;
         switch(view.getId()){
             case R.id.get_code:
+                if(!getCodeEnable)
+                    break;
+                MyCode="";
                 //正则表达式?????????????????????????????
-                if(true&&getCodeEnable){
+                contentOfMoblie=mobile.getText().toString().trim();
+                if(Regix.isMobile(contentOfMoblie,true)==Constant.REGIX_SUCCESS&&getCodeEnable){
                     getCodeEnable=false;
                     count=Configure.Code_Time;
-                    getCodeApi.setNumber(mobile.getText().toString());
+                    getCodeApi.setNumber(contentOfMoblie);
                     httpManager.doHttpDeal(getCodeApi);
                 }
                 break;
             case R.id.register:
                 //正则表达式?????????????????????????????if(true&&!flag)
-                if(true){
-                    registerApi.setAllParam(mobile.getText().toString(),passwd.getText().toString(),nickname.getText().toString(),certify.getText().toString());
+                contentOfCode=certify.getText().toString().trim();
+                if(!MyCode.equals(contentOfCode)){
+                    Utils.showToast("验证码错误");
+                }
+                contentOfMoblie=mobile.getText().toString().trim();
+                contentOfPassword=passwd.getText().toString().trim();
+                contentOfNickname=nickname.getText().toString().trim();
+                if(Regix.isMobile(contentOfMoblie,true)==Constant.REGIX_SUCCESS&&Regix.isPassword(contentOfPassword,true)==Constant.REGIX_SUCCESS
+                        &&Regix.isNickname(contentOfNickname,true)==Constant.REGIX_SUCCESS&&Regix.isCode(contentOfCode,true)==Constant.REGIX_SUCCESS){
+                    registerApi.setAllParam(contentOfMoblie,contentOfPassword,contentOfNickname,contentOfCode);
                     httpManager.doHttpDeal(registerApi);
                 }
                 break;
@@ -129,41 +147,56 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
 
     @Override
     public void onNext(String resulte, String method) {
-        boolean flag=true;
         if (method.equals(getCodeApi.getMethod())) {
-            BaseResultEntity<String> result=null;
+            BaseResultEntity2<String> result=null;
             try{
-                result = JSONObject.parseObject(resulte, new TypeReference<BaseResultEntity<String>>() {
+                result = JSONObject.parseObject(resulte, new TypeReference<BaseResultEntity2<String>>() {
 
                 });
             }catch (Exception e){
                 e.printStackTrace();
                 getCodeEnable=true;
-                flag=false;
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
                 return;
             }
             //添加数据
             if(result!=null) {
-                if(result.getStatus()== Constant.SUCCESS)
-                        flag=true;
-                else if(result.getStatus()== Constant.ERROR)
-                    flag=false;
-            }
-            if(true&&flag){
-                handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
-            }
-            if(flag)
-                Utils.showToast("发送成功");
-            else{
+                if(result.getResult()== Constant.SUCCESS){
+                    Utils.showToast("发送成功");
+                    MyCode=result.getCode();
+                    handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
+                }
+                else if(result.getResult()== Constant.ERROR){
+                    Utils.showToast("发送失败");
+                    getCodeEnable=true;
+                }
+            }else
                 getCodeEnable=true;
-                Utils.showToast("发送失败");
-            }
-
         }else if(method.equals(registerApi.getMethod())){
-            LoginActivity.start(this);
-            Utils.showToast("注册成功");
+            BaseResultEntity2<String> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new TypeReference<BaseResultEntity2<String>>() {
+
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
+            //添加数据
+            if(result!=null) {
+                if(result.getResult()== Constant.SUCCESS){
+                    Utils.showToast("注册成功");
+
+                    //???????????????????????????????????????????????进入那个页面
+                    LoginActivity.start(this);
+                }
+                else if(result.getResult()== Constant.ERROR){
+                    Utils.showToast("注册失败");
+                }
+            }
         }
     }
 
@@ -171,6 +204,7 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
     public void onError(ApiException e, String method) {
         Utils.showToast(e.getDisplayMessage());
         if (method.equals(getCodeApi.getMethod())) {
+            Utils.showToast("发送失败");
             getCodeEnable=true;
         }else if(method.equals(registerApi.getMethod())){
             Utils.showToast("注册失败");

@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class Test {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         String mobiles="17816877003";
         Pattern p = Pattern
@@ -27,7 +27,7 @@ public class Test {
         System.out.println(m.matches() + "—");
         System.out.println(m.matches());
 
-        /*List<Data> tempArrearsList=new ArrayList<>();
+        *//*List<Data> tempArrearsList=new ArrayList<>();
         tempArrearsList.add(new Data("data1"));
         tempArrearsList.add(new Data("data2"));
 
@@ -61,7 +61,7 @@ public class Test {
         });
         System.out.println(r.getMessage());
         System.out.println("r==null"+(r==null?true:false));
-        System.out.println("r.getData()==null"+(r.getData()==null?true:false));*/
+        System.out.println("r.getData()==null"+(r.getData()==null?true:false));*//*
     }
 
     public static class Result{
@@ -128,5 +128,5 @@ public class Test {
         public void setMessage(String message) {
             this.message = message;
         }
-    }
+    }*/
 }

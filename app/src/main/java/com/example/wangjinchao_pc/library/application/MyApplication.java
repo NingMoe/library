@@ -2,6 +2,7 @@ package com.example.wangjinchao_pc.library.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.example.wangjinchao_pc.library.BuildConfig;
 import com.example.wangjinchao_pc.library.R;
@@ -34,6 +35,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d("MyApplication","start");
         context = getApplicationContext();
         instance = this;
         Fresco.initialize(this);
@@ -48,6 +50,7 @@ public class MyApplication extends Application {
 
         List list1 = Arrays.asList(tips);
         titles= new ArrayList(list1);
+        Log.d("MyApplication","end");
     }
 
     public static Token getToken() {

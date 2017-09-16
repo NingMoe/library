@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import com.example.wangjinchao_pc.library.enity.api.AdvertisementApi;
 import com.example.wangjinchao_pc.library.enity.api.LoginApi;
 import com.example.wangjinchao_pc.library.enity.domain.Arrears;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
 import com.example.wangjinchao_pc.library.enity.result.SubjectResulte;
 import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Regix;
@@ -67,6 +69,8 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
     private String contentOfAccount="";
     private String contentOfPassword="";
 
+    private boolean loginBtnEnable=true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,14 +102,20 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
                 FindPasswdActivity.start(this);
                 break;
             case R.id.login:
+                if(!loginBtnEnable)
+                    return;
+                loginBtnEnable=false;
+
                 contentOfAccount=account.getText().toString().trim();
                 contentOfPassword=passwd.getText().toString().trim();
+                Log.d("wjc",contentOfAccount+"  "+contentOfPassword);
                 //判定
-                if(Regix.isAccount(contentOfAccount,true)&&Regix.isPassword(contentOfPassword,true)){
+                if(Regix.isAccount(contentOfAccount,true)==Constant.REGIX_SUCCESS
+                        &&Regix.isPassword(contentOfPassword,true)==Constant.REGIX_SUCCESS){
                     loginApi.setAllParam(contentOfAccount,contentOfPassword);
                     httpManager.doHttpDeal(loginApi);
                 }else
-                    Utils.showToast("账号或密码格式错误");
+                    loginBtnEnable=true;
                 break;
             case R.id.register:
 
@@ -120,44 +130,50 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
     @Override
     public void onNext(String resulte, String method) {
         if (method.equals(loginApi.getMethod())) {
-            BaseResultEntity<String> result=null;
+            BaseResultEntity2<String> result=null;
             try{
                 result = JSONObject.parseObject(resulte, new
-                        TypeReference<BaseResultEntity<String>>() {
+                        TypeReference<BaseResultEntity2<String>>() {
                         });
             }catch (Exception e){
+                loginBtnEnable=true;
+
                 e.printStackTrace();
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
                 //测试——————————————————————————————————————————————————————
-                MyApplication.setToken(new Token("17816877003","12345"));
-                MainActivity.start(this);
+                /*MyApplication.setToken(new Token("17816877003","12345"));
+                MainActivity.start(this);*/
                 return;
             }
 
             if(result!=null) {
-                if(result.getStatus()== Constant.SUCCESS){
+                if(result.getResult()== Constant.SUCCESS){
                     //???token是返回的东西
                     MyApplication.setToken(new Token("17816877003","12345"));
-                    Utils.showToast("成功");
+                    Utils.showToast("登陆成功");
                     MainActivity.start(this);
                 }
                 else {
-                    Utils.showToast(result.getMessage().trim().isEmpty()?"失败":result.getMessage().trim());
+                    Log.d("wjc","失败");
+                    Utils.showToast(result.getErr_msg().isEmpty()?"失败":result.getErr_msg().trim());
                 }
             }
-
+            loginBtnEnable=true;
             //测试——————————————————————————————————————————————————————
-            MyApplication.setToken(new Token("17816877003","12345"));
-            MainActivity.start(this);
+            /*MyApplication.setToken(new Token("17816877003","12345"));
+            MainActivity.start(this);*/
         }
     }
 
     @Override
     public void onError(ApiException e, String method) {
         Utils.showToast(e.getDisplayMessage());
+        if (method.equals(loginApi.getMethod())) {
+            loginBtnEnable=true;
+        }
         //测试————————————————————————————————————————————————————————
-        MyApplication.setToken(new Token("17816877003","12345"));
-        MainActivity.start(this);
+        /*MyApplication.setToken(new Token("17816877003","12345"));
+        MainActivity.start(this);*/
     }
 }

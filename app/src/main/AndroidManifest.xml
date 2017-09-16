@@ -25,7 +25,6 @@
         <activity android:name=".activity.HomePageRankActivity"></activity>
         <activity android:name=".activity.LeaveWorkActivity"></activity>
         <activity android:name=".activity.InformationManageActivity"></activity>
-        <activity android:name=".activity.InformationModifyActivity"></activity>
         <activity android:name=".activity.BindCollegeActivity"></activity>
         <activity android:name=".activity.ModifyPasswdActivity"></activity>
         <activity android:name=".activity.BookSearchResultActivity"></activity>
@@ -49,11 +48,17 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- 网络状态权限 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <!-- 写文件 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -63,5 +68,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 闪光灯-->
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
+
+    <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
 </manifest>

@@ -18,6 +18,7 @@ import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
 import com.example.wangjinchao_pc.library.enity.api.GetPasswordCodeApi;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
 import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Regix;
 import com.example.wangjinchao_pc.library.util.Utils;
@@ -58,8 +59,10 @@ public class FindPasswdActivity extends ToolbarActivity implements View.OnClickL
     private HttpManager httpManager;
     private GetPasswordCodeApi getPasswordCodeApi;
 
-    private String numberOfPhone="";
-    private String code="";
+    private String contentOfPhoto="";
+    private String contentOfCode="";
+
+    private String MyCode="";
 
     //计时
     Handler handler = new Handler() {
@@ -72,7 +75,7 @@ public class FindPasswdActivity extends ToolbarActivity implements View.OnClickL
                 handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
             else{
                 getCodeEnable=true;
-                get_code.setClickable(true);
+                MyCode="";
                 get_code.setText("获取验证码");
             }
         }
@@ -106,65 +109,61 @@ public class FindPasswdActivity extends ToolbarActivity implements View.OnClickL
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.get_code:
-                numberOfPhone=mobile_number.getText().toString().trim();
-                if(Regix.isMobile(numberOfPhone,true)&& getCodeEnable){
+                if(!getCodeEnable)
+                    break;
+                MyCode="";
+
+                contentOfPhoto=mobile_number.getText().toString().trim();
+                if(Regix.isMobile(contentOfPhoto,true)==Constant.REGIX_SUCCESS&& getCodeEnable){
                     getCodeEnable =false;
-                    get_code.setClickable(false);
                     count=Configure.Code_Time;
-                    getPasswordCodeApi.setAllParam(numberOfPhone);
+                    getPasswordCodeApi.setAllParam(contentOfPhoto);
                     httpManager.doHttpDeal(getPasswordCodeApi);
-                }else
-                    Utils.showToast("手机号错误");
+                }
                 break;
             case R.id.next:
-                numberOfPhone=mobile_number.getText().toString().trim();
-                code=get_code.getText().toString().trim();
-                if(numberOfPhone.equals(""))
-                    Utils.showToast("手机号不能为空");
-                else if(code.equals(""))
-                    Utils.showToast("验证码不能为空");
-                //正则表达式?????????????????????????????
-                if(Regix.isMobile(numberOfPhone,true)&&true){
-                    SetPasswdActivity.start(this,numberOfPhone,code);
-                }else
-                    Utils.showToast("验证码错误");
+                contentOfPhoto=mobile_number.getText().toString().trim();
+                contentOfCode=certify.getText().toString().trim();
+                if(Regix.isMobile(contentOfPhoto,true)==Constant.REGIX_SUCCESS&&Regix.isCode(contentOfCode,true)==Constant.REGIX_SUCCESS){
+                    Logger.d(this.getClass(),MyCode+"   "+contentOfCode+MyCode.equals(contentOfCode));
+                    if(MyCode.equals(contentOfCode))
+                        SetPasswdActivity.start(this,contentOfPhoto,contentOfCode);
+                    else
+                        Utils.showToast("验证码错误");
+                }
                 break;
         }
     }
 
     @Override
     public void onNext(String resulte, String method) {
-        boolean flag=true;
         if (method.equals(getPasswordCodeApi.getMethod())) {
-            BaseResultEntity<String> result=null;
+            BaseResultEntity2<String> result=null;
             try{
-                result = JSONObject.parseObject(resulte, new TypeReference<BaseResultEntity<String>>() {
+                result = JSONObject.parseObject(resulte, new TypeReference<BaseResultEntity2<String>>() {
 
                 });
             }catch (Exception e){
                 e.printStackTrace();
                 getCodeEnable=true;
-                flag=false;
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
                 return;
             }
+
             //添加数据
             if(result!=null) {
-                if(result.getStatus()== Constant.SUCCESS)
-                    flag=true;
-                else if(result.getStatus()== Constant.ERROR)
-                    flag=false;
-            }
-            if(true&&flag){
-                handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
-            }
-            if(flag)
-                Utils.showToast("发送成功");
-            else{
+                if(result.getResult()== Constant.SUCCESS){
+                    Utils.showToast("发送成功");
+                    MyCode=result.getCode();
+                    handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
+                }
+                else if(result.getResult()== Constant.ERROR){
+                    Utils.showToast("发送失败");
+                    getCodeEnable=true;
+                }
+            }else
                 getCodeEnable=true;
-                Utils.showToast("发送失败");
-            }
         }
     }
 
@@ -172,11 +171,8 @@ public class FindPasswdActivity extends ToolbarActivity implements View.OnClickL
     public void onError(ApiException e, String method) {
         Utils.showToast(e.getDisplayMessage());
         if (method.equals(getPasswordCodeApi.getMethod())) {
+            Utils.showToast("发送失败");
             getCodeEnable=true;
-        }else if(method.equals(getPasswordCodeApi.getMethod())){
-            Utils.showToast("注册失败");
-            //测试————————————————————————————
-            LoginActivity.start(this);
         }
     }
 

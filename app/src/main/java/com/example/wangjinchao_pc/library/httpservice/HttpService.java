@@ -16,7 +16,7 @@ public interface HttpService {
     @GET("school/getAd_url")
     Observable<String>getAdvertisement(@Query("school_id") int school_id);
     //登录
-    @GET("login")
+    @GET("user/login")
     Observable<String>login(@Query("account")String account,@Query("password")String password);
     //设置新密码
     @GET("password/editpassword")
@@ -26,7 +26,7 @@ public interface HttpService {
     Observable<String>getPasswordCode(@Query("phone") String number);
     //注册账号
     @GET("register/registuser")
-    Observable<String>register(@Query("number")String number,@Query("password")String password,@Query("nickname")String nickname,@Query("code")String code);
+    Observable<String>register(@Query("account")String number,@Query("password")String password,@Query("nickname")String nickname,@Query("code")String code);
     //获取验证码—注册
     @GET("register/sendmsg")
     Observable<String>getRegisterCode(@Query("phone") String number);

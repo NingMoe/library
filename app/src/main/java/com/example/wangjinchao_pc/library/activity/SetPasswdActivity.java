@@ -16,7 +16,9 @@ import com.example.wangjinchao_pc.library.base.ToolbarActivity;
 import com.example.wangjinchao_pc.library.enity.api.GetPasswordCodeApi;
 import com.example.wangjinchao_pc.library.enity.api.ResetPasswordApi;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
 import com.example.wangjinchao_pc.library.util.Logger;
+import com.example.wangjinchao_pc.library.util.Regix;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
@@ -92,7 +94,8 @@ public class SetPasswdActivity extends ToolbarActivity implements View.OnClickLi
             case R.id.ok:
                 nowPassword=passwd.getText().toString().trim();
                 newPassword=passwd2.getText().toString().trim();
-                if(nowPassword.equals(newPassword)){
+                if(Regix.isPassword(nowPassword,true)==Constant.REGIX_SUCCESS&&Regix.isPassword(newPassword,true)==Constant.REGIX_SUCCESS
+                        &&nowPassword.equals(newPassword)){
                     resetPasswordApi.setAllParam(number,code,newPassword,nowPassword);
                     httpManager.doHttpDeal(resetPasswordApi);
                 }else{
@@ -104,35 +107,29 @@ public class SetPasswdActivity extends ToolbarActivity implements View.OnClickLi
 
     @Override
     public void onNext(String resulte, String method) {
-        boolean flag=true;
         if (method.equals(resetPasswordApi.getMethod())) {
-            BaseResultEntity<String> result=null;
+            BaseResultEntity2<String> result=null;
             try{
                 result = JSONObject.parseObject(resulte, new
-                        TypeReference<BaseResultEntity<String>>() {
+                        TypeReference<BaseResultEntity2<String>>() {
                         });
             }catch (Exception e){
                 e.printStackTrace();
-                flag=false;
-                setResult();   //？？？？？？？？？？？
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                setResult();
                 return;
             }
             //添加数据
             if(result!=null) {
-                if(result.getStatus()== Constant.SUCCESS)
-                    flag=true;
+                if(result.getResult()== Constant.SUCCESS){
+                    Utils.showToast("修改成功");
+                    setResult();
+                }
                 else {
-                    flag=false;
+                    Utils.showToast("修改失败");
                 }
             }
-            if(flag){
-                Utils.showToast("成功");
-                setResult();
-            }
-            else
-                Utils.showToast("失败");
         }
 
         /*MainActivity.start(this);*/
@@ -140,8 +137,10 @@ public class SetPasswdActivity extends ToolbarActivity implements View.OnClickLi
 
     @Override
     public void onError(ApiException e, String method) {
-        Utils.showToast(e.getDisplayMessage());
-        setResult();
+        if (method.equals(resetPasswordApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
+            setResult();
+        }
         //测试——————————————————————
         /*MainActivity.start(this);*/
     }

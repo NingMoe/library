@@ -32,8 +32,8 @@ public class ResetPasswordApi extends BaseApi {
     void init(){
         //缓存
         setCache(false);
-        //取消加载框
-        setShowProgress(false);
+        setShowProgress(true);
+        setCancel(false);
 
         setMethod("resetPassword");
     }

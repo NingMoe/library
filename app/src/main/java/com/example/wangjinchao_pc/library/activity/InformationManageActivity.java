@@ -78,16 +78,16 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
     @BindView(R.id.nickname_container) LinearLayout nickname_container;
     @BindView(R.id.sex_container) LinearLayout sex_container;
     @BindView(R.id.interest_container) LinearLayout interest_container;
-    @BindView(R.id.academy_container) LinearLayout academy_container;
-    @BindView(R.id.profession_container) LinearLayout profession_container;
+    /*@BindView(R.id.academy_container) LinearLayout academy_container;
+    @BindView(R.id.profession_container) LinearLayout profession_container;*/
 
     @BindView(R.id.headPhoto) SimpleDraweeView headPhoto;
 
     @BindView(R.id.nickname) TextView nickname;
     @BindView(R.id.sex) TextView sex;
     @BindView(R.id.interest) TextView interest;
-    @BindView(R.id.academy) TextView academy;
-    @BindView(R.id.profession) TextView profession;
+    /*@BindView(R.id.academy) TextView academy;
+    @BindView(R.id.profession) TextView profession;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +124,7 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
         mTempPhotoPath = Environment.getExternalStorageDirectory() + File.separator + "photo.jpeg";
     }
 
-    @OnClick({R.id.headset_container, R.id.headPhoto,R.id.nickname_container,R.id.sex_container,R.id.interest_container,R.id.academy_container,R.id.profession_container})
+    @OnClick({R.id.headset_container, R.id.headPhoto,R.id.nickname_container,R.id.sex_container,R.id.interest_container})/*R.id.academy_container,R.id.profession_container*/
     public void onClick(View view) {
         List<Category> data=null;
         switch(view.getId()){
@@ -162,9 +162,20 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                         }).show();*/
                 break;
             case R.id.interest_container:
-                toSetInformation(2,interest.getText().toString(),GET_CONTENT_INTEREST);
+                /*toSetInformation(2,interest.getText().toString(),GET_CONTENT_INTEREST);*/
+                data = new ArrayList<>();
+                data.add(new Category(1, "编程"));
+                data.add(new Category(2, "看书"));
+                data.add(new Category(3, "乒乓"));
+                data.add(new Category(4, "摄影"));
+                onSinglePicker(data, new SinglePicker.OnItemPickListener<Category>() {
+                    @Override
+                    public void onItemPicked(int index, Category item) {
+                        interest.setText(item.getName());
+                    }
+                });
                 break;
-            case R.id.academy_container:
+            /*case R.id.academy_container:
                 data = new ArrayList<>();
                 data.add(new Category(1, "计算机学院"));
                 data.add(new Category(2, "法学院"));
@@ -178,7 +189,7 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                         academy.setText(item.getName());
                     }
                 });
-                /*new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"计算机学院", "法学院","医学院"}, -1,
+                *//*new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"计算机学院", "法学院","医学院"}, -1,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -190,7 +201,7 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                                     academy.setText("医学院");
                                 dialogInterface.dismiss();
                             }
-                        }).show();*/
+                        }).show();*//*
                 break;
             case R.id.profession_container:
                 data = new ArrayList<>();
@@ -203,7 +214,7 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                         academy.setText(item.getName());
                     }
                 });
-                /*new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"数媒专业", "计算机自动化专业","软件专业"}, -1,
+                *//*new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"数媒专业", "计算机自动化专业","软件专业"}, -1,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -216,8 +227,8 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
 
                                 dialogInterface.dismiss();
                             }
-                        }).show();*/
-                break;
+                        }).show();*//*
+                break;*/
         }
 
     }
@@ -298,10 +309,10 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                     handleModify(interest,data);
                     break;
                 case GET_CONTENT_ACADEMY:
-                    handleModify(academy,data);
+                    /*handleModify(academy,data);*/
                     break;
                 case GET_CONTENT_PROFESSION:
-                    handleModify(profession,data);
+                    /*handleModify(profession,data);*/
                     break;
             }
         }
