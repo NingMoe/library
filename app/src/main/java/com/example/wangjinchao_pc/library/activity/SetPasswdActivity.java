@@ -120,14 +120,14 @@ public class SetPasswdActivity extends ToolbarActivity implements View.OnClickLi
                 setResult();
                 return;
             }
-            //添加数据
+
             if(result!=null) {
                 if(result.getResult()== Constant.SUCCESS){
                     Utils.showToast("修改成功");
                     setResult();
                 }
                 else {
-                    Utils.showToast("修改失败");
+                    Utils.showErrorMsgToast(result.getErr_msg(),"修改失败");
                 }
             }
         }
@@ -139,7 +139,7 @@ public class SetPasswdActivity extends ToolbarActivity implements View.OnClickLi
     public void onError(ApiException e, String method) {
         if (method.equals(resetPasswordApi.getMethod())) {
             Utils.showToast(e.getDisplayMessage());
-            setResult();
+            /*setResult();*/
         }
         //测试——————————————————————
         /*MainActivity.start(this);*/

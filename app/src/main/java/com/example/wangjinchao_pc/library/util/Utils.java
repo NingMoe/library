@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.BaseActivity;
 import com.example.wangjinchao_pc.library.application.MyApplication;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,6 +45,13 @@ public class Utils {
 
     public static void showToast(String text){
         Toast.makeText(MyApplication.getContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    public static void showErrorMsgToast(String msg, String defaultMsg){
+        if(msg==null||msg.trim().isEmpty())
+            Toast.makeText(MyApplication.getContext(), defaultMsg.trim(), Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(MyApplication.getContext(), msg.trim(), Toast.LENGTH_SHORT).show();
     }
 
     public static void showToast(int resId){

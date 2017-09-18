@@ -150,8 +150,6 @@ public class FindPasswdActivity extends ToolbarActivity implements View.OnClickL
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
                 return;
             }
-
-            //添加数据
             if(result!=null) {
                 if(result.getResult()== Constant.SUCCESS){
                     Utils.showToast("发送成功");
@@ -159,7 +157,7 @@ public class FindPasswdActivity extends ToolbarActivity implements View.OnClickL
                     handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
                 }
                 else if(result.getResult()== Constant.ERROR){
-                    Utils.showToast("发送失败");
+                    Utils.showErrorMsgToast(result.getErr_msg(),"发送失败");
                     getCodeEnable=true;
                 }
             }else

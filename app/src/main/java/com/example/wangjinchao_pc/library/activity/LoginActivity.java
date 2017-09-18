@@ -155,8 +155,7 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
                     MainActivity.start(this);
                 }
                 else {
-                    Log.d("wjc","失败");
-                    Utils.showToast(result.getErr_msg().isEmpty()?"失败":result.getErr_msg().trim());
+                    Utils.showErrorMsgToast(result.getErr_msg(),"登陆失败");
                 }
             }
             loginBtnEnable=true;
@@ -168,8 +167,8 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
 
     @Override
     public void onError(ApiException e, String method) {
-        Utils.showToast(e.getDisplayMessage());
         if (method.equals(loginApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
             loginBtnEnable=true;
         }
         //测试————————————————————————————————————————————————————————

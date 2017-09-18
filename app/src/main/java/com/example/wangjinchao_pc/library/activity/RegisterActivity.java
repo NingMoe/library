@@ -168,7 +168,7 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
                     handler.sendMessageDelayed(handler.obtainMessage(-1),1000);
                 }
                 else if(result.getResult()== Constant.ERROR){
-                    Utils.showToast("发送失败");
+                    Utils.showToast(result.getErr_msg().isEmpty()?"发送失败":result.getErr_msg().trim());
                     getCodeEnable=true;
                 }
             }else
@@ -194,7 +194,7 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
                     LoginActivity.start(this);
                 }
                 else if(result.getResult()== Constant.ERROR){
-                    Utils.showToast("注册失败");
+                    Utils.showErrorMsgToast(result.getErr_msg(),"注册失败");
                 }
             }
         }
@@ -209,7 +209,7 @@ public class RegisterActivity extends ToolbarActivity implements View.OnClickLis
         }else if(method.equals(registerApi.getMethod())){
             Utils.showToast("注册失败");
             //测试————————————————————————————
-            LoginActivity.start(this);
+            /*LoginActivity.start(this);*/
         }
     }
 }
