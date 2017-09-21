@@ -11,10 +11,10 @@ public interface HttpOnNextListener {
     /**
      * 成功后回调方法
      *
-     * @param result
+     * @param resulte
      * @param method
      */
-    void onNext(String result, String method);
+    void onNext(String resulte, String method);
 
     /**
      * 失败

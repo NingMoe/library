@@ -11,11 +11,16 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.example.wangjinchao_pc.library.Constant.Constant;
+import com.example.wangjinchao_pc.library.Constant.Value;
 import com.example.wangjinchao_pc.library.Loader.GlideImageLoader;
 import com.example.wangjinchao_pc.library.View.MyRatioLinearLayout;
 import com.example.wangjinchao_pc.library.activity.HomePageRankActivity;
@@ -24,14 +29,25 @@ import com.example.wangjinchao_pc.library.adapter.MyViewPageAdapter;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.BaseFragment;
 import com.example.wangjinchao_pc.library.R;
+import com.example.wangjinchao_pc.library.enity.Token;
+import com.example.wangjinchao_pc.library.enity.api.GetRankApi;
+import com.example.wangjinchao_pc.library.enity.api.LoginApi;
+import com.example.wangjinchao_pc.library.enity.domain.Raking;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
+import com.retrofit_rx.http.HttpManager;
 import com.retrofit_rx.listener.HttpOnNextListener;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -59,6 +75,7 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
     TabLayout rank_tabLayout;
     //viewPager的子页
     private Fragment rank_item1,rank_item2,rank_item3;
+    List<Raking> rakingList1,rakingList2,rakingList3,rakingList4;
     //更多
     @BindView(R.id.rank_more)
     LinearLayout rank_more;
@@ -74,6 +91,9 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
     private float order_mLastX=0;
     private float rank_mLastX=0;
 
+    private HttpManager httpManager;
+    private GetRankApi getRankApi;
+
     public HomePageFragment(){
     }
 
@@ -82,8 +102,7 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
         super.onCreate(savedInstanceState);
         view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_homepage, null);
         ButterKnife.bind(this, view);
-
-        ((MainActivity)getActivity()).setHttpOnNextListener(this);
+        initHttp();
 
         //初始化banner
         banner.setImages(MyApplication.images)
@@ -135,7 +154,6 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
         //初始化
         init_rank();
         init_order();
-
         //监听more
         rank_more.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,10 +169,33 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
             public void onRefresh() {
                 Log.d("homepage","onRefresh");
                 //刷新
-                ((MainActivity)getActivity()).refresh();
+                refreshData();
             }
         });
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    /**
+     * 初始化状态栏
+     */
+    private void initHttp(){
+        httpManager=new HttpManager(this,(RxAppCompatActivity) getActivity());
+        getRankApi=new GetRankApi();
+        refreshData();
+    }
+
+    private void refreshData(){
+        Calendar ca = Calendar.getInstance();
+        ca.setTime(new Date());
+        ca.add(Calendar.MONTH, -1);
+        Logger.d(this.getClass(),ca.get(Calendar.YEAR)+" "+ca.get(Calendar.MONTH));
+        getRankApi.setAllParam(ca.get(Calendar.YEAR)+"",(ca.get(Calendar.MONTH)+1)+"",MyApplication.getToken().getAccount());
+        httpManager.doHttpDeal(getRankApi);
     }
 
     @Nullable
@@ -168,10 +209,13 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
         //将子页加入ViewPage
         List<Fragment> fragmentList = new ArrayList<>();
         rank_item1=new HomePage_Rank_Item_small();
+        ((HomePage_Rank_Item_small)rank_item1).setI(1);
         fragmentList.add(rank_item1);
         rank_item2=new HomePage_Rank_Item_small();
+        ((HomePage_Rank_Item_small)rank_item2).setI(2);
         fragmentList.add(rank_item2);
         rank_item3=new HomePage_Rank_Item_small();
+        ((HomePage_Rank_Item_small)rank_item3).setI(3);
         fragmentList.add(rank_item3);
 
         rank_viewPager.setAdapter(new MyViewPageAdapter(fragmentList,this.getChildFragmentManager()));
@@ -264,7 +308,28 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
     }
 
     @Override
-    public void onNext(String result, String method) {
+    public void onNext(String resulte, String method) {
+        if (method.equals(getRankApi.getMethod())) {
+            BaseResultEntity<List<Raking>> result = null;
+            try {
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity<List<Raking>>>() {
+                        });
+            } catch (Exception e) {
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(), "解析错误！！！！！！！！！！");
+                return;
+            }
+            if (result != null) {
+                if (result.getStatus() == Constant.SUCCESS) {
+                    setRank(result.getData());
+                } else {
+                    Utils.showErrorMsgToast(result.getMessage(), "失败");
+                }
+            }
+        }
+
         //商榷
         if(swipeRefreshLayout.isRefreshing()){
             swipeRefreshLayout.setRefreshing(false);
@@ -278,5 +343,40 @@ public class HomePageFragment extends BaseFragment implements HttpOnNextListener
             swipeRefreshLayout.setRefreshing(false);
             Utils.showToast("刷新失败");
         }
+    }
+
+    private boolean setRank(List<Raking> tempRakingList){
+        if(tempRakingList==null){
+            return false;
+        }
+        rakingList1=new ArrayList<>();
+        rakingList2=new ArrayList<>();
+        rakingList3=new ArrayList<>();
+        rakingList4=new ArrayList<>();
+        Raking raking;
+
+        try{
+            for(int i=0;i<tempRakingList.size();i++){
+                raking=tempRakingList.get(i);
+                if(raking.getType().equals(Constant.RANK1))
+                    rakingList1.add(raking);
+                else if(raking.getType().equals(Constant.RANK2))
+                    rakingList2.add(raking);
+                else if(raking.getType().equals(Constant.RANK3))
+                    rakingList3.add(raking);
+                else if(raking.getType().equals(Constant.RANK4))
+                    rakingList4.add(raking);
+            }
+            Value.setRankList(rakingList1,rakingList2,rakingList3,rakingList4);
+            if(rank_item1!=null) ((HomePage_Rank_Item_small)rank_item1).refreshData();
+            if(rank_item2!=null) ((HomePage_Rank_Item_small)rank_item2).refreshData();
+            if(rank_item3!=null) ((HomePage_Rank_Item_small)rank_item3).refreshData();
+
+        }catch (Exception e){
+            Logger.e(this.getClass(),"设置排名错误！！！！！！！！！！");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

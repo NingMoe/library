@@ -7,36 +7,35 @@ import retrofit2.Retrofit;
 import rx.Observable;
 
 /**
- * Created by wangjinchao-PC on 2017/7/30.
+ * Created by wangjinchao-PC on 2017/9/21.
  */
 
-public class InqueryDueBookApi extends BaseApi{
-    String token;
+public class GetUserInformationApi extends BaseApi {
 
     String account;
 
-    public InqueryDueBookApi() {
+    public GetUserInformationApi() {
         init();
     }
 
-    public InqueryDueBookApi(String account) {
+    public GetUserInformationApi(String account) {
         init();
         this.account = account;
     }
 
     void init(){
         //缓存
-        setCache(true);
+        setCache(false);
         //取消加载框
         setShowProgress(false);
 
-        setMethod("inqueryDueBook");
+        setMethod("GetUserInformationApi");
     }
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.inqueryDueBook(account);
+        return httpService.getUserInformation(account);
     }
 
     public void setAllParam(String account){

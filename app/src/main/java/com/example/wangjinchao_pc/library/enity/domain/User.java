@@ -12,10 +12,17 @@ public class User extends BaseObject{
 	private String password;
 	private String name;
 	private String hobbyid;
+	private String hobbyName;
 	private String sex;
 	private String photourl;
 	private String nickname;
-	
+	private String oldpassword;
+	public String getOldpassword(){
+		return oldpassword;
+	}
+	public void setOldpassword(String oldpassword){
+		this.oldpassword=oldpassword;
+	}
 	public String getAccount() {
 		return account;
 	}
@@ -39,6 +46,12 @@ public class User extends BaseObject{
 	}
 	public void setHobbyid(String hobbyid) {
 		this.hobbyid = hobbyid;
+	}
+	public String getHobbyName() {
+		return hobbyName;
+	}
+	public void setHobbyName(String hobbyName) {
+		this.hobbyName = hobbyName;
 	}
 	public String getSex() {
 		return sex;

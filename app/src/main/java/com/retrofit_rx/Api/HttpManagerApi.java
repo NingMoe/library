@@ -28,7 +28,7 @@ public class HttpManagerApi extends BaseApi {
 
 
     protected void doHttpDeal(Observable observable) {
-            manager.httpDeal(observable, this);
+        manager.httpDeal(observable, this);
     }
 
     @Override

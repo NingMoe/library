@@ -26,10 +26,15 @@ public class RecyclerViewAdapterWrapper extends RecyclerView.Adapter<RecyclerVie
         this.mInnerAdapter = mInnerAdapter;
     }
 
+    public RecyclerViewAdapterWrapper(RecyclerView.Adapter mInnerAdapter,boolean footViewVisiable) {
+        this.mInnerAdapter = mInnerAdapter;
+        this.footViewVisiable=footViewVisiable;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        if(viewType==FOOTVIEW){
+        if(footViewVisiable&&viewType==FOOTVIEW){
             return new RecyclerViewAdapterWrapper.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.view_foot, null));
         }
         return mInnerAdapter.onCreateViewHolder(parent, viewType);
@@ -89,7 +94,6 @@ public class RecyclerViewAdapterWrapper extends RecyclerView.Adapter<RecyclerVie
     //判断是否为最后的加载项
     public boolean isFootView(int position){
         return position>=getRealCount();
-
     }
 
     public void setFootVisiable(int visiable){

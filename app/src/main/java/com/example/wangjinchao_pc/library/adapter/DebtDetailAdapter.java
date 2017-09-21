@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.wangjinchao_pc.library.R;
@@ -72,11 +73,18 @@ public class DebtDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     private void setFirst(FirstViewHolder holder){
-        holder.debt_sum.setText((String)mDatas.get(0).get(DEBT_SUM));
+        if(mDatas.size()<=1){
+            holder.img.setImageDrawable(context.getResources().getDrawable(R.drawable.info_success));
+            holder.container.setBackgroundColor(context.getResources().getColor(R.color.information_success));
+            holder.debt_sum.setText("0");
+        }else
+            holder.debt_sum.setText((String)mDatas.get(0).get(DEBT_SUM));
         if(type== DebtDetailActivity.TYPE_BOOK)
             holder.unit.setText("本");
         else if(type==DebtDetailActivity.TYPE_PRICE)
             holder.unit.setText("元");
+
+
     }
 
     private void setMajor(ViewHolder holder,int position){
@@ -97,6 +105,10 @@ public class DebtDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         TextView debt_sum;
         @BindView(R.id.unit)
         TextView unit;
+        @BindView(R.id.img)
+        ImageView img;
+        @BindView(R.id.container)
+        LinearLayout container;
         public FirstViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -121,5 +133,4 @@ public class DebtDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             ButterKnife.bind(this, itemView);
         }
     }
-
 }

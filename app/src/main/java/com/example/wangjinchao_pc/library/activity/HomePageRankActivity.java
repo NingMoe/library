@@ -61,12 +61,16 @@ public class HomePageRankActivity extends ToolbarActivity {
         //将子页加入ViewPage
         List<Fragment> fragmentList = new ArrayList<>();
         rank_item1=new HomePage_Rank_Item_big();
+        ((HomePage_Rank_Item_big)rank_item1).setI(1);
         fragmentList.add(rank_item1);
         rank_item2=new HomePage_Rank_Item_big();
+        ((HomePage_Rank_Item_big)rank_item2).setI(2);
         fragmentList.add(rank_item2);
         rank_item3=new HomePage_Rank_Item_big();
+        ((HomePage_Rank_Item_big)rank_item3).setI(3);
         fragmentList.add(rank_item3);
         rank_item4=new HomePage_Rank_Item_big();
+        ((HomePage_Rank_Item_big)rank_item4).setI(4);
         fragmentList.add(rank_item4);
 
         viewPager.setAdapter(new MyViewPageAdapter(fragmentList,getSupportFragmentManager()));

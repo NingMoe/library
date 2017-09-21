@@ -7,40 +7,41 @@ import retrofit2.Retrofit;
 import rx.Observable;
 
 /**
- * Created by wangjinchao-PC on 2017/7/30.
+ * Created by wangjinchao-PC on 2017/9/20.
  */
 
-public class InqueryDuePriceApi extends BaseApi {
-    String token;
-
+public class EditSexApi extends BaseApi{
     String account;
+    String sex;
 
-    public InqueryDuePriceApi() {
+    public EditSexApi() {
         init();
     }
 
-    public InqueryDuePriceApi(String account) {
+    public EditSexApi(String account, String sex) {
         init();
         this.account = account;
+        this.sex = sex;
     }
 
     void init(){
         //缓存
-        setCache(true);
-        //取消加载框
-        setShowProgress(false);
+        setCache(false);
+        setShowProgress(true);
+        setCancel(true);
 
-        setMethod("inqueryDuePrice");
+        setMethod("EditSexApi");
     }
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.inqueryDuePrice(account);
+        return httpService.editSex(account,sex);
     }
 
-    public void setAllParam(String account){
-        this.account=account;
+    public void setAllParam(String account, String sex) {
+        this.account = account;
+        this.sex = sex;
     }
 
     public String getAccount() {
@@ -49,5 +50,13 @@ public class InqueryDuePriceApi extends BaseApi {
 
     public void setAccount(String account) {
         this.account = account;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 }

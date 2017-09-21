@@ -2,6 +2,7 @@ package com.example.wangjinchao_pc.library.Fragment;
 
 import android.content.Intent;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -79,8 +80,16 @@ public class FindFragment extends BaseFragment implements View.OnClickListener{
                 }
                 break;
             case R.id.print:
+
                 String url="http://cprint.unifound.net/client/help.html";
                 PrinterActivity.start(view.getContext(),url,"");
+
+                /*Intent intent= new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse("http://cprint.unifound.net/client/help.html");
+                intent.setData(content_url);
+                startActivity(intent);*/
+
                 break;
         }
     }

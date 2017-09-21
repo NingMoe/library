@@ -2,7 +2,13 @@ package com.example.wangjinchao_pc.library.httpservice;
 
 import org.greenrobot.greendao.annotation.OrderBy;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -18,6 +24,9 @@ public interface HttpService {
     //登录
     @GET("user/login")
     Observable<String>login(@Query("account")String account,@Query("password")String password);
+    //获取详细信息
+    @GET("user/getOneUser")
+    Observable<String>getUserInformation(@Query("account")String account);
     //设置新密码
     @GET("password/editpassword")
     Observable<String>resetPassword(@Query("account") String account,@Query("code") String code,@Query("password") String newPassword,@Query("oldpassword")String nowPassword);
@@ -37,8 +46,8 @@ public interface HttpService {
     @GET("getOrder/{token}")
     Observable<String>getOrder(@Query("token")String token);
     //获取排名信息
-    @GET("getRank/{token}")
-    Observable<String>getRank(@Query("rank")String token);
+    @GET("raking/getRakingList")
+    Observable<String>getRank(@Query("year")String year,@Query("month")String month,@Query("account")String account);
     //获取未还书籍数量
     @GET("getDueBookNumber/{token}")
     Observable<String>getDueBookNumber(@Query("token")String token);
@@ -74,10 +83,10 @@ public interface HttpService {
     Observable<String>commend(@Query("token")String token,@Query("content")String content);
     //欠款查询
     @GET("arrears/getArrearsList")
-    Observable<String>inqueryDuePrice(@Query("token")String token);
+    Observable<String>inqueryDuePrice(@Query("account")String account);
     //未还书籍查询
-    @GET("arrears/getArrearsList")
-    Observable<String>inqueryDueBook(@Query("token")String token);
+    @GET("arrears/getBooksList")
+    Observable<String>inqueryDueBook(@Query("account")String account);
     //获取通知
     @GET("getNotice/{token}")
     Observable<String>getNotice(@Query("token")String token);
@@ -101,5 +110,25 @@ public interface HttpService {
     //退出登录
     @GET("logout/{token}")
     Observable<String>logout(@Query("token")String token);
-
+    //修改信息
+    @GET("user/editUser")
+    Observable<String>editInformation(@Query("account")String account,@Query("password")String password,@Query("name")String name,
+                                      @Query("hobbyid")String hobbyid,@Query("sex")String sex,@Query("photourl")String photourl,
+                                      @Query("nickname")String nickname);
+    //修改昵称
+    @GET("user/editNickname")
+    Observable<String>editNickname(@Query("account")String account, @Query("nickname")String nickname);
+    //修改性别
+    @GET("user/editSex")
+    Observable<String>editSex(@Query("account")String account,@Query("sex")String sex);
+    //修改信息
+    @GET("user/editHobbyid")
+    Observable<String>editHobbyid(@Query("account")String account,@Query("hobbyid")String hobbyid);
+    //修改头像
+    @Multipart
+    @POST("/SmartLibrary/user/editPhotourl")
+    Observable<String>uploadPhoteImg(@Part("account") RequestBody account, @Part("photourl") RequestBody  photourl, @Part MultipartBody.Part uplodThings);
+    //修改信息
+    @GET("hobby/getHobbyList")
+    Observable<String>getHobbyList();
 }

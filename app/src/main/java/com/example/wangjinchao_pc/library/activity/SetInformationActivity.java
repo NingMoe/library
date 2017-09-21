@@ -15,19 +15,36 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.bumptech.glide.Glide;
+import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
+import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
 import com.example.wangjinchao_pc.library.base.ToolbarCropActivity;
+import com.example.wangjinchao_pc.library.enity.api.EditHobbyidApi;
+import com.example.wangjinchao_pc.library.enity.api.EditNicknameApi;
+import com.example.wangjinchao_pc.library.enity.api.EditSexApi;
+import com.example.wangjinchao_pc.library.enity.api.GetHobbyListApi;
+import com.example.wangjinchao_pc.library.enity.api.UploadPhoteImgApi;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Utils;
+import com.retrofit_rx.exception.ApiException;
+import com.retrofit_rx.http.HttpManager;
+import com.retrofit_rx.listener.HttpOnNextListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.wangjinchao_pc.library.Constant.Configure.PHOTOURL_PREX;
 
 /**
  * Created by wangjinchao-PC on 2017/7/21.
  */
 
-public class SetInformationActivity extends ToolbarActivity {
+public class SetInformationActivity extends ToolbarActivity implements HttpOnNextListener{
     public static void start(Context context){
         Intent intent=new Intent(context,SetInformationActivity.class);
         context.startActivity(intent);
@@ -48,13 +65,17 @@ public class SetInformationActivity extends ToolbarActivity {
     String[] tips;
     String[] titles;
 
+    //网络请求接口
+    private EditNicknameApi editNicknameApi;
+    private HttpManager httpManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setinformation);
         ButterKnife.bind(this);
         init();
-
+        initHttp();
         /*//监听toolbar上的按钮
         setListener(new View.OnClickListener() {
             @Override
@@ -66,12 +87,19 @@ public class SetInformationActivity extends ToolbarActivity {
     }
 
     /**
+     * 初始化网络
+     */
+    private void initHttp(){
+        httpManager=new HttpManager(this,this);
+        editNicknameApi=new EditNicknameApi();
+    }
+
+    /**
      * 初始化
      */
     private void init(){
         tips=getResources().getStringArray(R.array.information_modify_tip);
         titles=getResources().getStringArray(R.array.information_modify_title);
-        /*setBtnText("保存");*/
         initActionBar(getIntent().getIntExtra(InformationManageActivity.STYLE,0));
         setAllText(getIntent().getIntExtra(InformationManageActivity.STYLE,0),
                 getIntent().getStringExtra(InformationManageActivity.CONTENT));
@@ -93,10 +121,10 @@ public class SetInformationActivity extends ToolbarActivity {
         tip.setText(tips[style]);
     }
 
-    void setResult(){
+    void setResult(String contents){
         Intent resultIntent = new Intent();
         Bundle bundle = new Bundle();
-        bundle.putString(CONTENT, content.getText().toString());
+        bundle.putString(CONTENT, contents);
         resultIntent.putExtras(bundle);
         this.setResult(RESULT_OK, resultIntent);
         SetInformationActivity.this.finish();
@@ -139,7 +167,8 @@ public class SetInformationActivity extends ToolbarActivity {
 
                 break;
             case R.id.start_recommend:
-                setResult();
+                editNicknameApi.setAllParam(MyApplication.getToken().getAccount(),content.getText().toString());
+                httpManager.doHttpDeal(editNicknameApi);
                 break;
             default:
                 break;
@@ -152,5 +181,40 @@ public class SetInformationActivity extends ToolbarActivity {
         if(menuItem==null)
             return;
         menuItem.setVisible(flag);
+    }
+
+    @Override
+    public void onNext(String resulte, String method) {
+        if (method.equals(editNicknameApi.getMethod())) {
+            BaseResultEntity<String> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity<String>>() {
+                        });
+            }catch (Exception e){
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
+            if(result!=null) {
+                if(result.getStatus()== Constant.SUCCESS){
+                    MyApplication.getUser().setNickname(editNicknameApi.getNickname());
+                    setResult(editNicknameApi.getNickname());
+                    Utils.showToast("修改昵称成功");
+                }
+                else {
+                    Utils.showErrorMsgToast(result.getMessage(),"修改昵称失败");
+                }
+            }
+
+        }
+    }
+
+    @Override
+    public void onError(ApiException e, String method) {
+        if (method.equals(editNicknameApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
+        }
     }
 }

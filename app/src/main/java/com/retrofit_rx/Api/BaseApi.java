@@ -1,5 +1,7 @@
 package com.retrofit_rx.Api;
 
+import com.example.wangjinchao_pc.library.Constant.Configure;
+
 import retrofit2.Retrofit;
 import rx.Observable;
 
@@ -15,7 +17,7 @@ public abstract class BaseApi {
     /*是否需要缓存处理*/
     private boolean cache = false;
     /*基础url*/
-    private String baseUrl = "http://106.14.120.137:8080/SmartLibrary/";
+    private String baseUrl = Configure.BASEURL;
     /*方法-如果需要缓存必须设置这个参数；不需要不用設置*/
     private String method = "";
     /*超时时间-默认6秒*/

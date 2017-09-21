@@ -22,4 +22,15 @@ public class Constant {
     public static final int REGIX_SUCCESS=1;
     public static final int REGIX_EMPTY=0;
     public static final int REGIX_ERROR=2;
+
+    public static final String RANK_CAMPUS="1";
+    public static final String RANK_ACADEMY="2";
+    public static final String RANK_PROFESSION="3";
+    public static final String RANK1="1";
+    public static final String RANK2="2";
+    public static final String RANK3="3";
+    public static final String RANK4="4";
+
+    public static final String RANK_UP="1";
+    public static final String RANK_DOWN="2";
 }

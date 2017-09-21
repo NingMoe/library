@@ -145,7 +145,7 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
         if (token.isEmpty()) {
             intent = new Intent(AdActivity.this, LoginActivity.class);
         } else {
-            intent = new Intent(AdActivity.this, MainActivity.class);
+            intent = new Intent(AdActivity.this, LoginActivity.class);
             MyApplication.setToken(token);
         }
         startActivity(intent);
@@ -194,16 +194,16 @@ public class AdActivity extends BaseActivity implements View.OnClickListener,Htt
 
 
     @Override
-    public void onNext(String result, String method) {
+    public void onNext(String resulte, String method) {
 
-        Logger.d(this.getClass(), "onNext"+result);
+        Logger.d(this.getClass(), "onNext"+ resulte);
         BaseResultEntity<String> advertisement=null;
         try{
-            advertisement = JSONObject.parseObject(result, new
+            advertisement = JSONObject.parseObject(resulte, new
                     TypeReference<BaseResultEntity<String>>() {
                     });
         }catch (Exception e){
-            Logger.d(this.getClass(),"解析json错误："+result);
+            Logger.d(this.getClass(),"解析json错误："+ resulte);
             begin_flag =AD_CANCEL;
             return;
         }

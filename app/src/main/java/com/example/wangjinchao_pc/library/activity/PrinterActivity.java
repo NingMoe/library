@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,11 +21,13 @@ import android.widget.Toast;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.View.X5WebView;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.sdk.CookieSyncManager;
 import com.tencent.smtt.sdk.DownloadListener;
 import com.tencent.smtt.sdk.ValueCallback;
+import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.utils.TbsLog;
 
 import java.net.MalformedURLException;
@@ -41,12 +44,13 @@ public class PrinterActivity extends ToolbarActivity {
         intent.putExtra(URL, url);
         context.startActivity(intent);
     }
-
+//http://cprint.unifound.net//api/client/Scan/Download?dwJobId=137739
     /**
      * 作为一个浏览器的示例展示出来，采用android+web的模式
      */
     private X5WebView mWebView;
     private ViewGroup mViewParent;
+    private ProgressBar progressBar;
 	/*private ImageButton mBack;
 	private ImageButton mForward;
 	private ImageButton mExit;
@@ -105,6 +109,7 @@ public class PrinterActivity extends ToolbarActivity {
         setContentView(R.layout.activity_printer);
         initActionBar();
         mViewParent = (ViewGroup) findViewById(R.id.webView1);
+        progressBar=(ProgressBar)findViewById(R.id.progressBar1);
 
 		/*initBtnListenser();*/
 
@@ -161,6 +166,8 @@ public class PrinterActivity extends ToolbarActivity {
         mWebView.setWebViewClient(new com.tencent.smtt.sdk.WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(com.tencent.smtt.sdk.WebView view, String url) {
+                Logger.d(this.getClass(),"shouldOverrideUrlLoading");
+
                 return false;
             }
 
@@ -173,9 +180,29 @@ public class PrinterActivity extends ToolbarActivity {
                     changGoForwardButton(view);
 				/* mWebView.showLog("test Log"); */
             }
+
+            @Override
+            public void onPageStarted(WebView webView, String s, Bitmap bitmap) {
+                super.onPageStarted(webView, s, bitmap);
+            }
+
+
         });
 
         mWebView.setWebChromeClient(new com.tencent.smtt.sdk.WebChromeClient() {
+
+            @Override
+            public void onProgressChanged(WebView webView, int i) {
+                super.onProgressChanged(webView, i);
+
+                if (i == 100) {
+                    progressBar.setVisibility(View.GONE);
+                } else {
+                    if (progressBar.getVisibility() == View.GONE)
+                        progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(i);
+                }
+            }
 
             @Override
             public boolean onJsConfirm(com.tencent.smtt.sdk.WebView arg0, String arg1, String arg2,
@@ -260,12 +287,11 @@ public class PrinterActivity extends ToolbarActivity {
 
 		/*mWebView.setDownloadListener(new MyWebViewDownLoadListener());*/
         mWebView.setDownloadListener(new DownloadListener() {
-
             @Override
             public void onDownloadStart(String arg0, String arg1, String arg2,
                                         String arg3, long arg4) {
                 TbsLog.d(TAG, "url: " + arg0);
-
+                Logger.d(this.getClass(),"onDownloadStart");
                 Uri uri = Uri.parse(arg0);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);

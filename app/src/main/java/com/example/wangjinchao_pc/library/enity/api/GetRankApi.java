@@ -12,14 +12,12 @@ import rx.Observable;
 
 public class GetRankApi extends BaseApi{
     String token;
+    private String year;
+    private String month;
+    private String account;
 
     public GetRankApi() {
         init();
-    }
-
-    public GetRankApi(String token) {
-        init();
-        this.token = token;
     }
 
     void init(){
@@ -34,6 +32,44 @@ public class GetRankApi extends BaseApi{
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.getRank(token);
+        return httpService.getRank(year,month,account);
+    }
+
+    public void setAllParam(String year,String month,String account){
+        this.year=year;
+        this.month=month;
+        this.account=account;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

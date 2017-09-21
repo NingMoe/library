@@ -20,18 +20,37 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
+import com.example.wangjinchao_pc.library.Constant.Configure;
+import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
+import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
+import com.example.wangjinchao_pc.library.enity.Token;
+import com.example.wangjinchao_pc.library.enity.api.EditHobbyidApi;
+import com.example.wangjinchao_pc.library.enity.api.EditNicknameApi;
+import com.example.wangjinchao_pc.library.enity.api.EditSexApi;
+import com.example.wangjinchao_pc.library.enity.api.GetHobbyListApi;
+import com.example.wangjinchao_pc.library.enity.api.LoginApi;
+import com.example.wangjinchao_pc.library.enity.api.UploadPhoteImgApi;
+import com.example.wangjinchao_pc.library.enity.domain.Hobby;
 import com.example.wangjinchao_pc.library.enity.picker.Category;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
 import com.example.wangjinchao_pc.library.util.FileHelper;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.ResourceUtils;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.kevin.crop.UCrop;
 import com.qqtheme.framework.picker.SinglePicker;
+import com.retrofit_rx.exception.ApiException;
+import com.retrofit_rx.http.HttpManager;
+import com.retrofit_rx.listener.HttpOnNextListener;
 
 import org.w3c.dom.Text;
 
@@ -45,11 +64,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.example.wangjinchao_pc.library.Constant.Configure.PHOTOURL_PREX;
+
 /**
  * Created by wangjinchao-PC on 2017/7/8.
  */
 
-public class InformationManageActivity extends ToolbarActivity implements View.OnClickListener{
+public class InformationManageActivity extends ToolbarActivity implements View.OnClickListener,HttpOnNextListener{
 
     public static void start(Context context){
         Intent intent =new Intent(context,InformationManageActivity.class);
@@ -89,6 +110,16 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
     /*@BindView(R.id.academy) TextView academy;
     @BindView(R.id.profession) TextView profession;*/
 
+    //网络请求接口
+    private UploadPhoteImgApi uploadPhoteImgApi;
+    private EditHobbyidApi editHobbyidApi;
+    private EditSexApi editSexApi;
+    private GetHobbyListApi getHobbyListApi;
+    private HttpManager httpManager;
+
+    List<Category> sexList=null;
+    List<Category> hobbyList=new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +127,11 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
         ButterKnife.bind(this);
 
         initActionBar();
-        init_headphoto();
+        initHttp();
+        initView();
         init_pick();
+        init_dataList();
+
     }
 
     /**
@@ -107,26 +141,55 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
         setTitle("个人信息");
     }
     /**
+     * 初始化网络
+     */
+    private void initHttp(){
+        httpManager=new HttpManager(this,this);
+        uploadPhoteImgApi=new UploadPhoteImgApi();
+        editHobbyidApi=new EditHobbyidApi();
+        getHobbyListApi=new GetHobbyListApi();
+        editSexApi=new EditSexApi();
+    }
+    /**
      * 初始化头像
      */
-    void init_headphoto(){
+    void initView(){
         Glide.with(this.getApplicationContext())
-                .load(FileHelper.getInstance().getHeadphoto())
+                .load(PHOTOURL_PREX+MyApplication.getToken().getAccount()+".jpg")
                 .crossFade(300)
                 .placeholder(R.mipmap.headphoto)
                 .into(headPhoto);
+        String temp=MyApplication.getUser().getNickname();
+        Logger.d(this.getClass(),"nickname"+temp);
+        if(temp!=null&&!temp.isEmpty())
+            nickname.setText(temp);
+        temp=MyApplication.getUser().getSex();
+        if(temp!=null&&!temp.isEmpty())
+            sex.setText(temp.trim().equals("1")?"男":"女");
+        temp=MyApplication.getUser().getHobbyName();
+        if(temp!=null&&!temp.isEmpty())
+            interest.setText(temp);
     }
     /**
      * 初始化
      */
     void init_pick(){
-        mDestinationUri = Uri.fromFile(new File(this.getCacheDir(), "cropImage.jpeg"));
-        mTempPhotoPath = Environment.getExternalStorageDirectory() + File.separator + "photo.jpeg";
+        mDestinationUri = Uri.fromFile(new File(this.getCacheDir(), "headphoto.jpg"));
+        mTempPhotoPath = Environment.getExternalStorageDirectory() + File.separator + "tempheadphoto.jpg";
+    }
+    /**
+     * 初始化
+     */
+    void init_dataList(){
+        sexList = new ArrayList<>();
+        sexList.add(new Category(1, "男"));
+        sexList.add(new Category(2, "女"));
+
+        httpManager.doHttpDeal(getHobbyListApi);
     }
 
     @OnClick({R.id.headset_container, R.id.headPhoto,R.id.nickname_container,R.id.sex_container,R.id.interest_container})/*R.id.academy_container,R.id.profession_container*/
     public void onClick(View view) {
-        List<Category> data=null;
         switch(view.getId()){
             case R.id.headset_container:
                 //选择图片作为头像
@@ -140,13 +203,12 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                 toSetInformation(0,nickname.getText().toString(),GET_CONTENT_NICKNAME);
                 break;
             case R.id.sex_container:
-                data = new ArrayList<>();
-                data.add(new Category(1, "男"));
-                data.add(new Category(2, "女"));
-                onSinglePicker(data, new SinglePicker.OnItemPickListener<Category>() {
+
+                onSinglePicker(sexList, new SinglePicker.OnItemPickListener<Category>() {
                     @Override
                     public void onItemPicked(int index, Category item) {
-                        sex.setText(item.getName());
+                        editSexApi.setAllParam(MyApplication.getToken().getAccount(),Integer.toString(item.getId()));
+                        httpManager.doHttpDeal(editSexApi);
                     }
                 });
                 /*new AlertDialog.Builder(this).setSingleChoiceItems(new String[]{"男", "女"}, -1,
@@ -163,15 +225,13 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                 break;
             case R.id.interest_container:
                 /*toSetInformation(2,interest.getText().toString(),GET_CONTENT_INTEREST);*/
-                data = new ArrayList<>();
-                data.add(new Category(1, "编程"));
-                data.add(new Category(2, "看书"));
-                data.add(new Category(3, "乒乓"));
-                data.add(new Category(4, "摄影"));
-                onSinglePicker(data, new SinglePicker.OnItemPickListener<Category>() {
+                if(hobbyList==null||hobbyList.size()<1)
+                    break;
+                onSinglePicker(hobbyList, new SinglePicker.OnItemPickListener<Category>() {
                     @Override
                     public void onItemPicked(int index, Category item) {
-                        interest.setText(item.getName());
+                        editHobbyidApi.setAllParam(MyApplication.getToken().getAccount(),Integer.toString(item.getId()),item.getName());
+                        httpManager.doHttpDeal(editHobbyidApi);
                     }
                 });
                 break;
@@ -232,6 +292,7 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
         }
 
     }
+
     /**
      * 跳转到修改页面
      */
@@ -253,12 +314,10 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN // Permission was added in API Level 16
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            Log.d("wjc","请求");
             requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
                     getString(R.string.permission_read_storage_rationale),
                     REQUEST_STORAGE_READ_ACCESS_PERMISSION);
         } else {
-            Log.d("wjc","请求ok");
             Intent pickIntent = new Intent(Intent.ACTION_PICK, null);
             // 如果限制上传到服务器的图片类型时可以直接写如："image/jpeg 、 image/png等的类型"
             pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
@@ -320,14 +379,14 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
     }
 
     /**
-     * 裁剪图片方法实现
+     * 裁剪图片方法实现----压缩成100*100
      *
      * @param uri
      */
     public void startCropActivity(Uri uri) {
         UCrop.of(uri, mDestinationUri)
                 .withAspectRatio(1, 1)
-                .withMaxResultSize(512, 512)
+                .withMaxResultSize(100, 100)
                 .withTargetActivity(CropActivity.class)
                 .start(this);
     }
@@ -346,18 +405,17 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
+                return;
             } catch (IOException e) {
                 e.printStackTrace();
+                return;
             }
-
-            headPhoto.setImageBitmap(bitmap);
-
-            FileHelper.getInstance().saveHeadphoto(bitmap);
-
-            /*String filePath = resultUri.getEncodedPath();
+            String filePath = resultUri.getEncodedPath();
             String imagePath = Uri.decode(filePath);
-            Toast.makeText(this, "图片已经保存到:" + imagePath, Toast.LENGTH_LONG).show();*/
-
+            uploadPhoteImgApi.setAllParam(MyApplication.getToken().getAccount(),
+                    PHOTOURL_PREX+MyApplication.getToken().getAccount()+".jpg",imagePath);
+            httpManager.doHttpDeal(uploadPhoteImgApi);
+            /*Toast.makeText(this, "图片已经保存到:" + imagePath, Toast.LENGTH_LONG).show();*/
         } else {
             Toast.makeText(this, "无法剪切选择图片", Toast.LENGTH_SHORT).show();
         }
@@ -406,6 +464,15 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
         }
     }
     /**
+     * 删除裁剪文件
+     */
+    private void deletePhotoFile() {
+        File tempFile = new File(mDestinationUri.getEncodedPath());
+        if (tempFile.exists() && tempFile.isFile()) {
+            tempFile.delete();
+        }
+    }
+    /**
      *选择框显示
      */
     public void onSinglePicker(List<Category> data,SinglePicker.OnItemPickListener<Category> listener) {
@@ -426,5 +493,127 @@ public class InformationManageActivity extends ToolbarActivity implements View.O
             }
         });*/
         picker.show();
+    }
+
+    @Override
+    public void onNext(String resulte, String method) {
+        if (method.equals(uploadPhoteImgApi.getMethod())) {
+            BaseResultEntity<String> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity<String>>() {
+                        });
+            }catch (Exception e){
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
+            if(result!=null) {
+                if(result.getStatus()== Constant.SUCCESS){
+//                    Logger.d(this.getClass(),PHOTOURL_PREX+MyApplication.getToken().getAccount()+".jpg");
+                    Glide.with(this.getApplicationContext())
+                            .load(PHOTOURL_PREX+MyApplication.getToken().getAccount()+".jpg")
+                            .skipMemoryCache(true)
+                            .crossFade(300)
+                            .placeholder(R.mipmap.headphoto)
+                            .into(headPhoto);
+                    deletePhotoFile();
+                    Utils.showToast("头像置换成功");
+                }
+                else {
+                    Utils.showErrorMsgToast(result.getMessage(),"头像置换失败");
+                }
+            }
+
+        }else if(method.equals(getHobbyListApi.getMethod())){
+            BaseResultEntity<List<Hobby>> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity<List<Hobby>>>() {
+                        });
+            }catch (Exception e){
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
+            if(result!=null) {
+                if(result.getStatus()== Constant.SUCCESS&&changeHobbyToCategory(result.getData())){
+                    Utils.showToast("成功");
+                }
+                else {
+                    Utils.showErrorMsgToast(result.getMessage(),"失败");
+                }
+            }
+        }else if(method.equals(editSexApi.getMethod())){
+            BaseResultEntity<String> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity<String>>() {
+                        });
+            }catch (Exception e){
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
+            if(result!=null) {
+                if(result.getStatus()== Constant.SUCCESS){
+                    sex.setText(editSexApi.getSex().trim().equals("1")?"男":"女");
+                    MyApplication.getUser().setSex(editSexApi.getSex().trim().equals("1")?"1":"2");
+                    Utils.showToast("修改成功");
+                }
+                else {
+                    Utils.showErrorMsgToast(result.getMessage(),"修改失败");
+                }
+            }
+        }else if(method.equals(editHobbyidApi.getMethod())){
+            BaseResultEntity<String> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity<String>>() {
+                        });
+            }catch (Exception e){
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
+            if(result!=null) {
+                if(result.getStatus()== Constant.SUCCESS){
+                    interest.setText(editHobbyidApi.getName());
+                    MyApplication.getUser().setHobbyName(editHobbyidApi.getName());
+                    MyApplication.getUser().setHobbyid(editHobbyidApi.getHobbyid());
+                    Utils.showToast("修改成功");
+                }
+                else {
+                    Utils.showErrorMsgToast(result.getMessage(),"修改失败");
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onError(ApiException e, String method) {
+        if (method.equals(uploadPhoteImgApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
+        }else if (method.equals(getHobbyListApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
+        }else if (method.equals(editSexApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
+        }else if (method.equals(editHobbyidApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
+        }
+    }
+
+    //将hobby转为category
+    private boolean changeHobbyToCategory(List<Hobby> hobbies){
+        if(hobbies==null)
+            return false;
+        for(int i=0;i<hobbies.size();i++){
+            hobbyList.add(new Category(hobbies.get(i)));
+        }
+        return true;
     }
 }

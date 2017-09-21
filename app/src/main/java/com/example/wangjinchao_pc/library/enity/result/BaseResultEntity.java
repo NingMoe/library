@@ -12,6 +12,11 @@ public class BaseResultEntity<T>{
     //显示数据（用户需要关心的数据）
     private T data;
 
+    //欠款总额（元）
+    private double totalCost;
+    //欠款总数（本）
+    private double totalNumber;
+
     public int getStatus() {
         return status;
     }
@@ -34,5 +39,21 @@ public class BaseResultEntity<T>{
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public double getTotalNumber() {
+        return totalNumber;
+    }
+
+    public void setTotalNumber(double totalNumber) {
+        this.totalNumber = totalNumber;
     }
 }

@@ -7,21 +7,13 @@ import retrofit2.Retrofit;
 import rx.Observable;
 
 /**
- * Created by wangjinchao-PC on 2017/7/30.
+ * Created by wangjinchao-PC on 2017/9/20.
  */
 
-public class InqueryDueBookApi extends BaseApi{
-    String token;
+public class GetHobbyListApi extends BaseApi {
 
-    String account;
-
-    public InqueryDueBookApi() {
+    public GetHobbyListApi() {
         init();
-    }
-
-    public InqueryDueBookApi(String account) {
-        init();
-        this.account = account;
     }
 
     void init(){
@@ -30,16 +22,12 @@ public class InqueryDueBookApi extends BaseApi{
         //取消加载框
         setShowProgress(false);
 
-        setMethod("inqueryDueBook");
+        setMethod("GetHobbyListApi");
     }
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.inqueryDueBook(account);
-    }
-
-    public void setAllParam(String account){
-        this.account=account;
+        return httpService.getHobbyList();
     }
 }

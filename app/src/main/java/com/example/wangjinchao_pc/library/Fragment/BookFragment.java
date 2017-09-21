@@ -19,7 +19,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.wangjinchao_pc.library.Constant.Value;
-import com.example.wangjinchao_pc.library.Http.HttpUtils;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.activity.BookSearchResultActivity;
 import com.example.wangjinchao_pc.library.adapter.BookAdapter;
@@ -229,10 +228,10 @@ public class BookFragment extends BaseFragment implements HttpOnNextListener{
 
 
     @Override
-    public void onNext(String result, String method) {
+    public void onNext(String resulte, String method) {
         switch(type){
             case BookSearchResultActivity.TYPE_ABOUT:
-                BaseResultEntity<String> about_result = JSONObject.parseObject(result, new
+                BaseResultEntity<String> about_result = JSONObject.parseObject(resulte, new
                         TypeReference<BaseResultEntity<String>>() {
                         });
                 Utils.showToast("成功");
@@ -240,7 +239,7 @@ public class BookFragment extends BaseFragment implements HttpOnNextListener{
                     swipeRefreshLayout.setRefreshing(false);
                 break;
             case BookSearchResultActivity.TYPE_GOOD:
-                BaseResultEntity<String> good_result = JSONObject.parseObject(result, new
+                BaseResultEntity<String> good_result = JSONObject.parseObject(resulte, new
                         TypeReference<BaseResultEntity<String>>() {
                         });
                 Utils.showToast("成功");
@@ -248,7 +247,7 @@ public class BookFragment extends BaseFragment implements HttpOnNextListener{
                     swipeRefreshLayout.setRefreshing(false);
                 break;
             case BookSearchResultActivity.TYPE_NEW:
-                BaseResultEntity<String> new_result = JSONObject.parseObject(result, new
+                BaseResultEntity<String> new_result = JSONObject.parseObject(resulte, new
                         TypeReference<BaseResultEntity<String>>() {
                         });
                 Utils.showToast("成功");
@@ -256,7 +255,7 @@ public class BookFragment extends BaseFragment implements HttpOnNextListener{
                     swipeRefreshLayout.setRefreshing(false);
                 break;
             case BookSearchResultActivity.TYPE_RED:
-                BaseResultEntity<String> red_result = JSONObject.parseObject(result, new
+                BaseResultEntity<String> red_result = JSONObject.parseObject(resulte, new
                         TypeReference<BaseResultEntity<String>>() {
                         });
                 Utils.showToast("成功");

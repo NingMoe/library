@@ -18,11 +18,14 @@ import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
 import com.example.wangjinchao_pc.library.enity.Token;
 import com.example.wangjinchao_pc.library.enity.api.AdvertisementApi;
+import com.example.wangjinchao_pc.library.enity.api.GetUserInformationApi;
 import com.example.wangjinchao_pc.library.enity.api.LoginApi;
 import com.example.wangjinchao_pc.library.enity.domain.Arrears;
+import com.example.wangjinchao_pc.library.enity.domain.User;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
 import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
 import com.example.wangjinchao_pc.library.enity.result.SubjectResulte;
+import com.example.wangjinchao_pc.library.util.FileHelper;
 import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Regix;
 import com.example.wangjinchao_pc.library.util.Utils;
@@ -64,6 +67,7 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
 
     //网络请求接口
     private LoginApi loginApi;
+    private GetUserInformationApi getUserInformationApi;
     private HttpManager httpManager;
 
     private String contentOfAccount="";
@@ -79,6 +83,8 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
 
         initActionBar();
         initHttp();
+        initData();
+
     }
     /**
      * 初始化状态栏
@@ -93,6 +99,12 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
     private void initHttp(){
         httpManager=new HttpManager(this,this);
         loginApi=new LoginApi();
+        getUserInformationApi=new GetUserInformationApi();
+    }
+
+    private void initData(){
+        account.setText(MyApplication.getToken().getAccount());
+        passwd.setText(MyApplication.getToken().getPassword());
     }
 
     @OnClick({R.id.select_passwd, R.id.login,R.id.register})
@@ -137,31 +149,48 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
                         });
             }catch (Exception e){
                 loginBtnEnable=true;
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
+            if(result!=null) {
+                if(result.getResult()== Constant.SUCCESS){
+                    //成功后再获取个人信息
+                    getUserInformationApi.setAllParam(contentOfAccount);
+                    httpManager.doHttpDeal(getUserInformationApi);
+                }
+                else {
+                    Utils.showErrorMsgToast(result.getErr_msg(),"登陆失败");
+                    loginBtnEnable=true;
+                }
+            }
+        }else if(method.equals(getUserInformationApi.getMethod())) {
+            BaseResultEntity<User> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity<User>>() {
+                        });
+            }catch (Exception e){
+                loginBtnEnable=true;
 
                 e.printStackTrace();
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
-                //测试——————————————————————————————————————————————————————
-                /*MyApplication.setToken(new Token("17816877003","12345"));
-                MainActivity.start(this);*/
                 return;
             }
-
             if(result!=null) {
-                if(result.getResult()== Constant.SUCCESS){
-                    //???token是返回的东西
-                    MyApplication.setToken(new Token("17816877003","12345"));
+                if(result.getStatus()== Constant.SUCCESS){
+                    MyApplication.setUser(result.getData());
+                    MyApplication.setToken(new Token(contentOfAccount,contentOfPassword));
                     Utils.showToast("登陆成功");
                     MainActivity.start(this);
                 }
                 else {
-                    Utils.showErrorMsgToast(result.getErr_msg(),"登陆失败");
+                    Utils.showErrorMsgToast(result.getMessage(),"登陆失败");
                 }
             }
             loginBtnEnable=true;
-            //测试——————————————————————————————————————————————————————
-            /*MyApplication.setToken(new Token("17816877003","12345"));
-            MainActivity.start(this);*/
         }
     }
 
@@ -170,9 +199,9 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
         if (method.equals(loginApi.getMethod())) {
             Utils.showToast(e.getDisplayMessage());
             loginBtnEnable=true;
+        }else if(method.equals(getUserInformationApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
+            loginBtnEnable=true;
         }
-        //测试————————————————————————————————————————————————————————
-        /*MyApplication.setToken(new Token("17816877003","12345"));
-        MainActivity.start(this);*/
     }
 }

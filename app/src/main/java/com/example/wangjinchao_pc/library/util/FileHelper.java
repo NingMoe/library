@@ -1,12 +1,15 @@
 package com.example.wangjinchao_pc.library.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 
+import com.example.wangjinchao_pc.library.Constant.Configure;
 import com.example.wangjinchao_pc.library.application.MyApplication;
+import com.example.wangjinchao_pc.library.enity.Token;
 import com.example.wangjinchao_pc.library.enity.result.User;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipeline;
@@ -23,8 +26,9 @@ import java.io.InputStream;
 
 public class FileHelper {
 
-    public static final String HEADPHOTO = "headphoto.jpg";
     public static final String AD_IMAGE="adimage.jpg";
+
+    public static final String TOKEN="token";
 
 
     public static FileHelper instance;
@@ -42,29 +46,49 @@ public class FileHelper {
         return instance;
     }
 
+    //存放Token
+    public static void saveToken(Context context,Token token){
+        SharedPreferences.Editor editor=context.getSharedPreferences(Configure.CONFIGURE, Context.MODE_PRIVATE).edit();
+        editor.putString("account",token.getAccount());
+        editor.putString("password",token.getPassword());
+        editor.commit();
+    }
+    //取Token
+    public static Token getToken(Context context){
+        SharedPreferences sharedPreferences=context.getSharedPreferences(Configure.CONFIGURE, Context.MODE_PRIVATE);
+        return new Token(sharedPreferences.getString("account",""),sharedPreferences.getString("password",""));
+    }
+
+
     //头像存储
-    public void saveHeadphoto(Bitmap bitmap){
+    public String saveHeadphoto(Bitmap bitmap){
+        String path=MyApplication.getToken().getAccount();
+        path+=Configure.HEADPHOTO_NAME;
         try {
-            FileOutputStream fos = context.openFileOutput(User.getUserId()+HEADPHOTO, Context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(path, Context.MODE_PRIVATE);
             if(bitmap==null){
                 Log.e("bitmap","isnull");
-                return;
+                return "";
             }
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
+        return path;
     }
 
+    public Uri getHeadphoto(boolean isTemp){
+        String path=MyApplication.getToken().getAccount();
+        if(isTemp)
+            path+=Configure.HEADPHOTO_TEMP_NAME;
+        else
+            path+=Configure.HEADPHOTO_NAME;
+        File root = context.getFilesDir();
+        File img = new File(root, path);
+        return Uri.fromFile(img);
+    }
     public void saveHeadphoto(Uri uri){
         saveHeadphoto(ratio(uri, 200, 200));
-    }
-
-    public Uri getHeadphoto(){
-        File root = context.getFilesDir();
-        File img = new File(root, User.getUserId()+HEADPHOTO);
-        return Uri.fromFile(img);
     }
 
     //广告图片存储
@@ -94,7 +118,7 @@ public class FileHelper {
 
     public void clearHeadphote_Cache(){
         ImagePipeline pipeline = Fresco.getImagePipeline();
-        pipeline.evictFromCache(Uri.fromFile(new File(context.getFilesDir(), User.getUserId()+HEADPHOTO)));
+        pipeline.evictFromCache(Uri.fromFile(new File(context.getFilesDir(), User.getUserId()+Configure.HEADPHOTO_NAME)));
     }
 
     public void clearAdImage_Cache(){
@@ -140,8 +164,5 @@ public class FileHelper {
             e.printStackTrace();
         }
         return null;
-
-
-
     }
 }

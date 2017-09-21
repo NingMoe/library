@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.alibaba.fastjson.JSONObject;
@@ -65,7 +66,6 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
     //查询类型TYPE_BOOK/TYPE_PRICE
     private int type;
 
-    private int page = Value.startPage;
     private List<HashMap<String, Object>> datas = new ArrayList<>();
     private RecyclerViewAdapterWrapper adapter;
     //网络请求接口
@@ -95,7 +95,7 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
         debt_container.setLayoutManager(new LinearLayoutManager(this));
         debt_container.addItemDecoration(new DividerItemDecoration(this));
 
-        //上拉加载数据----更改？？？？？？？？？？？？？
+        /*//上拉加载数据----更改？？？？？？？？？？？？？
         debt_container.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -105,9 +105,10 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
                     loadData();
                 }
             }
-        });
+        });*/
 
         adapter=new RecyclerViewAdapterWrapper(new DebtDetailAdapter(this,datas,type));
+        adapter.setFootVisiable(View.GONE);
         debt_container.setAdapter(adapter);
 
         //下拉刷新数据    要改？？？？？？？？？？？？？？？？？？？？？
@@ -115,11 +116,11 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
             @Override
             public void onRefresh() {
                 //刷新
-                loadData();
+                refreshData();
             }
         });
 
-        init_Data();
+        initData();
     }
 
     /**
@@ -138,7 +139,9 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
     private void initHttp(){
         httpManager=new HttpManager(this,this);
         inqueryDuePriceApi=new InqueryDuePriceApi();
+        inqueryDuePriceApi.setAllParam(MyApplication.getToken().getAccount());
         inqueryDueBookApi=new InqueryDueBookApi();
+        inqueryDueBookApi.setAllParam(MyApplication.getToken().getAccount());
     }
     /**
      * 初始化---请求以及初始数据获取
@@ -154,45 +157,22 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
         }
     }
 
-    //测试————————————————————————
-    void init_Data(){
-        inqueryDuePriceApi=new InqueryDuePriceApi(MyApplication.getToken().getAccount());
-        httpManager.doHttpDeal(inqueryDuePriceApi);
-
-        startLoading();
-        HashMap<String, Object> map = null;
-        if(type==TYPE_PRICE){
-            map=new HashMap<String, Object>();
-            map.put(DebtDetailAdapter.DEBT_SUM,"10.02");
-            datas.add(map);
-
-            for(int i=0;i<10;i++){
-                map=new HashMap<String, Object>();
-                map.put(DebtDetailAdapter.TIME,"2017.01.08");
-                map.put(DebtDetailAdapter.TITLE,"三重门");
-                map.put(DebtDetailAdapter.DEBT_PRICE,"4.00");
-                datas.add(map);
-            }
-        }else{
-            map=new HashMap<String, Object>();
-            map.put(DebtDetailAdapter.DEBT_SUM,"10");
-            datas.add(map);
-
-            for(int i=0;i<10;i++){
-                map=new HashMap<String, Object>();
-                map.put(DebtDetailAdapter.TIME,"2017.01.08");
-                map.put(DebtDetailAdapter.TITLE,"三重门");
-                map.put(DebtDetailAdapter.DEBT_PRICE,"3");
-                datas.add(map);
-            }
-        }
-        stopLoading();
-    }
-
     /**
-     * 加载数据
+     * 加载数据-----改变api
      */
     void loadData(){
+        if(type==TYPE_PRICE){
+            inqueryDuePriceApi=new InqueryDuePriceApi(MyApplication.getToken().getAccount());
+            httpManager.doHttpDeal(inqueryDuePriceApi);
+        }else if(type==TYPE_BOOK){
+            inqueryDueBookApi=new InqueryDueBookApi(MyApplication.getToken().getAccount());
+            httpManager.doHttpDeal(inqueryDueBookApi);
+        }
+    }
+    /**
+     * 刷新数据
+     */
+    void refreshData(){
         if(type==TYPE_PRICE){
             inqueryDuePriceApi=new InqueryDuePriceApi(MyApplication.getToken().getAccount());
             httpManager.doHttpDeal(inqueryDuePriceApi);
@@ -244,18 +224,63 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
                         df.format(Double.parseDouble(datas.get(0).get(DebtDetailAdapter.DEBT_SUM).toString()) + sum));
             Logger.d(this.getClass(),"总数: "+datas.get(0).get(DebtDetailAdapter.DEBT_SUM).toString());
         }catch (Exception e){
-            Logger.e(this.getClass(),"获取数据错误！！！！！！！！！！");
+            Logger.e(this.getClass(),"添加数据错误！！！！！！！！！！");
             e.printStackTrace();
             return false;
         }
         return true;
     }
 
+    /**
+     * 刷新datas数据
+     */
+    boolean refreshData(List<Arrears> arrearsList,double total){
+        List<HashMap<String, Object>> tempdatas = new ArrayList<>();
+        DecimalFormat df = null;
+        if(arrearsList==null)
+            return false;
+        try{
+            HashMap<String, Object> map = null;
+            if(type==TYPE_PRICE){
+                df = new DecimalFormat("#.00");
+                map=new HashMap<String, Object>();
+                map.put(DebtDetailAdapter.DEBT_SUM,df.format(total));
+                tempdatas.add(map);
+                for(int i=0;i<arrearsList.size();i++){
+                    map=new HashMap<String, Object>();
+                    map.put(DebtDetailAdapter.TIME,arrearsList.get(i).getOrder_date());
+                    map.put(DebtDetailAdapter.TITLE,arrearsList.get(i).getBook_name());
+                    map.put(DebtDetailAdapter.DEBT_PRICE,arrearsList.get(i).getFee());
+                    tempdatas.add(map);
+                }
+            }else if(type==TYPE_BOOK){
+                df = new DecimalFormat("#");
+                map=new HashMap<String, Object>();
+                map.put(DebtDetailAdapter.DEBT_SUM,df.format(total));
+                tempdatas.add(map);
+                for(int i=0;i<arrearsList.size();i++){
+                    map=new HashMap<String, Object>();
+                    map.put(DebtDetailAdapter.TIME,arrearsList.get(i).getOrder_date());
+                    map.put(DebtDetailAdapter.TITLE,arrearsList.get(i).getBook_name());
+                    map.put(DebtDetailAdapter.DEBT_PRICE,arrearsList.get(i).getDay());
+                    tempdatas.add(map);
+                }
+            }
+            Logger.d(this.getClass(),"总数: "+tempdatas.get(0).get(DebtDetailAdapter.DEBT_SUM).toString());
+        }catch (Exception e){
+            Logger.e(this.getClass(),"添加数据错误！！！！！！！！！！");
+            e.printStackTrace();
+            return false;
+        }
+        datas.clear();
+        datas.addAll(tempdatas);
+/*        if(total==0)
+            adapter.setFootVisiable(View.GONE);*/
+        return true;
+    }
+
     @Override
     public void onNext(String resulte, String method) {
-        //标志是否刷新或者更新成功
-        boolean flag=true;
-
         if (method.equals(inqueryDuePriceApi.getMethod())) {
             BaseResultEntity<List<Arrears>> result=null;
             try{
@@ -265,7 +290,7 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
                 Logger.d(this.getClass(),"接收数:"+result.getData().size());
             }catch (Exception e){
                 e.printStackTrace();
-                flag=false;
+
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
                 return;
@@ -273,29 +298,17 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
             //添加数据
             if(result!=null) {
                 if(result.getStatus()== Constant.SUCCESS)
-                    if(addData(result.getData())){
+                    if(refreshData(result.getData(),result.getTotalCost())){
                         adapter.notifyDataSetChanged();
-                        flag=true;
+                        Utils.showToast("成功");
                     }
                     else
-                        flag=false;
+                        Utils.showErrorMsgToast(result.getMessage(),"失败");
                 else if(result.getStatus()== Constant.ERROR){
                     loadingMoreEnabled=false;
-                    flag=false;
+                    Utils.showErrorMsgToast(result.getMessage(),"失败");
                 }
             }
-            if(flag)
-                Utils.showToast("成功");
-            else
-                Utils.showToast("失败");
-
-            if(loadingFlag){
-                stopLoading();
-                loadingFlag=false;
-            }
-
-            if(swipeRefreshLayout.isRefreshing())
-                swipeRefreshLayout.setRefreshing(false);
         }else if(method.equals(inqueryDueBookApi.getMethod())){
             BaseResultEntity<List<Arrears>> result=null;
             try{
@@ -305,7 +318,7 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
                 Logger.d(this.getClass(),"接收数:"+result.getData().size());
             }catch (Exception e){
                 e.printStackTrace();
-                flag=false;
+
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
                 return;
@@ -313,29 +326,25 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
             //添加数据
             if(result!=null) {
                 if(result.getStatus()== Constant.SUCCESS)
-                    if(addData(result.getData())){
+                    if(refreshData(result.getData(),result.getTotalNumber())){
                         adapter.notifyDataSetChanged();
-                        flag=true;
+                        Utils.showToast("成功");
                     }
                     else
-                        flag=false;
+                        Utils.showErrorMsgToast(result.getMessage(),"失败");
                 else if(result.getStatus()== Constant.ERROR){
                     loadingMoreEnabled=false;
-                    flag=false;
+                    Utils.showErrorMsgToast(result.getMessage(),"失败");
                 }
             }
-            if(flag)
-                Utils.showToast("成功");
-            else
-                Utils.showToast("失败");
-
-            if(loadingFlag){
-                stopLoading();
-                loadingFlag=false;
-            }
-            if(swipeRefreshLayout.isRefreshing())
-                swipeRefreshLayout.setRefreshing(false);
         }
+
+        if(loadingFlag){
+            stopLoading();
+            loadingFlag=false;
+        }
+        if(swipeRefreshLayout.isRefreshing())
+                swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
