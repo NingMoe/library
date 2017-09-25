@@ -2,33 +2,21 @@ package com.example.wangjinchao_pc.library.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.bumptech.glide.Glide;
 import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.base.ToolbarCropActivity;
-import com.example.wangjinchao_pc.library.enity.api.EditHobbyidApi;
-import com.example.wangjinchao_pc.library.enity.api.EditNicknameApi;
-import com.example.wangjinchao_pc.library.enity.api.EditSexApi;
-import com.example.wangjinchao_pc.library.enity.api.GetHobbyListApi;
-import com.example.wangjinchao_pc.library.enity.api.UploadPhoteImgApi;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.api.EditNicknameApi;
+import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
 import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
@@ -37,8 +25,6 @@ import com.retrofit_rx.listener.HttpOnNextListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.example.wangjinchao_pc.library.Constant.Configure.PHOTOURL_PREX;
 
 /**
  * Created by wangjinchao-PC on 2017/7/21.

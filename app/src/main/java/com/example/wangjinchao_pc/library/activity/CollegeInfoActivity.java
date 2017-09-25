@@ -1,31 +1,32 @@
 package com.example.wangjinchao_pc.library.activity;
 
-import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.Constant.Value;
 import com.example.wangjinchao_pc.library.R;
-import com.example.wangjinchao_pc.library.adapter.BookDetailAdapter;
 import com.example.wangjinchao_pc.library.adapter.CollegeInfoAdapter;
 import com.example.wangjinchao_pc.library.adapter.DividerItemDecoration;
-import com.example.wangjinchao_pc.library.adapter.RecyclerViewAdapterWrapper;
+import com.example.wangjinchao_pc.library.api.IdentifyGetSchoolListApi;
+import com.example.wangjinchao_pc.library.api.InqueryDuePriceApi;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.enity.api.AdvertisementApi;
-import com.example.wangjinchao_pc.library.enity.api.GetCollegeApi;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.api.GetCollegeApi;
+import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.baseResult.IdentifyBaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.baseResult.IdentifyBaseResultEntity2;
+import com.example.wangjinchao_pc.library.enity.domain.Arrears;
+import com.example.wangjinchao_pc.library.enity.other.SchoolURL;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
@@ -60,9 +61,12 @@ public class CollegeInfoActivity extends ToolbarActivity implements HttpOnNextLi
     private List<HashMap<String, Object>> datas = new ArrayList<>();
     private CollegeInfoAdapter adapter;
 
+    //对加载动画设置flag
+    private boolean loadingFlag=true;
+
     //网络请求接口
     private HttpManager httpManager;
-    private GetCollegeApi getCollegeApi;
+    private IdentifyGetSchoolListApi identifyGetSchoolListApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +74,10 @@ public class CollegeInfoActivity extends ToolbarActivity implements HttpOnNextLi
         setContentView(R.layout.activity_college_information);
         ButterKnife.bind(this);
         setLoadView(linearLayout);
+
         initActionBar();
 
-        httpManager=new HttpManager(this,this);
+        initHttp();
 
         collegeinfo_container.setLayoutManager(new LinearLayoutManager(this));
         collegeinfo_container.addItemDecoration(new DividerItemDecoration(this));
@@ -112,52 +117,90 @@ public class CollegeInfoActivity extends ToolbarActivity implements HttpOnNextLi
     }
 
     void initData(){
+        loadingFlag=true;
         startLoading();
-        HashMap<String, Object> map = null;
+        httpManager.doHttpDeal(identifyGetSchoolListApi);
+
+        /*HashMap<String, Object> map = null;
         String[] temp={"浙江工业大学","浙江大学","清华大学","复旦大学","哈尔滨大学","合肥大学"};
         for(int i=0;i<temp.length;i++){
             map=new HashMap<String, Object>();
             map.put(CollegeInfoAdapter.CONTENT,temp[i]);
             datas.add(map);
         }
-        stopLoading();
+        stopLoading();*/
+    }
+
+    /**
+     * 初始化网络相关对象
+     */
+    void initHttp(){
+        httpManager=new HttpManager(this,this);
+        identifyGetSchoolListApi=new IdentifyGetSchoolListApi();
     }
 
     /**
      * 刷新
      */
     private void refresh(){
-        getCollegeApi=new GetCollegeApi();
-        httpManager.doHttpDeal(getCollegeApi);
+        if(identifyGetSchoolListApi==null)
+            identifyGetSchoolListApi=new IdentifyGetSchoolListApi();
+        httpManager.doHttpDeal(identifyGetSchoolListApi);
     }
 
-    @Override
-    public void onNext(String resulte, String method) {
-        if(method.equals(getCollegeApi.getMethod())){
-            BaseResultEntity<String> result = JSONObject.parseObject(resulte, new
-                    TypeReference<BaseResultEntity<String>>() {
-                    });
-            if(swipeRefreshLayout.isRefreshing())
-                swipeRefreshLayout.setRefreshing(false);
-            Utils.showToast("成功");
+    private void setViewData(List<SchoolURL> list){
+        HashMap<String, Object> map = null;
+        for(int i=0;i<list.size();i++){
+            map=new HashMap<String, Object>();
+            map.put(CollegeInfoAdapter.CONTENT,list.get(i).getSchoolName());
+            datas.add(map);
         }
     }
 
     @Override
+    public void onNext(String resulte, String method) {
+        if (method.equals(identifyGetSchoolListApi.getMethod())) {
+            IdentifyBaseResultEntity2<List<SchoolURL>> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new TypeReference<IdentifyBaseResultEntity2<List<SchoolURL>>>() {
+
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
+            //添加数据
+            if(result!=null) {
+                setViewData(result.getResult());
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+        if(loadingFlag){
+            stopLoading();
+            loadingFlag=false;
+        }
+        if(swipeRefreshLayout.isRefreshing())
+            swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
     public void onError(ApiException e, String method) {
-        if(method.equals(getCollegeApi.getMethod())){
-            Utils.showToast("失败");
+        if(method.equals(identifyGetSchoolListApi.getMethod())){
+            Utils.showToast(e.getDisplayMessage());
             if(swipeRefreshLayout.isRefreshing())
                 swipeRefreshLayout.setRefreshing(false);
         }
 
         //——————————————————
-        HashMap<String, Object> map = null;
+        /*HashMap<String, Object> map = null;
         for(int i=0;i<5;i++){
             map=new HashMap<String, Object>();
             map.put(CollegeInfoAdapter.CONTENT,"学校refresh"+i);
             datas.add(map);
         }
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
     }
 }

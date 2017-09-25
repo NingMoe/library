@@ -6,27 +6,22 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.wangjinchao_pc.library.Constant.Constant;
-import com.example.wangjinchao_pc.library.Constant.Value;
 import com.example.wangjinchao_pc.library.R;
-import com.example.wangjinchao_pc.library.adapter.BookDetailAdapter;
 import com.example.wangjinchao_pc.library.adapter.DebtDetailAdapter;
 import com.example.wangjinchao_pc.library.adapter.DividerItemDecoration;
 import com.example.wangjinchao_pc.library.adapter.RecyclerViewAdapterWrapper;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.enity.api.AdvertisementApi;
-import com.example.wangjinchao_pc.library.enity.api.GetDueBookNumberApi;
-import com.example.wangjinchao_pc.library.enity.api.InqueryDueBookApi;
-import com.example.wangjinchao_pc.library.enity.api.InqueryDuePriceApi;
+import com.example.wangjinchao_pc.library.api.InqueryDueBookApi;
+import com.example.wangjinchao_pc.library.api.InqueryDuePriceApi;
 import com.example.wangjinchao_pc.library.enity.domain.Arrears;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
 import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
@@ -344,7 +339,7 @@ public class DebtDetailActivity extends ToolbarActivity implements HttpOnNextLis
             loadingFlag=false;
         }
         if(swipeRefreshLayout.isRefreshing())
-                swipeRefreshLayout.setRefreshing(false);
+            swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

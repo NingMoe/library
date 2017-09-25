@@ -1,7 +1,6 @@
 package com.example.wangjinchao_pc.library.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,10 +12,8 @@ import com.alibaba.fastjson.TypeReference;
 import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.enity.api.GetPasswordCodeApi;
-import com.example.wangjinchao_pc.library.enity.api.ResetPasswordApi;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
+import com.example.wangjinchao_pc.library.api.ResetPasswordApi;
+import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity2;
 import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Regix;
 import com.example.wangjinchao_pc.library.util.Utils;

@@ -10,15 +10,24 @@ import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
+import com.example.wangjinchao_pc.library.api.IdentifyGetSchoolListApi;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.enity.api.BindCollegeApi;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
+import com.example.wangjinchao_pc.library.api.BindCollegeApi;
+import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.baseResult.IdentifyBaseResultEntity2;
+import com.example.wangjinchao_pc.library.enity.other.SchoolURL;
+import com.example.wangjinchao_pc.library.util.Logger;
+import com.example.wangjinchao_pc.library.util.ResourceUtils;
 import com.example.wangjinchao_pc.library.util.Utils;
+import com.qqtheme.framework.picker.SinglePicker;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
 import com.retrofit_rx.listener.HttpOnNextListener;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,9 +57,12 @@ public class BindCollegeActivity extends ToolbarActivity implements View.OnClick
     @BindView(R.id.bind)
     Button bind;
 
+    private List<SchoolURL> schoolURLs=null;
+
     //网络请求接口
     private HttpManager httpManager;
     private BindCollegeApi bindCollegeApi;
+    private IdentifyGetSchoolListApi identifyGetSchoolListApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +70,8 @@ public class BindCollegeActivity extends ToolbarActivity implements View.OnClick
         setContentView(R.layout.activity_bind_college);
         ButterKnife.bind(this);
         initActionBar();
-        httpManager=new HttpManager(this,this);
+        initHttp();
+        initData();
     }
 
     /**
@@ -69,15 +82,41 @@ public class BindCollegeActivity extends ToolbarActivity implements View.OnClick
         setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * 初始化网络相关对象
+     */
+    private void initHttp(){
+        httpManager=new HttpManager(this,this);
+        identifyGetSchoolListApi=new IdentifyGetSchoolListApi();
+        bindCollegeApi=new BindCollegeApi();
+    }
+    /**
+     * 初始化数据
+     */
+    private void initData(){
+        httpManager.doHttpDeal(identifyGetSchoolListApi);
+    }
+
     @OnClick({R.id.college_container,R.id.college,R.id.bind})
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.college_container:
             case R.id.college:
-                Intent intent = new Intent();
+                if(schoolURLs==null||schoolURLs.size()<1)
+                    break;
+                onSinglePicker(schoolURLs, new SinglePicker.OnItemPickListener<SchoolURL>() {
+                    @Override
+                    public void onItemPicked(int index, SchoolURL item) {
+                        college.setText(item.getSchoolName());
+                        /*editSexApi.setAllParam(MyApplication.getToken().getAccount(),Integer.toString(item.getId()));
+                        httpManager.doHttpDeal(editSexApi);*/
+                    }
+                });
+                /*Intent intent = new Intent();
                 intent.setClass(this, CollegeInfoActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivityForResult(intent, GET_CONTENT);
+                startActivityForResult(intent, GET_CONTENT);*/
+
                 break;
             case R.id.bind:
                 bindCollegeApi=new BindCollegeApi(MyApplication.getToken().getAccount(),college.getText().toString(),
@@ -102,13 +141,39 @@ public class BindCollegeActivity extends ToolbarActivity implements View.OnClick
 
     @Override
     public void onNext(String resulte, String method) {
-        if(method.equals(bindCollegeApi.getMethod())){
-            BaseResultEntity<String> result = JSONObject.parseObject(resulte, new
-                    TypeReference<BaseResultEntity<String>>() {
-                    });
+        if (method.equals(bindCollegeApi.getMethod())) {
+            BaseResultEntity<String> result = null;
+            try {
+                result = JSONObject.parseObject(resulte, new TypeReference<BaseResultEntity<String>>() {
 
-            Utils.showToast("绑定成功");
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(), "解析错误！！！！！！！！！！");
+                return;
+            }
+            if(result.getStatus()==Constant.SUCCESS)
+                Utils.showToast("绑定成功");
+            else
+                Utils.showToast("绑定失败");
             BindPerfectActivity.start(this);
+        } else if (method.equals(identifyGetSchoolListApi.getMethod())) {
+            IdentifyBaseResultEntity2<List<SchoolURL>> result = null;
+            try {
+                result = JSONObject.parseObject(resulte, new TypeReference<IdentifyBaseResultEntity2<List<SchoolURL>>>() {
+
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(), "解析错误！！！！！！！！！！");
+                return;
+            }
+            //添加数据
+            if (result != null) {
+                setSchoolURLs(result.getResult());
+            }
         }
     }
 
@@ -116,9 +181,35 @@ public class BindCollegeActivity extends ToolbarActivity implements View.OnClick
     public void onError(ApiException e, String method) {
         if(method.equals(bindCollegeApi.getMethod())){
             Utils.showToast("绑定失败");
+        }else if(method.equals(identifyGetSchoolListApi.getMethod())){
+
         }
 
         //————————————————
         BindPerfectActivity.start(this);
+    }
+
+    /**
+     *选择框显示
+     */
+    public void onSinglePicker(List<SchoolURL> data, SinglePicker.OnItemPickListener<SchoolURL> listener) {
+        SinglePicker<SchoolURL> picker = new SinglePicker<>(this, data);
+        picker.setCanceledOnTouchOutside(true);
+        picker.setSelectedIndex(1);
+        picker.setCycleDisable(true);
+        //设置大小
+        picker.setTextSize(ResourceUtils.getXmlDef(this, R.dimen.picker_content_size));
+        picker.setCancelTextSize(ResourceUtils.getXmlDef(this, R.dimen.picker_cancel_size));
+        picker.setSubmitTextSize(ResourceUtils.getXmlDef(this, R.dimen.picker_submit_size));
+        picker.setOnItemPickListener(listener);
+        picker.show();
+    }
+
+    public List<SchoolURL> getSchoolURLs() {
+        return schoolURLs;
+    }
+
+    public void setSchoolURLs(List<SchoolURL> schoolURLs) {
+        this.schoolURLs = schoolURLs;
     }
 }

@@ -60,7 +60,7 @@ dependencies {
     //rxjava+retrofit支持
     compile 'com.daimajia.numberprogressbar:library:1.2@aar'
     compile 'com.jude:easyrecyclerview:4.2.6'
-    compile 'com.alibaba:fastjson:latest.integration'
+    //compile 'com.alibaba:fastjson:latest.integration'
     compile 'org.greenrobot:greendao:3.2.0'
     /*rx-android-java*/
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'

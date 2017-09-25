@@ -10,7 +10,7 @@ import android.util.Log;
 import com.example.wangjinchao_pc.library.Constant.Configure;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.enity.Token;
-import com.example.wangjinchao_pc.library.enity.result.User;
+import com.example.wangjinchao_pc.library.enity.baseResult.User;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipeline;
 

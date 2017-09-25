@@ -11,14 +11,12 @@ import android.widget.EditText;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.bumptech.glide.util.Util;
 import com.example.wangjinchao_pc.library.Constant.Configure;
 import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.enity.api.GetPasswordCodeApi;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
+import com.example.wangjinchao_pc.library.api.GetPasswordCodeApi;
+import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity2;
 import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Regix;
 import com.example.wangjinchao_pc.library.util.Utils;

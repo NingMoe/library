@@ -5,34 +5,18 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 
-import com.example.wangjinchao_pc.library.Constant.Value;
 import com.example.wangjinchao_pc.library.R;
-import com.example.wangjinchao_pc.library.adapter.BookAdapter;
-import com.example.wangjinchao_pc.library.adapter.DividerItemDecoration;
-import com.example.wangjinchao_pc.library.adapter.RecyclerViewAdapterWrapper;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.enity.api.BindCollegeApi;
-import com.example.wangjinchao_pc.library.enity.api.ModifyInformationApi;
-import com.retrofit_rx.exception.ApiException;
-import com.retrofit_rx.http.HttpManager;
-import com.retrofit_rx.listener.HttpOnNextListener;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.BaseActivity;
 import com.example.wangjinchao_pc.library.application.MyApplication;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity;
-import com.example.wangjinchao_pc.library.enity.result.BaseResultEntity2;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
