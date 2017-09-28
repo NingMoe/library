@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/scan"
+        android:layout_width="@dimen/scan_size"
+        android:layout_height="@dimen/scan_size"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/qr_code_bg" >
+
+        <ImageView
+            android:id="@+id/capture_scan_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/scan_margin"
+            android:layout_marginTop="@dimen/scan_margin"
+            android:src="@drawable/scan_line" />
+    </RelativeLayout>
+</LinearLayout>

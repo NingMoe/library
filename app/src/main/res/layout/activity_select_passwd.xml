@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="@dimen/layout_top_padding"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_divide"
+        android:background="@color/dividerColor"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/select_padding"
+        android:background="@color/text_background">
+        <TextView
+            android:text="@string/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/normal_text"
+            android:layout_gravity="center"/>
+        <EditText
+            android:id="@+id/mobile"
+            android:hint="@string/please_enter_mobile_number"
+            style="@style/normal_hint_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/content_padding" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_divide"
+        android:background="@color/dividerColor"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/select_padding"
+        android:background="@color/text_background">
+        <TextView
+            android:text="@string/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/normal_text"
+            android:layout_gravity="center"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/get_code"
+                style="@style/get_code_button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/btn_size"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:minHeight="@dimen/btn_minHeight"
+                android:text="@string/getcode"/>
+            <EditText
+                android:id="@+id/certify"
+                android:layout_toLeftOf="@id/get_code"
+                android:hint="@string/please_enter_code"
+                style="@style/normal_hint_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/content_padding" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_divide"
+        android:background="@color/dividerColor"/>
+
+    <Button
+        android:id="@+id/next"
+        style="@style/normal_button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/btn_top"
+        android:layout_marginLeft="@dimen/btn_left"
+        android:layout_marginRight="@dimen/btn_right"
+        android:text="@string/next"/>
+
+</LinearLayout>

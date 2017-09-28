@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Library</string>
+
+    <string name="permission_title_rationale">权限需求</string>
+    <string name="permission_read_storage_rationale">选择图片时需要读取权限</string>
+    <string name="permission_write_storage_rationale">拍照时需要存储权限</string>
+    <string name="label_cancel">取消</string>
+    <string name="label_ok">确定</string>
+
+    <string name="notice">通知</string>
+
+    <string name="skip">跳过</string>
+    <string name="account">账号</string>
+    <string name="please_account">请输入账号</string>
+    <string name="passwd">密码</string>
+    <string name="please_passwd">请输入密码</string>
+    <string name="select_passwd">找回密码</string>
+    <string name="login">登录</string>
+    <string name="password_space">&#8201;密&#160;&#160;码&#8201;</string>
+    <string name="nickname_space">&#8201;昵&#160;&#160;称&#8201;</string>
+    <string name="register">注册账号</string>
+    <string name="register_success">注册成功</string>
+    <string name="register_failure">注册失败</string>
+
+    <string name="phone_number">手机号</string>
+    <string name="code">验证码</string>
+    <string name="getcode">获取验证码</string>
+    <string name="please_enter_code">输入手机获取的短信验证码</string>
+    <string name="please_enter_mobile_number">请输入您的手机号</string>
+    <string name="send_code_success">发送验证码成功</string>
+    <string name="send_code_failure">发送验证码失败</string>
+    <string name="code_incorrect">验证码错误</string>
+    <string name="please_enter_correct_number">请输入正确的手机号</string>
+
+    <string name="next">下一步</string>
+    <string name="new_password">"&#160;"新"&#160;"密"&#160;"码"&#160;"</string>
+    <string name="password_format">6-16位字母、数字或符号</string>
+    <string name="nickname_format">最长14个英文或者7个中文</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="reset_password">重置新密码</string>
+    <string name="confirm">确认</string>
+
+    <string name="agree">我已接收条款</string>
+
+
+    <string name="order1">您有</string>
+    <string name="order12">次活动预约，"&#160;""&#160;""&#160;"仍可预约</string>
+    <string name="order3">次</string>
+    <string name="order22">次研修室预约，仍可预约</string>
+    <string name="order32">次座位预约，"&#160;""&#160;""&#160;"仍可预约</string>
+
+    <string name="order1_item">次活动预约</string>
+    <string name="order2_item">次研修预约</string>
+    <string name="order3_item">次座位预约</string>
+
+    <string name="debt1">未还</string>
+    <string name="debt2">本</string>
+    <string name="debt3">欠款</string>
+    <string name="debt4">元</string>
+
+    <string name="more">更多</string>
+
+    <string name="library_search">馆藏图书搜索</string>
+    <string name="library_search_hint">搜图书，找知识</string>
+
+    <string name="order_style">预约种类</string>
+
+    <string name="order_text1">活动预约</string>
+    <string name="order_text2">研修预约</string>
+    <string name="order_text3">座位预约</string>
+
+    <string name="find_text1">离馆业务</string>
+    <string name="find_text2">扫一扫</string>
+    <string name="find_text3">云打印</string>
+
+    <string name="bind_college">学校绑定（重新绑定）</string>
+    <string name="my_order">我的预约</string>
+    <string name="my_score">我的积分</string>
+    <string name="modify_password">密码修改</string>
+    <string name="logout">退出登录</string>
+
+    <string name="rank1">您的分数在</string>
+    <string name="rank2">浙江工业大学</string>
+    <string name="rank3">中排名，相比</string>
+    <string name="rank4">2017.6.18</string>
+
+    <string name="rank_item1">全校</string>
+    <string name="rank_item2">全院</string>
+    <string name="rank_item3">专业</string>
+
+    <string name="search_result1">为您找到相关图书</string>
+    <string name="search_result2">本</string>
+
+    <string name="author">作　者：</string>
+    <string name="price">¥</string>
+    <string name="score">分</string>
+    <string name="comment">人评价</string>
+    <string name="read">人阅读</string>
+
+    <string name="begin_read">开始阅读</string>
+    <string name="introduce">简介</string>
+    <string name="comments">评论</string>
+    <string name="want_comment">我要评论</string>
+    <string name="no_comment">暂无评论</string>
+    <string name="scores">评分</string>
+    <string name="recommends">力荐</string>
+    <string name="comment_hint">请输入您的评论内容(100字以内)</string>
+    <string name="commit">提交</string>
+
+    <string name="debt_search">欠款查询</string>
+    <string name="book_debt_search">未还书籍查询</string>
+    <string name="price_uint">元</string>
+    <string name="details">详情</string>
+    <string name="already_debt">已欠</string>
+    <string name="head_photo">头像</string>
+    <string name="nickname">昵称</string>
+    <string name="sex">性别</string>
+    <string name="interest">兴趣</string>
+    <string name="academy">学院</string>
+    <string name="profession">专业</string>
+
+    <string name="college">学"&#160;""&#160;"校</string>
+    <string name="number_id">学"&#160;""&#160;"号</string>
+    <string name="bind_password_space">密"&#160;""&#160;"码</string>
+    <string name="select_bind_college">选择需要绑定的学校</string>
+    <string name="input_account">请输入学校账号</string>
+    <string name="input_password">请输入对应密码</string>
+    <string name="bind">绑定</string>
+
+    <string name="identify_info">身份信息</string>
+    <string name="information_success">绑定成功</string>
+    <string name="information_perfect">完善信息</string>
+    <string name="colleges">学校</string>
+    <string name="number_ids">学号</string>
+    <string name="names">姓名</string>
+    <string name="identifys">身份</string>
+    <string name="enter_college_time">入学年份</string>
+
+    <string name="now_password">当前密码</string>
+    <string name="enter_now_passwd">输入当前密码</string>
+    <string name="repeat_new_passwd">重复新密码</string>
+
+    <string name="loading">正在加载中…</string>
+    <string name="saoma">扫码登录</string>
+    <string name="search">搜索</string>
+    <string name="recommend">荐购</string>
+
+    <string name="borrow_number">借阅数量</string>
+    <string name="enter_library_number">进馆次数</string>
+    <string name="order_number">预约数量</string>
+
+
+
+
+    <!--zxing-->
+    <string name="app_picker_name">Applications</string>
+    <string name="bookmark_picker_name">Bookmarks</string>
+    <string name="button_add_calendar">Add to calendar</string>
+    <string name="button_add_contact">Add contact</string>
+    <string name="button_book_search">Book Search</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_custom_product_search">Custom search</string>
+    <string name="button_dial">Dial number</string>
+    <string name="button_email">Send email</string>
+    <string name="button_get_directions">Get directions</string>
+    <string name="button_mms">Send MMS</string>
+    <string name="button_ok">OK</string>
+    <string name="button_open_browser">Open browser</string>
+    <string name="button_product_search">Product search</string>
+    <string name="button_search_book_contents">Search contents</string>
+    <string name="button_share_app">Application</string>
+    <string name="button_share_bookmark">Bookmark</string>
+    <string name="button_share_by_email">Share via email</string>
+    <string name="button_share_by_sms">Share via SMS</string>
+    <string name="button_share_clipboard">Clipboard</string>
+    <string name="button_share_contact">Contact</string>
+    <string name="button_show_map">Show map</string>
+    <string name="button_sms">Send SMS</string>
+    <string name="button_web_search">Web search</string>
+    <string name="button_wifi">Connect to Network</string>
+    <string name="contents_contact">Contact info</string>
+    <string name="contents_email">Email address</string>
+    <string name="contents_location">Geographic coordinates</string>
+    <string name="contents_phone">Phone number</string>
+    <string name="contents_sms">SMS address</string>
+    <string name="contents_text">Plain text</string>
+    <string name="history_clear_text">Clear history</string>
+    <string name="history_clear_one_history_text">Clear</string>
+    <string name="history_email_title">Barcode Scanner history</string>
+    <string name="history_empty">Empty</string>
+    <string name="history_empty_detail">No barcode scans have been recorded</string>
+    <string name="history_send">Send history</string>
+    <string name="history_title">History</string>
+    <string name="menu_encode_mecard">Use MECARD</string>
+    <string name="menu_encode_vcard">Use vCard</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_history">History</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_share">Share</string>
+    <string name="msg_bulk_mode_scanned">Bulk mode: barcode scanned and saved</string>
+    <string name="msg_camera_framework_bug">Sorry, the Android camera encountered a problem. You may need to restart the device.</string>
+    <string name="msg_default_format">Format</string>
+    <string name="msg_default_meta">Metadata</string>
+    <string name="msg_default_mms_subject">Hi</string>
+    <string name="msg_default_status">Place a barcode inside the viewfinder rectangle to scan it.</string>
+    <string name="msg_default_time">Time</string>
+    <string name="msg_default_type">Type</string>
+    <string name="msg_encode_contents_failed">Could not encode a barcode from the data provided.</string>
+    <string name="msg_error">Error</string>
+    <string name="msg_google_books">Google</string>
+    <string name="msg_google_product">Google</string>
+    <string name="msg_intent_failed">Sorry, the requested application could not be launched. The barcode contents may be invalid.</string>
+    <string name="msg_invalid_value">Invalid value</string>
+    <string name="msg_redirect">Redirect</string>
+    <string name="msg_sbc_book_not_searchable">Sorry, this book is not searchable.</string>
+    <string name="msg_sbc_failed">Sorry, the search encountered a problem.</string>
+    <string name="msg_sbc_no_page_returned">No page returned</string>
+    <string name="msg_sbc_page">Page</string>
+    <string name="msg_sbc_results">Results</string>
+    <string name="msg_sbc_searching_book">Searching book\u2026</string>
+    <string name="msg_sbc_snippet_unavailable">Snippet not available</string>
+    <string name="msg_share_explanation">You can share data by displaying a barcode on your screen and scanning it with another phone.</string>
+    <string name="msg_share_text">Or type some text and press Enter</string>
+    <string name="msg_sure">Are you sure?</string>
+    <string name="msg_unmount_usb">Sorry, the SD card is not accessible.</string>
+    <string name="preferences_actions_title">When a barcode is found\u2026</string>
+    <string name="preferences_auto_focus_title">Use auto focus</string>
+    <string name="preferences_auto_open_web_title">Open web pages automatically</string>
+    <string name="preferences_bulk_mode_summary">Scan and save many barcodes continuously</string>
+    <string name="preferences_bulk_mode_title">Bulk scan mode</string>
+    <string name="preferences_copy_to_clipboard_title">Copy to clipboard</string>
+    <string name="preferences_custom_product_search_summary" formatted="false">Substitutions: %s = contents, %f = format, %t = type</string>
+    <string name="preferences_custom_product_search_title">Custom search URL</string>
+    <string name="preferences_decode_1D_industrial_title">1D Industrial</string>
+    <string name="preferences_decode_1D_product_title">1D Product</string>
+    <string name="preferences_decode_Aztec_title">Aztec</string>
+    <string name="preferences_decode_Data_Matrix_title">Data Matrix</string>
+    <string name="preferences_decode_PDF417_title">PDF417 (尾)</string>
+    <string name="preferences_decode_QR_title">QR Codes</string>
+    <string name="preferences_device_bug_workarounds_title">Device Bug Workarounds</string>
+    <string name="preferences_disable_barcode_scene_mode_title">No barcode scene mode</string>
+    <string name="preferences_disable_continuous_focus_summary">Use only standard focus mode</string>
+    <string name="preferences_disable_continuous_focus_title">No continuous focus</string>
+    <string name="preferences_disable_exposure_title">No exposure</string>
+    <string name="preferences_disable_metering_title">No metering</string>
+    <string name="preferences_front_light_summary">Improves scanning in low light on some phones, but may cause glare. Does not work on all phones.</string>
+    <string name="preferences_front_light_title">Use front light</string>
+    <string name="preferences_front_light_auto">Automatic</string>
+    <string name="preferences_front_light_off">Off</string>
+    <string name="preferences_front_light_on">On</string>
+    <string name="preferences_general_title">General settings</string>
+    <string name="preferences_history_summary">Store your scans in History</string>
+    <string name="preferences_history_title">Add to History</string>
+    <string name="preferences_invert_scan_title">Invert scan</string>
+    <string name="preferences_invert_scan_summary">Scan for white barcodes on black background. Not available on some devices.</string>
+    <string name="preferences_name">Settings</string>
+    <string name="preferences_orientation_title">No automatic rotation</string>
+    <string name="preferences_play_beep_title">Beep</string>
+    <string name="preferences_remember_duplicates_summary">Store multiple scans of the same barcode in History</string>
+    <string name="preferences_remember_duplicates_title">Remember duplicates</string>
+    <string name="preferences_result_title">Result settings</string>
+    <string name="preferences_scanning_title">When scanning for barcodes, decode\u2026</string>
+    <string name="preferences_search_country">Search country</string>
+    <string name="preferences_supplemental_summary">Try to retrieve more information about the barcode contents</string>
+    <string name="preferences_supplemental_title">Retrieve more info</string>
+    <string name="preferences_vibrate_title">Vibrate</string>
+    <string name="result_address_book">Found contact info</string>
+    <string name="result_calendar">Found calendar event</string>
+    <string name="result_email_address">Found email address</string>
+    <string name="result_geo">Found geographic coordinates</string>
+    <string name="result_isbn">Found book</string>
+    <string name="result_product">Found product</string>
+    <string name="result_sms">Found SMS address</string>
+    <string name="result_tel">Found phone number</string>
+    <string name="result_text">Found plain text</string>
+    <string name="result_uri">Found URL</string>
+    <string name="result_wifi">Found WLAN Configuration</string>
+    <string name="sbc_name">Google Book Search</string>
+    <string name="wifi_changing_network">Requesting connection to network\u2026</string>
+
+    <string name="home_page">首页</string>
+    <string name="library">馆藏</string>
+    <string name="order">预约</string>
+    <string name="find">发现</string>
+    <string name="mine">我的</string>
+    <string name="set_passwd">设置新密码</string>
+
+    <string name="scan_text">将二维码放入框内, 即可自动扫描</string>
+    <string name="scanner_failure">扫描失败</string>
+    <string name="scanner_result">扫描结果</string>
+    <string name="allow_login">允许登录</string>
+    <string name="login_success">登录成功</string>
+    <string name="login_fail">登录失败</string>
+    <string name="username">用户名</string>
+    <string name="mobile">手机</string>
+    <string name="password">密码</string>
+    <string name="certify_code">验证码</string>
+    <string name="net_fail">网络连接失败</string>
+
+    <string name="sync_book_shelf">登录账号以同步书架</string>
+    <string name="go_to_library">去图书馆找书</string>
+    <string name="add_shelf">加入书架</string>
+    <string name="start_reading">立即阅读</string>
+    <string name="i_recommend">我要荐购</string>
+
+    <string name="data_manage">资料管理</string>
+    <string name="message_manager">消息管理</string>
+    <string name="apply_recognize">申请认证</string>
+    <string name="safe_setting">安全设置</string>
+
+    <string name="none">无</string>
+    <string name="writing_info">作品信息</string>
+    <string name="show_total">展开全部</string>
+    <string name="book_tag">图书标签</string>
+    <string name="book_info">图书信息</string>
+    <string name="read_link">阅读链接</string>
+
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="share">分享</string>
+    <string name="talk">评论</string>
+    <string name="i_want_talk">我要评论</string>
+    <string name="look_all_talk">查看所有评论</string>
+    <string name="commit_comment_on_this">在此发表评论~</string>
+    <string name="rating">评分：</string>
+    <string name="talk_sccuess">评论成功</string>
+    <string name="talk_failure">评论失败</string>
+
+    <string name="book_search_hint">书名、作品、出版社</string>
+    <string name="recommend_list">荐购书单</string>
+    <string name="you_have_recommend">您已推荐</string>
+    <string name="recommend_success">推荐成功</string>
+
+    <string name="not_find_result">未搜索到结果</string>
+    <string name="identify">认证</string>
+    <string name="apply_success">申请成功</string>
+    <string name="apply_failure">申请失败</string>
+
+    <string name="message">消息</string>
+    <string name="take_photo">拍照</string>
+    <string name="choose_photo">从相册选择</string>
+
+
+
+
+</resources>

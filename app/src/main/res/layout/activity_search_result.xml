@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.wangjinchao_pc.library.activity.BookSearchResultActivity">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorHeight="0dp"
+        android:layout_alignParentTop="true"
+        app:tabTextAppearance="@style/CustomTabLayoutTextAppearance"
+        app:tabSelectedTextColor="@color/tab_select_text"
+        app:tabTextColor="@color/tab_unselect_tex"
+        app:tabIndicatorColor="@color/tab_indicator_color"
+        app:tabMode="fixed"
+        app:tabMaxWidth="0dp"
+        app:tabGravity="fill"
+        >
+    </android.support.design.widget.TabLayout>
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/dividerColor"
+        android:layout_below="@id/tabLayout"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/line"
+        android:background="@color/colorWhite"
+        >
+
+    </android.support.v4.view.ViewPager>
+
+
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:scrollbars="none">
+    <LinearLayout
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_divide"
+            android:background="@color/dividerColor"
+            android:layout_marginTop="@dimen/mine_layout_top"/>
+        <LinearLayout
+            android:id="@+id/headset_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/body_desktop"
+            android:orientation="horizontal"
+            style="@style/item"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/normal_text"
+                android:foregroundGravity="center"
+                android:layout_gravity="center"
+                android:text="@string/head_photo"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/head_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
+                    android:foregroundGravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/headPhoto"
+                    android:layout_width="@dimen/mine_information_photo_size"
+                    android:layout_height="@dimen/mine_information_photo_size"
+                    android:scaleType="fitXY"
+                    fresco:placeholderImage="@mipmap/headphoto"
+                    fresco:roundAsCircle="true"
+                    fresco:roundingBorderWidth="@dimen/roundingBorderWidth"
+                    fresco:roundingBorderColor="@color/secondaryText"
+                    android:layout_toLeftOf="@id/head_arrow"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:background="@color/dividerColor"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/activity_information_part"></include>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

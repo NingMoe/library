@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/start_zxing"
+        android:title="@string/saoma"
+        android:icon="@drawable/zxing_selector"
+        app:showAsAction="always"
+        ></item>
+    <item
+        android:id="@+id/search"
+        android:title="@string/search"
+        android:icon="@drawable/zxing_search_selector"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/start_recommend"
+        android:title="@string/recommend"
+        app:showAsAction="always"
+        >
+    </item>
+    <item
+        android:id="@+id/start_notice"
+        android:title="@string/notice"
+        app:actionLayout="@layout/zxing_badge"
+        app:showAsAction="always"
+        ></item>
+
+</menu>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/debt_background">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="@dimen/warning_imt_size"
+            android:layout_height="@dimen/warning_imt_size"
+            app:srcCompat="@drawable/ic_warning_black_24dp"
+            android:backgroundTint="@color/colorWhite"
+            android:layout_margin="@dimen/warning_img_margin"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/debt_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/normal_white_big_text"
+                android:text="10.02"/>
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/normal_white_big_text"
+                android:text="@string/price_uint"/>
+        </LinearLayout>
+    </LinearLayout>
+        <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/normal_text"
+            android:background="@color/grey2"
+            android:padding="@dimen/debt_details_padding"
+            android:text="@string/details"/>-->
+</RelativeLayout>

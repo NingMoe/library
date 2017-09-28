@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyRatioLinearLaout">
+        <attr name="ratio_width_to_height" format="float"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="MoreTextStyle">
+    <attr name="textSize" format="dimension"/>
+    <attr name="textColor" format="color"/>
+    <attr name="maxLine" format="integer"/>
+    <attr name="text" format="string"/>
+
+</declare-styleable>
+</resources>

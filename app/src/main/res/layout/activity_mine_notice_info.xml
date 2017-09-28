@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/activity_main_margin"
+        android:text="      各位读者：为暑假开学后实现“图书全开架借阅，读者无障碍进馆” 服务管理模式，需对旧书进行技术改造。因此，图书馆决定自2014年6月20日至2014年9月1日停止外借图书，读者手中所借图书务必在7月12日前归还图书馆。这一工作进行给读者造成的暂时不便敬请读者谅解。谢谢您的配合与支持！
+
+
+                                                                                                            图书馆
+                                                                                                                                                                                                                                                                                                                                                                                                      2015年8月24日 "/>
+    <Button
+        android:id="@+id/ok"
+        style="@style/long_button_style.register_grey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/btn"
+        android:layout_marginRight="@dimen/btn"
+        android:layout_marginBottom="@dimen/layout_top_padding"
+        android:text="@string/button_ok"/>
+
+</LinearLayout>
