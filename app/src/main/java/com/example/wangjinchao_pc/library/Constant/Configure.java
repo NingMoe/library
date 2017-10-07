@@ -14,6 +14,7 @@ public class Configure {
     public static final String BASEURL = "http://106.14.120.137:8080/SmartLibrary/";
     public static final String INDENTIFYURLBASE_SCHOOLLIST="http://update.unifound.net/";
     public static final String INDENTIFYURL_SUFFIX="appInterface/login.aspx";
+    public static final String ORDERURL_SUFFIX="ClientWeb/m/ic2/default.aspx";
 
     public static final String PHOTOURL_PREX=BASEURL+"upload/";
 

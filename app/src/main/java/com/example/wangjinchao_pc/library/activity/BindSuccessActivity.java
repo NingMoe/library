@@ -13,6 +13,7 @@ import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
 import com.example.wangjinchao_pc.library.api.BindCollegeApi;
 import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.mine.BindParam;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
@@ -26,9 +27,11 @@ import butterknife.OnClick;
  * Created by wangjinchao-PC on 2017/7/13.
  */
 
-public class BindSuccessActivity extends ToolbarActivity implements View.OnClickListener,HttpOnNextListener {
-    public static void start(Context context){
+public class BindSuccessActivity extends ToolbarActivity implements View.OnClickListener {
+    public static final String BINDPARAM="bindparam";
+    public static void start(Context context, BindParam bindParam){
         Intent intent =new Intent(context,BindSuccessActivity.class);
+        intent.putExtra(BINDPARAM,bindParam);
         context.startActivity(intent);
     }
 
@@ -52,18 +55,15 @@ public class BindSuccessActivity extends ToolbarActivity implements View.OnClick
     @BindView(R.id.next)
     Button next;
 
-    //网络请求接口
-    private HttpManager httpManager;
-    private BindCollegeApi bindCollegeApi;
+    private BindParam bindParam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bind_success);
         ButterKnife.bind(this);
+        bindParam=(BindParam) getIntent().getSerializableExtra(BINDPARAM);
         initActionBar();
-        httpManager=new HttpManager(this,this);
-
         init();
         next.setOnClickListener(this);
     }
@@ -77,6 +77,16 @@ public class BindSuccessActivity extends ToolbarActivity implements View.OnClick
     }
 
     private void init(){
+        if(bindParam!=null){
+            college.setText(bindParam.getSchoolName());
+            number.setText(bindParam.getStudentid());
+            name.setText(bindParam.getTrueName());
+            academy.setText(bindParam.getCollegeName());
+            prodession.setText(bindParam.getMajorName());
+            sex.setText(bindParam.getSex());
+            identify.setText(bindParam.getIdent());
+            time.setText(bindParam.getEnrolYear());
+        }
         college.setEnabled(false);
         number.setEnabled(false);
         name.setEnabled(false);
@@ -94,31 +104,7 @@ public class BindSuccessActivity extends ToolbarActivity implements View.OnClick
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.next:
-                bindCollegeApi=new BindCollegeApi();
-                httpManager.doHttpDeal(bindCollegeApi);
-                /*MainActivity.start(this);*/
+                MainActivity.start(this);
         }
-    }
-
-    @Override
-    public void onNext(String resulte, String method) {
-        if(method.equals(bindCollegeApi.getMethod())){
-            BaseResultEntity<String> result = JSONObject.parseObject(resulte, new
-                    TypeReference<BaseResultEntity<String>>() {
-                    });
-
-            Utils.showToast("成功");
-            MainActivity.start(this);
-        }
-    }
-
-    @Override
-    public void onError(ApiException e, String method) {
-        if(method.equals(bindCollegeApi.getMethod())){
-            Utils.showToast("失败");
-        }
-
-        //————————————————
-        MainActivity.start(this);
     }
 }

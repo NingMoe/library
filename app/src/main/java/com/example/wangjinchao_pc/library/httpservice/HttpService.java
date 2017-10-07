@@ -101,12 +101,19 @@ public interface HttpService {
     //绑定学校
     @GET("bindCollege/{token},{college},{no},{password}")
     Observable<String>bindCollege(@Query("token")String token,@Query("college")String college,@Query("no")String no,@Query("password")String password);
+    //绑定个人信息
+    @GET("ident/addIdent")
+    Observable<String>bindCollegeInfo(@Query("account")String account,@Query("schoolName")String schoolName,@Query("studentid")String studentid,@Query("trueName")String trueName,
+                                      @Query("collegeName")String collegeName,@Query("majorName")String majorName,@Query("sex")String sex,@Query("ident")String ident,@Query("enrolYear")String enrolYear,@Query("orderUrl")String orderUrl);
+    //获取预约界面
+    @GET("ident/getOneIdent")
+    Observable<String>getOrderUrl(@Query("account")String account);
     //绑定后修改信息——信息不完全
     @GET("modifyInformation/{token},{sex}")
     Observable<String>modifyInformation(@Query("token")String token,@Query("sex")String sex);
     //密码修改
-    @GET("setPassword/{token},{nowPassword},{newPassword}")
-    Observable<String>setPassword(@Query("token")String token,@Query("nowPassword")String nowPassword,@Query("newPassword")String newPassword);
+    @GET("password/updatepassword")
+    Observable<String>modifyPassword(@Query("account")String account,@Query("password")String password,@Query("oldpassword")String oldpassword);
     //退出登录
     @GET("logout/{token}")
     Observable<String>logout(@Query("token")String token);

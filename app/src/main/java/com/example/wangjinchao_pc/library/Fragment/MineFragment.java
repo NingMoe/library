@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.activity.BindCollegeActivity;
 import com.example.wangjinchao_pc.library.activity.InformationManageActivity;
+import com.example.wangjinchao_pc.library.activity.LoginActivity;
 import com.example.wangjinchao_pc.library.activity.ModifyPasswdActivity;
 import com.example.wangjinchao_pc.library.activity.SetInformationActivity;
 import com.example.wangjinchao_pc.library.application.MyApplication;
@@ -69,7 +70,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
     private void initView(){
         Logger.d(this.getClass(),"initView");
         Glide.with(this)
-                .load(PHOTOURL_PREX+ MyApplication.getToken().getAccount()+".jpg")
+                .load(PHOTOURL_PREX+ MyApplication.getUser().getAccount()+".jpg")
                 .crossFade(0)
                 .placeholder(R.mipmap.headphoto)
                 .into(headPhoto);
@@ -112,7 +113,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
                 /*ModifyPasswdActivity.start(getContext());*/
                 break;
             case R.id.logout:
-                //RecommendActivity.start(view.getContext());
+                MyApplication.getInstance().closeAllActivityBefore();
+                this.getActivity().finish();
                 break;
         }
     }

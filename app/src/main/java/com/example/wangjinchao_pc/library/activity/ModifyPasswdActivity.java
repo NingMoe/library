@@ -9,11 +9,13 @@ import android.widget.EditText;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
+import com.example.wangjinchao_pc.library.api.ModifyPasswordApi;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
-import com.example.wangjinchao_pc.library.api.SetPasswordApi;
-import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity2;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
@@ -45,14 +47,16 @@ public class ModifyPasswdActivity extends ToolbarActivity implements View.OnClic
 
     //网络请求接口
     private HttpManager httpManager;
-    private SetPasswordApi setPasswordApi;
+    private ModifyPasswordApi modifyPasswordApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passwd_reset);
         ButterKnife.bind(this);
+
         httpManager=new HttpManager(this,this);
+        modifyPasswordApi=new ModifyPasswordApi();
 
         initActionBar();
     }
@@ -69,8 +73,8 @@ public class ModifyPasswdActivity extends ToolbarActivity implements View.OnClic
         switch(view.getId()){
             case R.id.ok:
                 if(true){
-                    setPasswordApi=new SetPasswordApi(MyApplication.getToken().getAccount(),now_password.getText().toString(),new_password.getText().toString());
-                    httpManager.doHttpDeal(setPasswordApi);
+                    modifyPasswordApi.setAllParam(MyApplication.getUser().getAccount(),new_password.getText().toString(),now_password.getText().toString());
+                    httpManager.doHttpDeal(modifyPasswordApi);
                 }
                 break;
         }
@@ -78,21 +82,35 @@ public class ModifyPasswdActivity extends ToolbarActivity implements View.OnClic
 
     @Override
     public void onNext(String resulte, String method) {
-        if(method.equals(setPasswordApi.getMethod())){
-            BaseResultEntity<String> result = JSONObject.parseObject(resulte, new
-                    TypeReference<BaseResultEntity<String>>() {
-                    });
+        if(method.equals(modifyPasswordApi.getMethod())){
+            BaseResultEntity2<String> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity2<String>>() {
+                        });
+            }catch (Exception e){
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
+            }
 
-            Utils.showToast("修改成功");
-            MainActivity.start(this);
+            if(result!=null) {
+                if(result.getResult()== Constant.SUCCESS){
+                    Utils.showToast("修改成功");
+                    this.finish();
+                }
+                else {
+                    Utils.showErrorMsgToast(result.getErr_msg(),"修改失败");
+                }
+            }
         }
     }
 
     @Override
     public void onError(ApiException e, String method) {
-        if(method.equals(setPasswordApi.getMethod())){
+        if(method.equals(modifyPasswordApi.getMethod())){
             Utils.showToast("修改失败");
         }
-        MainActivity.start(this);
     }
 }

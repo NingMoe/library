@@ -369,6 +369,13 @@
         <item name="android:textColor">@color/normal_text</item>
     </style>
 
+    <style name="normal_hint_text_red">
+        <item name="android:textSize">@dimen/normal_text</item>
+        <item name="android:textColorHint">@color/red1</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/normal_text</item>
+    </style>
+
     <!--<style name="normal_small_text">
         <item name="android:textSize">@dimen/normal_small_text</item>
         <item name="android:textColor">@color/colorBlack</item>

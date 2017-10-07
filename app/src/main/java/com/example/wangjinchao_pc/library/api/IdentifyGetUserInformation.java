@@ -2,6 +2,7 @@ package com.example.wangjinchao_pc.library.api;
 
 import com.example.wangjinchao_pc.library.Constant.Configure;
 import com.example.wangjinchao_pc.library.httpservice.HttpIdentifyService;
+import com.example.wangjinchao_pc.library.util.Utils;
 import com.retrofit_rx.Api.BaseApi;
 
 import retrofit2.Retrofit;
@@ -46,13 +47,6 @@ public class IdentifyGetUserInformation extends BaseApi{
         this.logonname = logonname;
         this.password = password;
         this.schoolURL = schoolURL;
-        int i=0,j=0;
-        for(i=0;i<schoolURL.length();i++){
-            if(schoolURL.charAt(i)=='/'){
-                if(j<2) j++;
-                else break;
-            }
-        }
-        setBaseUrl(schoolURL.substring(0,i+1));
+        setBaseUrl(Utils.getPrefixUrl(schoolURL));
     }
 }

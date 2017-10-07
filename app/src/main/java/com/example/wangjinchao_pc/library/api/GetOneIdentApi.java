@@ -1,5 +1,6 @@
 package com.example.wangjinchao_pc.library.api;
 
+import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.httpservice.HttpService;
 import com.retrofit_rx.Api.BaseApi;
 
@@ -7,23 +8,14 @@ import retrofit2.Retrofit;
 import rx.Observable;
 
 /**
- * Created by wangjinchao-PC on 2017/7/30.
+ * Created by wangjinchao-PC on 2017/10/7.
  */
 
-public class SetPasswordApi extends BaseApi {
-    String token;
-    String nowPassword;
-    String newPassword;
+public class GetOneIdentApi extends BaseApi{
+    private String account;
 
-    public SetPasswordApi() {
+    public GetOneIdentApi() {
         init();
-    }
-
-    public SetPasswordApi(String token, String nowPassword, String newPassword) {
-        init();
-        this.token = token;
-        this.nowPassword = nowPassword;
-        this.newPassword = newPassword;
     }
 
     void init(){
@@ -32,12 +24,17 @@ public class SetPasswordApi extends BaseApi {
         //取消加载框
         setShowProgress(false);
 
-        setMethod("setPassword");
+        setMethod("GetOneIdentApi");
     }
 
     @Override
     public Observable getObservable(Retrofit retrofit) {
         HttpService httpService = retrofit.create(HttpService.class);
-        return httpService.setPassword(token,nowPassword,newPassword);
+        return httpService.getOrderUrl(account);
     }
+
+    public void setAllParam(String account){
+        this.account=account;
+    }
+
 }

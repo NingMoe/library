@@ -14,6 +14,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.example.wangjinchao_pc.library.Constant.Configure;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.BaseActivity;
 import com.example.wangjinchao_pc.library.application.MyApplication;
@@ -39,6 +40,22 @@ public class Utils {
             data.add(map);
         }
         return data;
+    }
+
+    public static String jointOrderUrl(String schoolURL){
+        return getPrefixUrl(schoolURL)+ Configure.ORDERURL_SUFFIX;
+
+    }
+
+    public static String getPrefixUrl(String schoolURL){
+        int i=0,j=0;
+        for(i=0;i<schoolURL.length();i++){
+            if(schoolURL.charAt(i)=='/'){
+                if(j<2) j++;
+                else break;
+            }
+        }
+        return schoolURL.substring(0,i+1);
     }
 
     public static void showToast(String text){

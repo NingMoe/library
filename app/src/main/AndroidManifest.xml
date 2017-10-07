@@ -32,6 +32,7 @@
         <activity android:name=".activity.CommentActivity"></activity>
         <activity android:name=".activity.DebtDetailActivity"></activity>
         <activity android:name=".activity.RecommendActivity"></activity>
+        <activity android:name=".activity.OrderActivity"></activity>
         <activity android:name=".activity.CropActivity"
             android:theme="@style/AppTheme.Base"></activity>
         <activity android:name=".activity.ShowPhotoActivity"></activity>

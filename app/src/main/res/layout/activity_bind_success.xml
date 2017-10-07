@@ -62,7 +62,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                style="@style/normal_hint_text"
+                style="@style/normal_hint_text_red"
                 android:paddingTop="@dimen/bind_padding2"
                 android:paddingBottom="@dimen/bind_padding2"
                 android:enabled="false"
@@ -103,7 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                style="@style/normal_hint_text"
+                style="@style/normal_hint_text_red"
                 android:paddingTop="@dimen/bind_padding2"
                 android:paddingBottom="@dimen/bind_padding2"
                 android:hint="212033324223"/>
@@ -143,7 +143,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                style="@style/normal_hint_text"
+                style="@style/normal_hint_text_red"
                 android:paddingTop="@dimen/bind_padding2"
                 android:paddingBottom="@dimen/bind_padding2"
                 android:hint="王小毛"/>
@@ -183,7 +183,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                style="@style/normal_hint_text"
+                style="@style/normal_hint_text_red"
                 android:paddingTop="@dimen/bind_padding2"
                 android:paddingBottom="@dimen/bind_padding2"
                 android:textColorHint="@color/red1"
@@ -224,7 +224,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                style="@style/normal_hint_text"
+                style="@style/normal_hint_text_red"
                 android:paddingTop="@dimen/bind_padding2"
                 android:paddingBottom="@dimen/bind_padding2"
                 android:textColorHint="@color/red1"
@@ -265,7 +265,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                style="@style/normal_hint_text"
+                style="@style/normal_hint_text_red"
                 android:paddingTop="@dimen/bind_padding2"
                 android:paddingBottom="@dimen/bind_padding2"
                 android:hint="男"/>
@@ -305,7 +305,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                style="@style/normal_hint_text"
+                style="@style/normal_hint_text_red"
                 android:paddingTop="@dimen/bind_padding2"
                 android:paddingBottom="@dimen/bind_padding2"
                 android:hint="本科生"/>
@@ -346,7 +346,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="10"
                 android:layout_height="wrap_content"
-                style="@style/normal_hint_text"
+                style="@style/normal_hint_text_red"
                 android:paddingTop="@dimen/bind_padding2"
                 android:paddingBottom="@dimen/bind_padding2"
                 android:textColorHint="@color/red1"
@@ -365,6 +365,7 @@
             android:layout_marginTop="@dimen/btn_top"
             android:layout_marginLeft="@dimen/btn_left"
             android:layout_marginRight="@dimen/btn_right"
+            android:layout_marginBottom="@dimen/btn_bottom"
             android:text="@string/confirm"/>
 
     </LinearLayout>

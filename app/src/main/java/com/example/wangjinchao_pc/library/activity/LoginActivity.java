@@ -13,11 +13,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
+import com.example.wangjinchao_pc.library.api.GetOneIdentApi;
 import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
 import com.example.wangjinchao_pc.library.enity.Token;
 import com.example.wangjinchao_pc.library.api.GetUserInformationApi;
 import com.example.wangjinchao_pc.library.api.LoginApi;
+import com.example.wangjinchao_pc.library.enity.domain.Ident;
 import com.example.wangjinchao_pc.library.enity.domain.User;
 import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
 import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity2;
@@ -60,12 +62,18 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
     //网络请求接口
     private LoginApi loginApi;
     private GetUserInformationApi getUserInformationApi;
+    private GetOneIdentApi getOneIdentApi;
     private HttpManager httpManager;
+    private HttpManager httpManager2;
 
     private String contentOfAccount="";
     private String contentOfPassword="";
 
     private boolean loginBtnEnable=true;
+
+    //1成功，2失败
+    private int dataOk1=0;
+    private int dataOk2=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +98,10 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
      */
     private void initHttp(){
         httpManager=new HttpManager(this,this);
+        httpManager2=new HttpManager(this,this);
         loginApi=new LoginApi();
         getUserInformationApi=new GetUserInformationApi();
+        getOneIdentApi=new GetOneIdentApi();
     }
 
     private void initData(){
@@ -149,8 +159,11 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
             if(result!=null) {
                 if(result.getResult()== Constant.SUCCESS){
                     //成功后再获取个人信息
+                    MyApplication.setToken(new Token(contentOfAccount,contentOfPassword));
                     getUserInformationApi.setAllParam(contentOfAccount);
                     httpManager.doHttpDeal(getUserInformationApi);
+                    getOneIdentApi.setAllParam(contentOfAccount);
+                    httpManager2.doHttpDeal(getOneIdentApi);
                 }
                 else {
                     Utils.showErrorMsgToast(result.getErr_msg(),"登陆失败");
@@ -164,8 +177,12 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
                         TypeReference<BaseResultEntity<User>>() {
                         });
             }catch (Exception e){
-                loginBtnEnable=true;
-
+                dataOk1=2;
+                if(dataOk2!=0){
+                    dataOk1=0;
+                    dataOk2=0;
+                    loginBtnEnable=true;
+                }
                 e.printStackTrace();
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
@@ -174,16 +191,57 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
             if(result!=null) {
                 if(result.getStatus()== Constant.SUCCESS){
                     MyApplication.setUser(result.getData());
-                    MyApplication.setToken(new Token(contentOfAccount,contentOfPassword));
-                    Utils.showToast("登陆成功");
-                    MainActivity.start(this);
+                    dataOk1=1;
                 }
                 else {
-                    Utils.showErrorMsgToast(result.getMessage(),"登陆失败");
+                    dataOk1=2;
                 }
+            }else
+                dataOk1=2;
+        }else if(method.equals(getOneIdentApi.getMethod())){
+            BaseResultEntity<Ident> result=null;
+            try{
+                result = JSONObject.parseObject(resulte, new
+                        TypeReference<BaseResultEntity<Ident>>() {
+                        });
+            }catch (Exception e){
+                dataOk2=2;
+                if(dataOk1!=0){
+                    dataOk1=0;
+                    dataOk2=0;
+                    loginBtnEnable=true;
+                }
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
+                return;
             }
-            loginBtnEnable=true;
+            if(result!=null) {
+                if(result.getStatus()== Constant.SUCCESS){
+                    MyApplication.setIdent(result.getData());
+                    dataOk2=1;
+                }
+                else {
+                    dataOk2=2;
+                }
+            }else
+                dataOk2=2;
         }
+        synchronized (this){
+            if(dataOk1==1&&dataOk2==1){
+                dataOk1=0;
+                dataOk2=0;
+                Utils.showToast("登陆成功");
+                loginBtnEnable=true;
+                MainActivity.start(this);
+            }else if(dataOk1==2||dataOk2==2){
+                dataOk1=0;
+                dataOk2=0;
+                loginBtnEnable=true;
+                Utils.showToast("登陆失败");
+            }
+        }
+
     }
 
     @Override

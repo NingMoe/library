@@ -7,20 +7,38 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.example.wangjinchao_pc.library.Constant.Constant;
 import com.example.wangjinchao_pc.library.R;
+import com.example.wangjinchao_pc.library.api.BindCollegeApi;
+import com.example.wangjinchao_pc.library.api.BindCollegeInfoApi;
+import com.example.wangjinchao_pc.library.api.IdentifyGetSchoolListApi;
+import com.example.wangjinchao_pc.library.api.IdentifyGetUserInformation;
+import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
+import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
+import com.example.wangjinchao_pc.library.enity.mine.BindParam;
 import com.example.wangjinchao_pc.library.enity.other.SchoolURL;
 import com.example.wangjinchao_pc.library.enity.other.UNIACCOUNT;
 import com.example.wangjinchao_pc.library.enity.picker.Category;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.ResourceUtils;
+import com.example.wangjinchao_pc.library.util.Utils;
 import com.qqtheme.framework.picker.SinglePicker;
+import com.retrofit_rx.exception.ApiException;
+import com.retrofit_rx.http.HttpManager;
+import com.retrofit_rx.listener.HttpOnNextListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,7 +52,7 @@ import butterknife.OnClick;
  * Created by wangjinchao-PC on 2017/7/13.
  */
 
-public class BindPerfectActivity extends ToolbarActivity implements View.OnClickListener,View.OnFocusChangeListener{
+public class BindPerfectActivity extends ToolbarActivity implements View.OnClickListener,HttpOnNextListener{
 
     public static final String ACCOUNTINFO="accountinfo";
     public static final String SCHOOLURL="schoolurl";
@@ -65,14 +83,20 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
     EditText time;
     @BindView(R.id.next)
     Button next;
-
     private UNIACCOUNT uniaccount;
     private SchoolURL schoolURL;
+
+    //传递绑定参数
+    private BindParam bindParam;
 
     List<Category> sexList=null;
     List<Category> identifyList=null;
 
     private int[] status={0,0,0,0,0,0,0,0};
+
+    //网络请求接口
+    private HttpManager httpManager;
+    private BindCollegeInfoApi bindCollegeInfoApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +104,7 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
         setContentView(R.layout.activity_bind_perfect);
         ButterKnife.bind(this);
         initActionBar();
+        initHttp();
         initEditListener();
         uniaccount=(UNIACCOUNT) getIntent().getSerializableExtra(ACCOUNTINFO);
         schoolURL=(SchoolURL) getIntent().getSerializableExtra(SCHOOLURL);
@@ -95,17 +120,151 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
         setDisplayHomeAsUpEnabled(true);
     }
     /**
+     * 初始化网络相关对象
+     */
+    private void initHttp(){
+        httpManager=new HttpManager(this,this);
+        bindCollegeInfoApi=new BindCollegeInfoApi();
+    }
+    /**
      * 初始化监听
      */
     private void initEditListener(){
-        college.setOnFocusChangeListener(this);
-        number.setOnFocusChangeListener(this);
-        name.setOnFocusChangeListener(this);
-        academy.setOnFocusChangeListener(this);
-        profession.setOnFocusChangeListener(this);
-        sex.setOnFocusChangeListener(this);
-        identify.setOnFocusChangeListener(this);
-        time.setOnFocusChangeListener(this);
+        college.setClickable(false);
+        number.setClickable(false);
+
+        name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(checkEditTextContent(charSequence.toString(),2)){
+                    status[2]=1;
+                    name.setTextColor(getResources().getColor(R.color.normal_text));
+                }
+                else{
+                    status[2]=2;
+                    name.setTextColor(getResources().getColor(R.color.red1));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        academy.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(checkEditTextContent(charSequence.toString(),3)){
+                    status[3]=1;
+                    academy.setTextColor(getResources().getColor(R.color.normal_text));
+                }
+                else{
+                    status[3]=2;
+                    academy.setTextColor(getResources().getColor(R.color.red1));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        profession.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(checkEditTextContent(charSequence.toString(),4)){
+                    status[4]=1;
+                    profession.setTextColor(getResources().getColor(R.color.normal_text));
+                }
+                else{
+                    status[4]=2;
+                    profession.setTextColor(getResources().getColor(R.color.red1));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        sex.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(checkEditTextContent(charSequence.toString(),5)){
+                    status[5]=1;
+                    sex.setTextColor(getResources().getColor(R.color.normal_text));
+                }
+                else{
+                    status[5]=2;
+                    sex.setTextColor(getResources().getColor(R.color.red1));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        identify.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(checkEditTextContent(charSequence.toString(),6)){
+                    status[6]=1;
+                    identify.setTextColor(getResources().getColor(R.color.normal_text));
+                }
+                else{
+                    status[6]=2;
+                    identify.setTextColor(getResources().getColor(R.color.red1));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        time.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(checkEditTextContent(charSequence.toString(),7)){
+                    status[7]=1;
+                    time.setTextColor(getResources().getColor(R.color.normal_text));
+                }
+                else{
+                    status[7]=2;
+                    time.setTextColor(getResources().getColor(R.color.red1));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
     }
     /**
      * 初始化数据
@@ -126,6 +285,7 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
         identifyList=new ArrayList<>();
         identifyList.add(new Category(1,"本科生"));
         identifyList.add(new Category(2,"研究生"));
+
     }
 
 
@@ -133,8 +293,15 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.next:
-
-                BindSuccessActivity.start(this);
+                if(bindEnable()){
+                    if(bindParam==null)
+                        bindParam=new BindParam();
+                    bindParam.setAllParam(MyApplication.getUser().getAccount(),college.getText().toString(),number.getText().toString(),name.getText().toString(),
+                            academy.getText().toString(),profession.getText().toString(),sex.getText().toString(),identify.getText().toString(),time.getText().toString(),
+                            Utils.jointOrderUrl(schoolURL.getUrl()));
+                    bindCollegeInfoApi.setAllParam(bindParam);
+                    httpManager.doHttpDeal(bindCollegeInfoApi);
+                }
                 break;
             case R.id.time:
                 Log.d("time click","showDialog");
@@ -149,10 +316,10 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
                 });
                 break;
             case R.id.identify:
-                onSinglePicker(sexList, new SinglePicker.OnItemPickListener<Category>() {
+                onSinglePicker(identifyList, new SinglePicker.OnItemPickListener<Category>() {
                     @Override
                     public void onItemPicked(int index, Category item) {
-                        sex.setText(item.getName());
+                        identify.setText(item.getName());
                     }
                 });
                 break;
@@ -160,6 +327,38 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
     }
 
     @Override
+    public void onNext(String resulte, String method) {
+        if (method.equals(bindCollegeInfoApi.getMethod())) {
+            BaseResultEntity<String> result = null;
+            try {
+                result = JSONObject.parseObject(resulte, new TypeReference<BaseResultEntity<String>>() {
+
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+                Utils.showToast("解析错误");
+                Logger.e(this.getClass(), "解析错误！！！！！！！！！！");
+                return;
+            }
+            if(result.getStatus()== Constant.SUCCESS){
+                Utils.showToast("绑定成功");
+                BindSuccessActivity.start(this,bindParam);
+            }
+            else
+                Utils.showToast("绑定失败");
+        }
+    }
+
+    @Override
+    public void onError(ApiException e, String method) {
+        if (method.equals(bindCollegeInfoApi.getMethod())) {
+            Utils.showToast("绑定失败");
+        }
+    }
+
+
+
+/*    @Override
     public void onFocusChange(View view, boolean b) {
         EditText editText=null;
         int which=0;
@@ -203,7 +402,7 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
             else
                 editText.setTextColor(getResources().getColor(R.color.red1));
         }
-    }
+    }*/
 
     @Override
     protected Dialog onCreateDialog(int id) {
@@ -259,6 +458,13 @@ public class BindPerfectActivity extends ToolbarActivity implements View.OnClick
         else{
             return false;
         }
+    }
+
+    private boolean bindEnable(){
+        for(int i=0;i<status.length;i++)
+            if(status[i]!=1)
+                return false;
+        return true;
     }
 
     /**

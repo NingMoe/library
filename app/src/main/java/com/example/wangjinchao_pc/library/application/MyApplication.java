@@ -8,6 +8,7 @@ import com.example.wangjinchao_pc.library.BuildConfig;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.base.BaseActivity;
 import com.example.wangjinchao_pc.library.enity.Token;
+import com.example.wangjinchao_pc.library.enity.domain.Ident;
 import com.example.wangjinchao_pc.library.enity.domain.User;
 import com.example.wangjinchao_pc.library.util.FileHelper;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -29,6 +30,7 @@ public class MyApplication extends Application {
 
     private static MyApplication instance;
     private static Context context;
+    private static Ident ident;
 
     //维持登陆状态???????需要保存吗？？？？
     private static Token token;
@@ -101,6 +103,16 @@ public class MyApplication extends Application {
         MyApplication.user = user;
     }
 
+    public static Ident getIdent() {
+        if(ident==null)
+            ident=new Ident();
+        return ident;
+    }
+
+    public static void setIdent(Ident ident) {
+        MyApplication.ident = ident;
+    }
+
     private void createActivityStack(){
 
         activityStack = new Stack<>();
@@ -135,4 +147,17 @@ public class MyApplication extends Application {
         }
 
     }*/
+
+    //关闭Activity的类
+    public void closeAllActivityBefore()
+    {
+        // 关闭所有Activity
+        for (int i = 0; i < activityStack.size(); i++)
+        {
+            if (null != activityStack.get(i))
+            {
+                activityStack.get(i).finish();
+            }
+        }
+    }
 }

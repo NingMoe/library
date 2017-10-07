@@ -1,6 +1,8 @@
 package com.example.wangjinchao_pc.library.activity;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.design.widget.TabLayout;
@@ -8,8 +10,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -17,6 +21,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -25,20 +30,24 @@ import com.example.wangjinchao_pc.library.Fragment.HomePageFragment;
 import com.example.wangjinchao_pc.library.Fragment.LibraryFragment;
 import com.example.wangjinchao_pc.library.Fragment.MineFragment;
 import com.example.wangjinchao_pc.library.Fragment.OrderFragment;
+import com.example.wangjinchao_pc.library.Fragment.OrderFragment2;
 import com.example.wangjinchao_pc.library.R;
 import com.example.wangjinchao_pc.library.adapter.MyViewPageAdapter;
+import com.example.wangjinchao_pc.library.application.MyApplication;
 import com.example.wangjinchao_pc.library.base.ToolbarActivity;
 import com.example.wangjinchao_pc.library.api.GetBannerApi;
 import com.example.wangjinchao_pc.library.api.GetNoticeApi;
 import com.example.wangjinchao_pc.library.api.GetOrderApi;
 import com.example.wangjinchao_pc.library.api.GetRankApi;
 import com.example.wangjinchao_pc.library.enity.baseResult.BaseResultEntity;
+import com.example.wangjinchao_pc.library.util.Logger;
 import com.example.wangjinchao_pc.library.util.Utils;
 import com.jauker.widget.BadgeView;
 import com.retrofit_rx.exception.ApiException;
 import com.retrofit_rx.http.HttpManager;
 import com.retrofit_rx.listener.HttpOnNextListener;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,8 +116,8 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
         fragmentList.add(find);
         mine=new MineFragment();
         fragmentList.add(mine);
-
-        viewPager.setAdapter(new MyViewPageAdapter(fragmentList, getSupportFragmentManager()));
+        MyViewPageAdapter myViewPageAdapter=new MyViewPageAdapter(fragmentList, getSupportFragmentManager());
+        viewPager.setAdapter(myViewPageAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -125,7 +134,20 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
 
             }
         });
+
         tabLayout.setupWithViewPager(viewPager);
+
+        /*for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            if (tab != null) {
+
+                if (tab.getCustomView() != null) {
+                    View tabView = (View) tab.getCustomView().getParent();
+                    tabView.setTag(i);
+                    tabView.setOnClickListener(mTabOnClickListener);
+                }
+            }
+        }*/
 
         tabLayout.getTabAt(0).setText(R.string.home_page).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.home),
                 getResources().getColorStateList(R.color.main_tab_color_selector)));
@@ -137,7 +159,73 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
                 getResources().getColorStateList(R.color.main_tab_color_selector)));
         tabLayout.getTabAt(4).setText(R.string.mine).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.mine),
                 getResources().getColorStateList(R.color.main_tab_color_selector)));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Logger.d(this.getClass(),"点击"+tab.getPosition());
+                if(tab.getPosition()==2)
+                    OrderActivity.start(MainActivity.this,MyApplication.getIdent().getOrderUrl());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                Logger.d(this.getClass(),"重复点击"+tab.getPosition());
+            }
+        });
+        /*for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            if (tab == null) return;
+            //这里使用到反射，拿到Tab对象后获取Class
+            Class c = tab.getClass();
+            try {
+                //Filed “字段、属性”的意思,c.getDeclaredField 获取私有属性。
+                //"mView"是Tab的私有属性名称(可查看TabLayout源码),类型是 TabView,TabLayout私有内部类。
+                Field field = c.getDeclaredField("mView");
+                //值为 true 则指示反射的对象在使用时应该取消 Java 语言访问检查。值为 false 则指示反射的对象应该实施 Java 语言访问检查。
+                //如果不这样会报如下错误
+                // java.lang.IllegalAccessException:
+                //Class com.test.accessible.Main
+                //can not access
+                //a member of class com.test.accessible.AccessibleTest
+                //with modifiers "private"
+                field.setAccessible(true);
+                final View view = (View) field.get(tab);
+                if (view == null) return;
+                view.setTag(i);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = (int) view.getTag();
+                        Toast.makeText(MainActivity.this, "您还没有登录", Toast.LENGTH_SHORT).show();
+                        //这里就可以根据业务需求处理点击事件了。
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }*/
+
     }
+    private View.OnClickListener mTabOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int pos = (int) view.getTag();
+            if (pos == 0) {
+                Toast.makeText(MainActivity.this, "您还没有登录", Toast.LENGTH_SHORT).show();
+                //TODO 跳转到登录界面
+            } else {
+                TabLayout.Tab tab = tabLayout.getTabAt(pos);
+                if (tab != null) {
+                    tab.select();
+                }
+            }
+        }
+    };
     /**
      * 刷新(Notice?????????????????????????????)
      */
@@ -451,5 +539,10 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
 
     public void setHttpOnNextListener(HttpOnNextListener httpOnNextListener) {
         this.httpOnNextListener = httpOnNextListener;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
