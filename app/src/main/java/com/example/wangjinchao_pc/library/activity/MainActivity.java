@@ -61,6 +61,9 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
         context.startActivity(intent);
     }
 
+    private static final int REQUEST_ORDERACTIVITY=200;
+    private static final int REQUEST_BINDACTIVITY=400;
+
     @BindView(R.id.viewpager)
     ViewPager viewPager;
     @BindView(R.id.tablayout)
@@ -80,8 +83,10 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
     private GetOrderApi getOrderApi;
     private GetRankApi getRankApi;
     private GetNoticeApi getNoticeApi;
-
     private HttpOnNextListener httpOnNextListener;
+
+    //针对调转到orderActivity设置
+    private int last_tab_position=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +98,8 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
         initActionBar();
         initViewPager();
     }
+
+
     /**
      * 初始化导航栏
      */
@@ -110,8 +117,8 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
         fragmentList.add(homePage);
         library=new LibraryFragment();
         fragmentList.add(library);
-        order=new OrderFragment();
-        fragmentList.add(order);
+        /*order=new OrderFragment();
+        fragmentList.add(order);*/
         find=new FindFragment();
         fragmentList.add(find);
         mine=new MineFragment();
@@ -121,11 +128,14 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
             public void onPageSelected(int position) {
+                if(position>=2&&position<=3)
+                    position++;
+                tabLayout.getTabAt(position).select();
+                last_tab_position=position;
                 checkMenuItemIsVisiable(position);
             }
 
@@ -135,36 +145,33 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
             }
         });
 
-        tabLayout.setupWithViewPager(viewPager);
+        /*tabLayout.setupWithViewPager(viewPager);*/
+        TabLayout.Tab tab=null;
+        tab=tabLayout.newTab().setText(R.string.home_page).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.home),
+                getResources().getColorStateList(R.color.main_tab_color_selector)));
+        tab.setTag(0);
+        tabLayout.addTab(tab, 0);
+        tab=tabLayout.newTab().setText(R.string.library).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.library),
+                getResources().getColorStateList(R.color.main_tab_color_selector)));
+        tab.setTag(1);
+        tabLayout.addTab(tab, 1);
+        tab=tabLayout.newTab().setText(R.string.order).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.order),
+                getResources().getColorStateList(R.color.main_tab_color_selector)));
+        tab.setTag(2);
+        tabLayout.addTab(tab, 2);
+        tab=tabLayout.newTab().setText(R.string.find).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.find),
+                getResources().getColorStateList(R.color.main_tab_color_selector)));
+        tab.setTag(3);
+        tabLayout.addTab(tab, 3);
+        tab=tabLayout.newTab().setText(R.string.mine).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.mine),
+                getResources().getColorStateList(R.color.main_tab_color_selector)));
+        tab.setTag(4);
+        tabLayout.addTab(tab, 4);
 
-        /*for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            if (tab != null) {
-
-                if (tab.getCustomView() != null) {
-                    View tabView = (View) tab.getCustomView().getParent();
-                    tabView.setTag(i);
-                    tabView.setOnClickListener(mTabOnClickListener);
-                }
-            }
-        }*/
-
-        tabLayout.getTabAt(0).setText(R.string.home_page).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.home),
-                getResources().getColorStateList(R.color.main_tab_color_selector)));
-        tabLayout.getTabAt(1).setText(R.string.library).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.library),
-                getResources().getColorStateList(R.color.main_tab_color_selector)));
-        tabLayout.getTabAt(2).setText(R.string.order).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.order),
-                getResources().getColorStateList(R.color.main_tab_color_selector)));
-        tabLayout.getTabAt(3).setText(R.string.find).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.find),
-                getResources().getColorStateList(R.color.main_tab_color_selector)));
-        tabLayout.getTabAt(4).setText(R.string.mine).setIcon(Utils.setDrawableTint(getResources().getDrawable(R.drawable.mine),
-                getResources().getColorStateList(R.color.main_tab_color_selector)));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Logger.d(this.getClass(),"点击"+tab.getPosition());
-                if(tab.getPosition()==2)
-                    OrderActivity.start(MainActivity.this,MyApplication.getIdent().getOrderUrl());
             }
 
             @Override
@@ -177,8 +184,8 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
                 Logger.d(this.getClass(),"重复点击"+tab.getPosition());
             }
         });
-        /*for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            tab = tabLayout.getTabAt(i);
             if (tab == null) return;
             //这里使用到反射，拿到Tab对象后获取Class
             Class c = tab.getClass();
@@ -201,31 +208,45 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
                     @Override
                     public void onClick(View v) {
                         int position = (int) view.getTag();
-                        Toast.makeText(MainActivity.this, "您还没有登录", Toast.LENGTH_SHORT).show();
                         //这里就可以根据业务需求处理点击事件了。
+                        if(position==2){
+                            String url=MyApplication.getIdent().getOrderUrl();
+                            if(url==null||url.trim().isEmpty()) {
+                                new android.app.AlertDialog.Builder(MainActivity.this).setTitle("提示").setMessage("您未绑定，请前往绑定页面绑定")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                BindCollegeActivity.start(MainActivity.this);
+
+                                            }
+                                        })
+                                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                BindCollegeActivity.start(MainActivity.this);
+                                            }
+                                        }).setCancelable(false).show();
+                            }else{
+                                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                                intent.putExtra(OrderActivity.URL, url);
+                                startActivityForResult(intent,REQUEST_ORDERACTIVITY);
+                                /*OrderActivity.start(MainActivity.this,MyApplication.getIdent().getOrderUrl());*/
+                            }
+                        }else{
+                            if(position>=0&&position<2)
+                                viewPager.setCurrentItem(position);
+                            else if(position>2&&position<=4)
+                                viewPager.setCurrentItem(position-1);
+                            last_tab_position=position;
+                        }
                     }
                 });
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 
     }
-    private View.OnClickListener mTabOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            int pos = (int) view.getTag();
-            if (pos == 0) {
-                Toast.makeText(MainActivity.this, "您还没有登录", Toast.LENGTH_SHORT).show();
-                //TODO 跳转到登录界面
-            } else {
-                TabLayout.Tab tab = tabLayout.getTabAt(pos);
-                if (tab != null) {
-                    tab.select();
-                }
-            }
-        }
-    };
     /**
      * 刷新(Notice?????????????????????????????)
      */
@@ -243,8 +264,10 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
     @Override
     protected void onRestart() {
         super.onRestart();
+        tabLayout.getTabAt(last_tab_position).select();
         checkMenuItemIsVisiable(viewPager.getCurrentItem());
     }
+
     /**
      * 创建菜单栏
      */
@@ -319,6 +342,11 @@ public class MainActivity extends ToolbarActivity implements HttpOnNextListener{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode==REQUEST_ORDERACTIVITY&&resultCode==RESULT_OK){
+            tabLayout.getTabAt(last_tab_position).select();
+        }
+
+
 //        if(requestCode == CaptureActivity.ZXING_REQUEST_CODE && resultCode == RESULT_OK && data!=null){
 //            String capture_data = data.getStringExtra(CaptureActivity.EXTRA_DATA);
 //        }

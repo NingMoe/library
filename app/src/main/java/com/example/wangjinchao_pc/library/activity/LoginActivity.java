@@ -176,69 +176,52 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
                 result = JSONObject.parseObject(resulte, new
                         TypeReference<BaseResultEntity<User>>() {
                         });
+                if(result!=null) {
+                    if(result.getStatus()== Constant.SUCCESS){
+                        MyApplication.setUser(result.getData());
+                        dataOk1=1;
+                    }
+                    else {
+                        dataOk1=2;
+                    }
+                }else
+                    dataOk1=2;
             }catch (Exception e){
                 dataOk1=2;
-                if(dataOk2!=0){
-                    dataOk1=0;
-                    dataOk2=0;
-                    loginBtnEnable=true;
-                }
                 e.printStackTrace();
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
-                return;
             }
-            if(result!=null) {
-                if(result.getStatus()== Constant.SUCCESS){
-                    MyApplication.setUser(result.getData());
-                    dataOk1=1;
-                }
-                else {
-                    dataOk1=2;
-                }
-            }else
-                dataOk1=2;
         }else if(method.equals(getOneIdentApi.getMethod())){
             BaseResultEntity<Ident> result=null;
             try{
                 result = JSONObject.parseObject(resulte, new
                         TypeReference<BaseResultEntity<Ident>>() {
                         });
+                if(result!=null) {
+                    if(result.getStatus()== Constant.SUCCESS){
+                        MyApplication.setIdent(result.getData());
+                        dataOk2=1;
+                    }
+                    else {
+                        dataOk2=2;
+                    }
+                }else
+                    dataOk2=2;
             }catch (Exception e){
                 dataOk2=2;
-                if(dataOk1!=0){
-                    dataOk1=0;
-                    dataOk2=0;
-                    loginBtnEnable=true;
-                }
                 e.printStackTrace();
                 Utils.showToast("解析错误");
                 Logger.e(this.getClass(),"解析错误！！！！！！！！！！");
-                return;
             }
-            if(result!=null) {
-                if(result.getStatus()== Constant.SUCCESS){
-                    MyApplication.setIdent(result.getData());
-                    dataOk2=1;
-                }
-                else {
-                    dataOk2=2;
-                }
-            }else
-                dataOk2=2;
         }
         synchronized (this){
-            if(dataOk1==1&&dataOk2==1){
+            if(dataOk1!=0&&dataOk2!=0){//可以在这里对User、Ident初始化
                 dataOk1=0;
                 dataOk2=0;
+                loginBtnEnable=true;
                 Utils.showToast("登陆成功");
-                loginBtnEnable=true;
                 MainActivity.start(this);
-            }else if(dataOk1==2||dataOk2==2){
-                dataOk1=0;
-                dataOk2=0;
-                loginBtnEnable=true;
-                Utils.showToast("登陆失败");
             }
         }
 
@@ -247,11 +230,24 @@ public class LoginActivity extends ToolbarActivity implements View.OnClickListen
     @Override
     public void onError(ApiException e, String method) {
         if (method.equals(loginApi.getMethod())) {
+            Utils.showToast("登陆失败");
             Utils.showToast(e.getDisplayMessage());
             loginBtnEnable=true;
         }else if(method.equals(getUserInformationApi.getMethod())) {
             Utils.showToast(e.getDisplayMessage());
             loginBtnEnable=true;
+        }else if(method.equals(getOneIdentApi.getMethod())) {
+            Utils.showToast(e.getDisplayMessage());
+            loginBtnEnable=true;
+        }
+        synchronized (this){
+            if(dataOk1!=0&&dataOk2!=0){//可以在这里对User、Ident初始化
+                dataOk1=0;
+                dataOk2=0;
+                loginBtnEnable=true;
+                Utils.showToast("登陆成功");
+                MainActivity.start(this);
+            }
         }
     }
 }

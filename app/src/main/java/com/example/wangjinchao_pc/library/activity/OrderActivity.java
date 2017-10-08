@@ -125,7 +125,7 @@ public class OrderActivity extends ToolbarActivity {
      * 初始化导航栏
      */
     private void initActionBar(){
-        setTitle("云打印");
+        setTitle("预约");
         setDisplayHomeAsUpEnabled(true);
     }
 
@@ -543,8 +543,11 @@ public class OrderActivity extends ToolbarActivity {
                 if (Integer.parseInt(android.os.Build.VERSION.SDK) >= 16)
                     changGoForwardButton(mWebView);
                 return true;
-            } else
+            } else{
+                Intent resultIntent = new Intent();
+                this.setResult(RESULT_OK, resultIntent);
                 this.finish();
+            }
         }
         return super.onKeyDown(keyCode, event);
     }

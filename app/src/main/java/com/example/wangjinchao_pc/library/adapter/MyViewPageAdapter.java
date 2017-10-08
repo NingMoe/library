@@ -27,5 +27,10 @@ public class MyViewPageAdapter extends FragmentPagerAdapter {
         return fragments.size();
     }
 
+    @Override
+    public float getPageWidth(int position) {
+        return super.getPageWidth(position);
+    }
+
 
 }
